@@ -13,7 +13,7 @@
 #ifndef SERVO_CFG_H_
 #define SERVO_CFG_H_
 
-#include "SERVO.h"
+#include "Servo.h"
 
 extern const SERVO_CfgType SERVO_CfgParam[SERVO_NUM];
 
