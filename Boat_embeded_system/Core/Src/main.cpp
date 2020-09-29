@@ -26,39 +26,13 @@
 #include "stm32f4xx_hal.h"
 #include <std_msgs/UInt16.h>
 #include <std_msgs/UInt8.h>
-#include "Servo/Servo.h"
-#include "functions.h"
-//Thrusters declaration
-uint16_t thrusterRight = 0;
-uint16_t thrusterLeft = 1;
 
-//autonomous navigation ints
-int powerR = 1500;
-int powerL = 1500;
-
-
-//X8R Receiver channels
-float channel4; //perpendicular axis lever - rotation
-float channel2; //parallel axis lever - displacement
-float channel5; //choice lever
-
-ros::NodeHandle  nh;
-
-void right_cb( const std_msgs::UInt16& cmd_msg){
-	powerR = cmd_msg.data; //1100-1900
-}
-
-void left_cb( const std_msgs::UInt16& cmd_msg){
-	powerL = cmd_msg.data; //1100-1900
-}
-
-std_msgs::UInt8 flag;
-ros::Subscriber<std_msgs::UInt16> rsub("rpwm", right_cb);
-ros::Subscriber<std_msgs::UInt16> lsub("lpwm", left_cb);
-ros::Publisher stm32("stm32", &flag);
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+extern "C"{
+#include "Servo/Servo.h"
+#include "functions.h"
+}
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -87,7 +61,36 @@ UART_HandleTypeDef huart2;
 
 osThreadId defaultTaskHandle;
 /* USER CODE BEGIN PV */
+osThreadId boatUpdateTaskHandle;
 
+//Thrusters declaration
+uint16_t thrusterRight = 0;
+uint16_t thrusterLeft = 1;
+
+//autonomous navigation ints
+int powerR = 1500;
+int powerL = 1500;
+
+
+//X8R Receiver channels
+float channel4; //perpendicular axis lever - rotation
+float channel2; //parallel axis lever - displacement
+float channel5; //choice lever
+
+ros::NodeHandle  nh;
+
+void right_cb( const std_msgs::UInt16& cmd_msg){
+    powerR = cmd_msg.data; //1100-1900
+}
+
+void left_cb( const std_msgs::UInt16& cmd_msg){
+    powerL = cmd_msg.data; //1100-1900
+}
+
+std_msgs::UInt8 flag;
+ros::Subscriber<std_msgs::UInt16> rsub("rpwm", right_cb);
+ros::Subscriber<std_msgs::UInt16> lsub("lpwm", left_cb);
+ros::Publisher stm32("stm32", &flag);
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -106,7 +109,16 @@ void StartDefaultTask(void const * argument);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+[[noreturn]] void boatUpdate_Task(const void *){
+    while(true){
+        read_values(channel4, channel2, channel5);
+        select(channel4, channel2, channel5, thrusterRight, thrusterLeft, powerR, powerL);
+        flag.data = 1;
+        stm32.publish( &flag );
+        nh.spinOnce();
+        vTaskDelay(pdMS_TO_TICKS(1));
+    }
+}
 /* USER CODE END 0 */
 
 /**
@@ -167,21 +179,18 @@ int main(void)
   osThreadDef(defaultTask, StartDefaultTask, osPriorityNormal, 0, 128);
   defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);  /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
+  osThreadDef(boatUpdate, boatUpdate_Task, osPriorityNormal, 1, 128);
+  boatUpdateTaskHandle = osThreadCreate(osThread(boatUpdate), NULL);
   /* USER CODE END RTOS_THREADS */
 
   /* Start scheduler */
   osKernelStart();
-  SERVO_Init(thrusterRight);
-  SERVO_Init(thrusterLeft);
 
-  while (1)
-  {
-  	  	read_values(channel4, channel2, channel5);
-  	    select(channel4, channel2, channel5, thrusterRight, thrusterLeft, powerR, powerL);
-  	    flag.data = 1;
-  	    stm32.publish( &flag );
-  	  	nh.spinOnce();
-  	  	HAL_Delay(1);
+    /* We should never get here as control is now taken by the scheduler */
+    /* Infinite loop */
+    /* USER CODE BEGIN WHILE */
+  while (1){
+    ;
   }
 }
 

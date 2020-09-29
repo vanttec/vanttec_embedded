@@ -26,7 +26,7 @@ typedef struct
 	GPIO_TypeDef * SERVO_GPIO;
 	uint16_t       SERVO_PIN;
 	TIM_TypeDef*   TIM_Instance;
-	uint32_t*      TIM_CCRx;
+	volatile uint32_t*      TIM_CCRx;
 	uint32_t       PWM_TIM_CH;
 	uint32_t       TIM_CLK;
 	float          MinPulse;
