@@ -16,8 +16,6 @@ void autonomous_Mode(uint16_t thrusterRight, uint16_t thrusterLeft, int powerR, 
 
 float map(float x, float in_min, float in_max, float out_min, float out_max);
 
-void read_values (float channel4, float channel2, float channel5);
-
 void RGB_color(bool red_light_value, bool green_light_value, bool blue_light_value);
 
 void power_Difference(float channel4, float channel2, float channel5,

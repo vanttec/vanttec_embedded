@@ -9,21 +9,6 @@ float map(float x, float in_min, float in_max, float out_min, float out_max){
     return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 }
 
-void read_values (float channel4, float channel2, float channel5){
-    /*
-TODO Agregar libreria para implementar pulseIn
-//Read channel frequecies
-channel4 = pulseIn(PIN_X8R_4, HIGH);
-//Serial.print("CH 4 ");
-//Serial.println(channel4);
-channel2 = pulseIn(PIN_X8R_2, HIGH);
-//Serial.print("CH 2 ");
-//Serial.println(channel2);
-channel5 = pulseIn(PIN_X8R_5, HIGH);
-//Serial.print("CH 5 ");
-//Serial.println(channel5);*/
-}
-
 void RGB_color(bool red_light_value, bool green_light_value, bool blue_light_value){
     HAL_GPIO_WritePin(GPIOA, red_light_pin, red_light_value ? GPIO_PIN_SET : GPIO_PIN_RESET);
     HAL_GPIO_WritePin(GPIOA, green_light_pin, green_light_value ? GPIO_PIN_SET : GPIO_PIN_RESET);

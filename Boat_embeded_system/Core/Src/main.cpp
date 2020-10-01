@@ -57,6 +57,10 @@ I2S_HandleTypeDef hi2s3;
 
 SPI_HandleTypeDef hspi1;
 
+TIM_HandleTypeDef htim3;
+TIM_HandleTypeDef htim4;
+TIM_HandleTypeDef htim5;
+
 UART_HandleTypeDef huart2;
 
 osThreadId defaultTaskHandle;
@@ -76,6 +80,19 @@ int powerL = 1500;
 float channel4; //perpendicular axis lever - rotation
 float channel2; //parallel axis lever - displacement
 float channel5; //choice lever
+
+//X8R auxiliar variables
+float channel4Read1; //First captured value to measure pulse width
+float channel4Read2;//Second captured value to measure pulse width
+uint8_t channel4Status = 0;//Defines if waiting the first or second read
+
+float channel2Read1; //First captured value to measure pulse width
+float channel2Read2;//Second captured value to measure pulse width
+uint8_t channel2Status = 0;//Defines if waiting the first or second read
+
+float channel5Read1; //First captured value to measure pulse width
+float channel5Read2;//Second captured value to measure pulse width
+uint8_t channel5Status = 0;//Defines if waiting the first or second read
 
 ros::NodeHandle  nh;
 
@@ -102,6 +119,57 @@ static void MX_I2S3_Init(void);
 static void MX_SPI1_Init(void);
 static void MX_USART2_UART_Init(void);
 void StartDefaultTask(void const * argument);
+static void MX_TIM3_Init(void);
+static void MX_TIM4_Init(void);
+static void MX_TIM5_Init(void);
+
+
+
+//PWM functions
+void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim){
+	if(htim3.Channel == HAL_TIM_ACTIVE_CHANNEL_2){
+		if(channel4Status == 0){
+			channel4Read1 = HAL_TIM_ReadCapturedValue(htim, TIM_CHANNEL_2); //First measure
+			channel4Status = 1; //Waiting for the second measure
+			//Changing the interruption to detect falling edge
+			__HAL_TIM_SET_CAPTUREPOLARITY(htim, TIM_CHANNEL_2, TIM_INPUTCHANNELPOLARITY_FALLING);
+		}
+		else if(channel4Status == 1){
+			channel4Read2 = HAL_TIM_ReadCapturedValue(htim, TIM_CHANNEL_2); //Second measure
+			__HAL_TIM_SET_COUNTER(htim,0);
+
+			//Obtaining the pulse width
+			if(channel4Read2 > channel4Read1){
+				channel4 = channel4Read2 - channel4Read1;
+			}
+
+			channel4Status = 0; //Waiting for another measure
+			//Changing the interruption to falling edge
+			__HAL_TIM_SET_CAPTUREPOLARITY(htim, TIM_CHANNEL_2, TIM_INPUTCHANNELPOLARITY_FALLING);
+		}
+	}
+	if(htim4.Channel == HAL_TIM_ACTIVE_CHANNEL_2){
+			if(channel2Status == 0){
+				channel2Read1 = HAL_TIM_ReadCapturedValue(htim, TIM_CHANNEL_2); //First measure
+				channel2Status = 1; //Waiting for the second measure
+				//Changing the interruption to detect falling edge
+				__HAL_TIM_SET_CAPTUREPOLARITY(htim, TIM_CHANNEL_2, TIM_INPUTCHANNELPOLARITY_FALLING);
+			}
+			else if(channel2Status == 1){
+				channel2Read2 = HAL_TIM_ReadCapturedValue(htim, TIM_CHANNEL_2); //Second measure
+				__HAL_TIM_SET_COUNTER(htim,0);
+
+				//Obtaining the pulse width
+				if(channel2Read2 > channel4Read1){
+					channel2 = channel2Read2 - channel2Read1;
+				}
+
+				channel2Status = 0; //Waiting for another measure
+				//Changing the interruption to falling edge
+				__HAL_TIM_SET_CAPTUREPOLARITY(htim, TIM_CHANNEL_2, TIM_INPUTCHANNELPOLARITY_FALLING);
+			}
+		}
+}
 
 /* USER CODE BEGIN PFP */
 
@@ -111,11 +179,7 @@ void StartDefaultTask(void const * argument);
 /* USER CODE BEGIN 0 */
 [[noreturn]] void boatUpdate_Task(const void *){
     while(true){
-        read_values(channel4, channel2, channel5);
-        select(channel4, channel2, channel5, thrusterRight, thrusterLeft, powerR, powerL);
-        flag.data = 1;
-        stm32.publish( &flag );
-        nh.spinOnce();
+
         vTaskDelay(pdMS_TO_TICKS(1));
     }
 }
@@ -125,73 +189,79 @@ void StartDefaultTask(void const * argument);
   * @brief  The application entry point.
   * @retval int
   */
-int main(void)
-{
-  /* USER CODE BEGIN 1 */
+int main(void){
+	/* USER CODE BEGIN 1 */
 
-  /* USER CODE END 1 */
+	/* USER CODE END 1 */
 
-  /* MCU Configuration--------------------------------------------------------*/
+	/* MCU Configuration--------------------------------------------------------*/
 
-  /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-  HAL_Init();
+	/* Reset of all peripherals, Initializes the Flash interface and the Systick. */
+	HAL_Init();
 
-  /* USER CODE BEGIN Init */
+  	/* USER CODE BEGIN Init */
 
-  /* USER CODE END Init */
+  	/* USER CODE END Init */
 
-  /* Configure the system clock */
-  SystemClock_Config();
+  	/* Configure the system clock */
+  	SystemClock_Config();
 
-  /* USER CODE BEGIN SysInit */
+  	/* USER CODE BEGIN SysInit */
 
-  /* USER CODE END SysInit */
+  	/* USER CODE END SysInit */
 
-  /* Initialize all configured peripherals */
-  MX_GPIO_Init();
-  MX_I2C1_Init();
-  MX_I2S2_Init();
-  MX_I2S3_Init();
-  MX_SPI1_Init();
-  MX_USART2_UART_Init();
-  /* USER CODE BEGIN 2 */
+  	/* Initialize all configured peripherals */
+  	MX_GPIO_Init();
+  	MX_I2C1_Init();
+  	MX_I2S2_Init();
+  	MX_I2S3_Init();
+  	MX_SPI1_Init();
+  	MX_USART2_UART_Init();
+  	MX_TIM3_Init();
+  	MX_TIM4_Init();
+  	MX_TIM5_Init();
+  	/* USER CODE BEGIN 2 */
+  	HAL_TIM_IC_Start_IT(&htim3, TIM_CHANNEL_2);
+  	/* USER CODE END 2 */
 
-  /* USER CODE END 2 */
+  	/* USER CODE BEGIN RTOS_MUTEX */
+  	/* add mutexes, ... */
+  	/* USER CODE END RTOS_MUTEX */
 
-  /* USER CODE BEGIN RTOS_MUTEX */
-  /* add mutexes, ... */
-  /* USER CODE END RTOS_MUTEX */
+  	/* USER CODE BEGIN RTOS_SEMAPHORES */
+  	/* add semaphores, ... */
+  	/* USER CODE END RTOS_SEMAPHORES */
 
-  /* USER CODE BEGIN RTOS_SEMAPHORES */
-  /* add semaphores, ... */
-  /* USER CODE END RTOS_SEMAPHORES */
+  	/* USER CODE BEGIN RTOS_TIMERS */
+  	/* start timers, add new ones, ... */
+  	/* USER CODE END RTOS_TIMERS */
 
-  /* USER CODE BEGIN RTOS_TIMERS */
-  /* start timers, add new ones, ... */
-  /* USER CODE END RTOS_TIMERS */
+  	/* USER CODE BEGIN RTOS_QUEUES */
+  	/* add queues, ... */
+  	/* USER CODE END RTOS_QUEUES */
 
-  /* USER CODE BEGIN RTOS_QUEUES */
-  /* add queues, ... */
-  /* USER CODE END RTOS_QUEUES */
+  	/* Create the thread(s) */
+  	/* definition and creation of defaultTask */
+  	osThreadDef(defaultTask, StartDefaultTask, osPriorityNormal, 0, 128);
+  	defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);  /* USER CODE BEGIN RTOS_THREADS */
+    /* add threads, ... */
+  	osThreadDef(boatUpdate, boatUpdate_Task, osPriorityNormal, 1, 128);
+  	boatUpdateTaskHandle = osThreadCreate(osThread(boatUpdate), NULL);
+  	/* USER CODE END RTOS_THREADS */
 
-  /* Create the thread(s) */
-  /* definition and creation of defaultTask */
-  osThreadDef(defaultTask, StartDefaultTask, osPriorityNormal, 0, 128);
-  defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);  /* USER CODE BEGIN RTOS_THREADS */
-  /* add threads, ... */
-  osThreadDef(boatUpdate, boatUpdate_Task, osPriorityNormal, 1, 128);
-  boatUpdateTaskHandle = osThreadCreate(osThread(boatUpdate), NULL);
-  /* USER CODE END RTOS_THREADS */
-
-  /* Start scheduler */
-  osKernelStart();
+  	/* Start scheduler */
+  	osKernelStart();
 
     /* We should never get here as control is now taken by the scheduler */
     /* Infinite loop */
     /* USER CODE BEGIN WHILE */
-  while (1){
-    ;
-  }
+  	while (1){
+  		select(channel4, channel2, channel5, thrusterRight, thrusterLeft, powerR, powerL);
+  		flag.data = 1;
+  		stm32.publish( &flag );
+  		nh.spinOnce();
+	    HAL_Delay(1);
+    }
 }
 
 /**
@@ -390,6 +460,151 @@ static void MX_SPI1_Init(void)
   * @param None
   * @retval None
   */
+static void MX_TIM3_Init(void)
+{
+
+  /* USER CODE BEGIN TIM3_Init 0 */
+
+  /* USER CODE END TIM3_Init 0 */
+
+  TIM_MasterConfigTypeDef sMasterConfig = {0};
+  TIM_IC_InitTypeDef sConfigIC = {0};
+
+  /* USER CODE BEGIN TIM3_Init 1 */
+
+  /* USER CODE END TIM3_Init 1 */
+  htim3.Instance = TIM3;
+  htim3.Init.Prescaler = 72-1;
+  htim3.Init.CounterMode = TIM_COUNTERMODE_UP;
+  htim3.Init.Period = 0xffff-1;
+  htim3.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+  htim3.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+  if (HAL_TIM_IC_Init(&htim3) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+  if (HAL_TIMEx_MasterConfigSynchronization(&htim3, &sMasterConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sConfigIC.ICPolarity = TIM_INPUTCHANNELPOLARITY_RISING;
+  sConfigIC.ICSelection = TIM_ICSELECTION_DIRECTTI;
+  sConfigIC.ICPrescaler = TIM_ICPSC_DIV1;
+  sConfigIC.ICFilter = 0;
+  if (HAL_TIM_IC_ConfigChannel(&htim3, &sConfigIC, TIM_CHANNEL_2) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN TIM3_Init 2 */
+
+  /* USER CODE END TIM3_Init 2 */
+
+}
+
+/**
+  * @brief TIM4 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_TIM4_Init(void)
+{
+
+  /* USER CODE BEGIN TIM4_Init 0 */
+
+  /* USER CODE END TIM4_Init 0 */
+
+  TIM_MasterConfigTypeDef sMasterConfig = {0};
+  TIM_IC_InitTypeDef sConfigIC = {0};
+
+  /* USER CODE BEGIN TIM4_Init 1 */
+
+  /* USER CODE END TIM4_Init 1 */
+  htim4.Instance = TIM4;
+  htim4.Init.Prescaler = 72-1;
+  htim4.Init.CounterMode = TIM_COUNTERMODE_UP;
+  htim4.Init.Period = 0xffff-1;
+  htim4.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+  htim4.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+  if (HAL_TIM_IC_Init(&htim4) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+  if (HAL_TIMEx_MasterConfigSynchronization(&htim4, &sMasterConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sConfigIC.ICPolarity = TIM_INPUTCHANNELPOLARITY_RISING;
+  sConfigIC.ICSelection = TIM_ICSELECTION_DIRECTTI;
+  sConfigIC.ICPrescaler = TIM_ICPSC_DIV1;
+  sConfigIC.ICFilter = 0;
+  if (HAL_TIM_IC_ConfigChannel(&htim4, &sConfigIC, TIM_CHANNEL_2) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN TIM4_Init 2 */
+
+  /* USER CODE END TIM4_Init 2 */
+
+}
+
+/**
+  * @brief TIM5 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_TIM5_Init(void)
+{
+
+  /* USER CODE BEGIN TIM5_Init 0 */
+
+  /* USER CODE END TIM5_Init 0 */
+
+  TIM_MasterConfigTypeDef sMasterConfig = {0};
+  TIM_IC_InitTypeDef sConfigIC = {0};
+
+  /* USER CODE BEGIN TIM5_Init 1 */
+
+  /* USER CODE END TIM5_Init 1 */
+  htim5.Instance = TIM5;
+  htim5.Init.Prescaler = 72;
+  htim5.Init.CounterMode = TIM_COUNTERMODE_UP;
+  htim5.Init.Period = 0xffff-1;
+  htim5.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+  htim5.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+  if (HAL_TIM_IC_Init(&htim5) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+  if (HAL_TIMEx_MasterConfigSynchronization(&htim5, &sMasterConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sConfigIC.ICPolarity = TIM_INPUTCHANNELPOLARITY_RISING;
+  sConfigIC.ICSelection = TIM_ICSELECTION_DIRECTTI;
+  sConfigIC.ICPrescaler = TIM_ICPSC_DIV1;
+  sConfigIC.ICFilter = 0;
+  if (HAL_TIM_IC_ConfigChannel(&htim5, &sConfigIC, TIM_CHANNEL_2) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN TIM5_Init 2 */
+
+  /* USER CODE END TIM5_Init 2 */
+
+}
+
+/**
+  * @brief TIM4 Initialization Function
+  * @param None
+  * @retval None
+  */
+
 static void MX_USART2_UART_Init(void)
 {
 
