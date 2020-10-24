@@ -15,7 +15,7 @@
 
 #define HAL_TIM_MODULE_ENABLED
 
-#include "stm32f4xx_hal.h"
+#include "stm32g4xx_hal.h"
 
 
 // The Number OF Servo Motors To Be Used In The Project

@@ -1,5 +1,5 @@
 #include "Servo/Servo.h"
-#include "stm32f4xx_hal.h"
+#include "stm32g4xx_hal.h"
 #include <stdbool.h>
 
 //X8R Receiver arduino pins

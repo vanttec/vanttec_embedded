@@ -13,7 +13,7 @@
 #ifndef DWT_DELAY_H_
 #define DWT_DELAY_H_
 
-#include "stm32f4xx_hal.h"
+#include "stm32g4xx_hal.h"
 
 
 uint32_t DWT_Delay_Init(void);
