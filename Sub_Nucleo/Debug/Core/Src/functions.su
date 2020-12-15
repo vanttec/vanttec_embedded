@@ -1,0 +1,5 @@
+functions.c:3:6:autonomous_Mode	24	static
+functions.c:8:7:map	32	static
+functions.c:12:6:RGB_color	16	static
+functions.c:18:6:power_Difference	56	static
+functions.c:62:6:select	32	static
