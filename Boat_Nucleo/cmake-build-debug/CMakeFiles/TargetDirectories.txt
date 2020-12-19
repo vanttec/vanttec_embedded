@@ -1,0 +1,3 @@
+/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/cmake-build-debug/CMakeFiles/Boat_Nucleo.elf.dir

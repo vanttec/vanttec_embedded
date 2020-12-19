@@ -1,0 +1,6 @@
+functions.c:3:6:SERVO_RawMove	24	static
+functions.c:28:6:autonomous_Mode	24	static
+functions.c:33:7:map	32	static
+functions.c:37:6:RGB_color	16	static
+functions.c:43:6:power_Difference	56	static
+functions.c:87:6:select	32	static

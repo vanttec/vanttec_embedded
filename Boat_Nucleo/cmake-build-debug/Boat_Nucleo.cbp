@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="Boat_Nucleo"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Boat_Nucleo.elf">
+				<Option output="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/cmake-build-debug/Boat_Nucleo.elf" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DSTM32G431xx"/>
+					<Add option="-DUSE_HAL_DRIVER"/>
+					<Add option="-DDEBUG"/>
+					<Add directory="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Core/Inc"/>
+					<Add directory="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/STM32G4xx_HAL_Driver/Inc"/>
+					<Add directory="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/STM32G4xx_HAL_Driver/Inc/Legacy"/>
+					<Add directory="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/CMSIS/Device/ST/STM32G4xx/Include"/>
+					<Add directory="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/CMSIS/Include"/>
+					<Add directory="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Middlewares/Third_Party/FreeRTOS/Source/include"/>
+					<Add directory="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2"/>
+					<Add directory="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F"/>
+					<Add directory="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/ros_lib"/>
+					<Add directory="/usr/lib/gcc/arm-none-eabi/10.2.0/../../../../arm-none-eabi/include/c++/10.2.0"/>
+					<Add directory="/usr/lib/gcc/arm-none-eabi/10.2.0/../../../../arm-none-eabi/include/c++/10.2.0/arm-none-eabi"/>
+					<Add directory="/usr/lib/gcc/arm-none-eabi/10.2.0/../../../../arm-none-eabi/include/c++/10.2.0/backward"/>
+					<Add directory="/usr/lib/gcc/arm-none-eabi/10.2.0/include"/>
+					<Add directory="/usr/lib/gcc/arm-none-eabi/10.2.0/include-fixed"/>
+					<Add directory="/usr/lib/gcc/arm-none-eabi/10.2.0/../../../../arm-none-eabi/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/cmake-build-debug/Makefile&quot;  VERBOSE=1 Boat_Nucleo.elf"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Boat_Nucleo.elf/fast">
+				<Option output="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/cmake-build-debug/Boat_Nucleo.elf" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DSTM32G431xx"/>
+					<Add option="-DUSE_HAL_DRIVER"/>
+					<Add option="-DDEBUG"/>
+					<Add directory="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Core/Inc"/>
+					<Add directory="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/STM32G4xx_HAL_Driver/Inc"/>
+					<Add directory="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/STM32G4xx_HAL_Driver/Inc/Legacy"/>
+					<Add directory="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/CMSIS/Device/ST/STM32G4xx/Include"/>
+					<Add directory="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/CMSIS/Include"/>
+					<Add directory="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Middlewares/Third_Party/FreeRTOS/Source/include"/>
+					<Add directory="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2"/>
+					<Add directory="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F"/>
+					<Add directory="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/ros_lib"/>
+					<Add directory="/usr/lib/gcc/arm-none-eabi/10.2.0/../../../../arm-none-eabi/include/c++/10.2.0"/>
+					<Add directory="/usr/lib/gcc/arm-none-eabi/10.2.0/../../../../arm-none-eabi/include/c++/10.2.0/arm-none-eabi"/>
+					<Add directory="/usr/lib/gcc/arm-none-eabi/10.2.0/../../../../arm-none-eabi/include/c++/10.2.0/backward"/>
+					<Add directory="/usr/lib/gcc/arm-none-eabi/10.2.0/include"/>
+					<Add directory="/usr/lib/gcc/arm-none-eabi/10.2.0/include-fixed"/>
+					<Add directory="/usr/lib/gcc/arm-none-eabi/10.2.0/../../../../arm-none-eabi/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/cmake-build-debug/Makefile&quot;  VERBOSE=1 Boat_Nucleo.elf/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Core/Inc/FreeRTOSConfig.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Core/Inc/Servo/DWT_Delay.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Core/Inc/Servo/STM32Hardware.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Core/Inc/Servo/Servo.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Core/Inc/Servo/Servo_cfg.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Core/Inc/Servo/Timer_Delay.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Core/Inc/functions.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Core/Inc/main.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Core/Inc/stm32g4xx_hal_conf.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Core/Inc/stm32g4xx_it.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Core/Src/Servo/DWT_Delay.c">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Core/Src/Servo/Servo_cfg.c">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Core/Src/Servo/Timer_Delay.c">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Core/Src/Servo/servo.c">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Core/Src/app_freertos.c">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Core/Src/functions.c">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Core/Src/main.cpp">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Core/Src/stm32g4xx_hal_msp.c">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Core/Src/stm32g4xx_it.c">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Core/Src/syscalls.c">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Core/Src/sysmem.c">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Core/Src/system_stm32g4xx.c">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Core/Startup/startup_stm32g431kbtx.s">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g431xx.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g4xx.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/CMSIS/Device/ST/STM32G4xx/Include/system_stm32g4xx.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/CMSIS/Include/cmsis_armcc.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/CMSIS/Include/cmsis_armclang.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/CMSIS/Include/cmsis_armclang_ltm.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/CMSIS/Include/cmsis_compiler.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/CMSIS/Include/cmsis_gcc.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/CMSIS/Include/cmsis_iccarm.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/CMSIS/Include/cmsis_version.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/CMSIS/Include/core_armv81mml.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/CMSIS/Include/core_armv8mbl.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/CMSIS/Include/core_armv8mml.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/CMSIS/Include/core_cm0.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/CMSIS/Include/core_cm0plus.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/CMSIS/Include/core_cm1.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/CMSIS/Include/core_cm23.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/CMSIS/Include/core_cm3.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/CMSIS/Include/core_cm33.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/CMSIS/Include/core_cm35p.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/CMSIS/Include/core_cm4.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/CMSIS/Include/core_cm7.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/CMSIS/Include/core_sc000.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/CMSIS/Include/core_sc300.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/CMSIS/Include/mpu_armv7.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/CMSIS/Include/mpu_armv8.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/CMSIS/Include/tz_context.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/STM32G4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_cortex.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_dma.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_dma_ex.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_exti.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_flash.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_flash_ex.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_flash_ramfunc.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_gpio.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_gpio_ex.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_i2c.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_i2c_ex.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_pwr.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_pwr_ex.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_rcc.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_rcc_ex.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_tim.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_tim_ex.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_usart.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_usart_ex.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal.c">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_cortex.c">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma_ex.c">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_exti.c">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash.c">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ramfunc.c">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_gpio.c">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_i2c.c">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_i2c_ex.c">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr.c">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_rcc.c">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_rcc_ex.c">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_tim.c">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_tim_ex.c">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_usart.c">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_usart_ex.c">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.c">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Middlewares/Third_Party/FreeRTOS/Source/croutine.c">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Middlewares/Third_Party/FreeRTOS/Source/event_groups.c">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Middlewares/Third_Party/FreeRTOS/Source/include/StackMacros.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Middlewares/Third_Party/FreeRTOS/Source/include/croutine.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Middlewares/Third_Party/FreeRTOS/Source/include/list.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Middlewares/Third_Party/FreeRTOS/Source/include/message_buffer.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Middlewares/Third_Party/FreeRTOS/Source/include/mpu_prototypes.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Middlewares/Third_Party/FreeRTOS/Source/include/portable.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Middlewares/Third_Party/FreeRTOS/Source/include/queue.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Middlewares/Third_Party/FreeRTOS/Source/include/stack_macros.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Middlewares/Third_Party/FreeRTOS/Source/include/stream_buffer.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Middlewares/Third_Party/FreeRTOS/Source/include/task.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Middlewares/Third_Party/FreeRTOS/Source/include/timers.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Middlewares/Third_Party/FreeRTOS/Source/list.c">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/port.c">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/portmacro.h">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.c">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Middlewares/Third_Party/FreeRTOS/Source/queue.c">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Middlewares/Third_Party/FreeRTOS/Source/stream_buffer.c">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Middlewares/Third_Party/FreeRTOS/Source/tasks.c">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/Middlewares/Third_Party/FreeRTOS/Source/timers.c">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/STM32G431KBTX_FLASH.ld">
+			<Option target="Boat_Nucleo.elf"/>
+		</Unit>
+		<Unit filename="/home/abiel/Documents/VantTec/vanttec_embedded/Boat_Nucleo/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
