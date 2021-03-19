@@ -48,6 +48,11 @@ endif
 
 -include ../makefile.defs
 
+BUILD_ARTIFACT_NAME := Sub_Nucleo
+BUILD_ARTIFACT_EXTENSION := elf
+BUILD_ARTIFACT_PREFIX := 
+BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME).$(BUILD_ARTIFACT_EXTENSION)
+
 # Add inputs and outputs from these tool invocations to the build variables 
 EXECUTABLES += \
 Sub_Nucleo.elf \
@@ -63,11 +68,14 @@ Sub_Nucleo.bin \
 
 
 # All Target
-all: Sub_Nucleo.elf secondary-outputs
+all: main-build
+
+# Main-build Target
+main-build: Sub_Nucleo.elf secondary-outputs
 
 # Tool invocations
-Sub_Nucleo.elf: $(OBJS) $(USER_OBJS) /home/andres/Descargas/Sub_Nucleo/STM32G431KBTX_FLASH.ld
-	arm-none-eabi-g++ -o "Sub_Nucleo.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"/home/andres/Descargas/Sub_Nucleo/STM32G431KBTX_FLASH.ld" -Wl,-Map="Sub_Nucleo.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Sub_Nucleo.elf: $(OBJS) $(USER_OBJS) C:\Users\Edgar\ Andrés\Documents\GitHub\vanttec_embedded\Sub_Nucleo\STM32G431KBTX_FLASH.ld
+	arm-none-eabi-g++ -o "Sub_Nucleo.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\Edgar Andrés\Documents\GitHub\vanttec_embedded\Sub_Nucleo\STM32G431KBTX_FLASH.ld" -Wl,-Map="Sub_Nucleo.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -93,7 +101,14 @@ clean:
 
 secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST) $(OBJCOPY_BIN)
 
-.PHONY: all clean dependents
+fail-specified-linker-script-missing:
+	@echo 'Error: Cannot find the specified linker script. Check the linker settings in the build configuration.'
+	@exit 2
+
+warn-no-linker-script-specified:
+	@echo 'Warning: No linker script specified. Check the linker settings in the build configuration.'
+
+.PHONY: all clean dependents fail-specified-linker-script-missing warn-no-linker-script-specified
 .SECONDARY:
 
 -include ../makefile.targets

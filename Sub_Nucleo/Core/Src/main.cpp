@@ -21,6 +21,7 @@
 #include "main.h"
 //#include "usb_host.h"
 #include <stdint.h>
+#include "MS5837.h"
 #include "stm32g4xx_hal.h"
 #include <std_msgs/UInt16.h>
 #include <std_msgs/UInt8.h>
@@ -69,6 +70,16 @@ uint16_t thrusterLeft = 1;
 //autonomous navigation ints
 int powerR = 1500;
 int powerL = 1500;
+
+//Depth sensor variables
+MS5837 depth_sensor;
+float sensor_pressure = 0;
+float sensor_temperature = 0;
+float sensor_depth = 0;
+const uint8_t MODEL = 1;
+const float DENSITY = 1029;
+
+
 
 ros::NodeHandle  nh;
 
@@ -184,6 +195,11 @@ int main(void){
   	 * - EL periodo de las tareas se debe establecer en las funciones de las
   	 *   tareas usando el comando osDelay(). Evitar en la medida de lo posible
   	 *   periodos coincidentes en las tareas*/
+
+  	  //Inicialización de componentes
+  	  depth_sensor.init();
+  	  dept_sensor.setModel(MODEL);
+  	  depth_sensor.setFluidDensity(DENSITY);
   	  /* creation of thrustersControl */
   	  osKernelInitialize();
   	  osThreadNew(thrustersControl,NULL,NULL);
@@ -321,12 +337,16 @@ void pressureMeasure(void *argument)
 {
   /* Lectura del sensor de presión, la cual debe realizarse de manera constante
    * Nota: La lectura de datos se realiza mediante protocolo I2C, por lo que el
-   * código no debería ser complicado de realizar. INvestigar si ya hay una
-   * liberría existente que podamos usar.*/
+   * código no debería ser complicado de realizar. Investigar si ya hay una
+   * libería existente que podamos usar.*/
   /* Infinite loop */
   for(;;)
   {
-    osDelay(1);
+	depth_sensor.read();
+	sensor_depth = dept_sensor.depth();
+	sensor_temperature = dept_sensor.temperature();
+	sensor_pressure = depth_sensor.pressure();
+    osDelay(100);
   }
   /* USER CODE END pressureMeasure */
 }

@@ -82,3 +82,870 @@ org.eclipse.swt.SWTException: Widget is disposed
 	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:660)
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:597)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1468)
+!SESSION 2021-02-26 10:45:52.068 -----------------------------------------------
+eclipse.buildId=Version 1.5.0
+java.version=1.8.0_252
+java.vendor=AdoptOpenJDK
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=es_MX
+Framework arguments:  C:\Users\Edgar Andrés\Documents\GitHub\vanttec_embedded\Sub_Nucleo\.project
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 C:\Users\Edgar Andrés\Documents\GitHub\vanttec_embedded\Sub_Nucleo\.project
+
+!ENTRY org.eclipse.core.resources 4 567 2021-02-26 10:46:25.800
+!MESSAGE Workspace restored, but some problems occurred.
+!SUBENTRY 1 org.eclipse.core.resources 4 567 2021-02-26 10:46:25.800
+!MESSAGE Could not read metadata for 'Boat_embeded_system'.
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException(/Boat_embeded_system)[567]: java.lang.Exception: The project description file (.project) for 'Boat_embeded_system' is missing.  This file contains important information about the project.  The project will not function properly until this file is restored.
+	at org.eclipse.core.internal.resources.ResourceException.provideStackTrace(ResourceException.java:42)
+	at org.eclipse.core.internal.resources.ResourceException.<init>(ResourceException.java:38)
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.read(FileSystemResourceManager.java:908)
+	at org.eclipse.core.internal.resources.SaveManager.restoreMetaInfo(SaveManager.java:888)
+	at org.eclipse.core.internal.resources.SaveManager.restoreMetaInfo(SaveManager.java:868)
+	at org.eclipse.core.internal.resources.SaveManager.restore(SaveManager.java:724)
+	at org.eclipse.core.internal.resources.SaveManager.startup(SaveManager.java:1555)
+	at org.eclipse.core.internal.resources.Workspace.startup(Workspace.java:2452)
+	at org.eclipse.core.internal.resources.Workspace.open(Workspace.java:2210)
+	at org.eclipse.core.resources.ResourcesPlugin.start(ResourcesPlugin.java:489)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl$3.run(BundleContextImpl.java:843)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl$3.run(BundleContextImpl.java:1)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl.startActivator(BundleContextImpl.java:835)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl.start(BundleContextImpl.java:792)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle.startWorker0(EquinoxBundle.java:1015)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle$EquinoxModule.startWorker(EquinoxBundle.java:365)
+	at org.eclipse.osgi.container.Module.doStart(Module.java:605)
+	at org.eclipse.osgi.container.Module.start(Module.java:468)
+	at org.eclipse.osgi.framework.util.SecureAction.start(SecureAction.java:493)
+	at org.eclipse.osgi.internal.hooks.EclipseLazyStarter.postFindLocalClass(EclipseLazyStarter.java:117)
+	at org.eclipse.osgi.internal.loader.classpath.ClasspathManager.findLocalClass(ClasspathManager.java:571)
+	at org.eclipse.osgi.internal.loader.ModuleClassLoader.findLocalClass(ModuleClassLoader.java:346)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findLocalClass(BundleLoader.java:398)
+	at org.eclipse.osgi.internal.loader.sources.SingleSourcePackage.loadClass(SingleSourcePackage.java:41)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:473)
+	at org.eclipse.osgi.internal.loader.ModuleClassLoader.loadClass(ModuleClassLoader.java:171)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:351)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:151)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:203)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:137)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:107)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:401)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:255)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:657)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:594)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1447)
+!SUBENTRY 2 org.eclipse.core.resources 4 567 2021-02-26 10:46:25.803
+!MESSAGE The project description file (.project) for 'Boat_embeded_system' is missing.  This file contains important information about the project.  The project will not function properly until this file is restored.
+!STACK 0
+java.lang.Exception: The project description file (.project) for 'Boat_embeded_system' is missing.  This file contains important information about the project.  The project will not function properly until this file is restored.
+	at org.eclipse.core.internal.resources.ResourceException.provideStackTrace(ResourceException.java:42)
+	at org.eclipse.core.internal.resources.ResourceException.<init>(ResourceException.java:38)
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.read(FileSystemResourceManager.java:908)
+	at org.eclipse.core.internal.resources.SaveManager.restoreMetaInfo(SaveManager.java:888)
+	at org.eclipse.core.internal.resources.SaveManager.restoreMetaInfo(SaveManager.java:868)
+	at org.eclipse.core.internal.resources.SaveManager.restore(SaveManager.java:724)
+	at org.eclipse.core.internal.resources.SaveManager.startup(SaveManager.java:1555)
+	at org.eclipse.core.internal.resources.Workspace.startup(Workspace.java:2452)
+	at org.eclipse.core.internal.resources.Workspace.open(Workspace.java:2210)
+	at org.eclipse.core.resources.ResourcesPlugin.start(ResourcesPlugin.java:489)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl$3.run(BundleContextImpl.java:843)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl$3.run(BundleContextImpl.java:1)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl.startActivator(BundleContextImpl.java:835)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl.start(BundleContextImpl.java:792)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle.startWorker0(EquinoxBundle.java:1015)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle$EquinoxModule.startWorker(EquinoxBundle.java:365)
+	at org.eclipse.osgi.container.Module.doStart(Module.java:605)
+	at org.eclipse.osgi.container.Module.start(Module.java:468)
+	at org.eclipse.osgi.framework.util.SecureAction.start(SecureAction.java:493)
+	at org.eclipse.osgi.internal.hooks.EclipseLazyStarter.postFindLocalClass(EclipseLazyStarter.java:117)
+	at org.eclipse.osgi.internal.loader.classpath.ClasspathManager.findLocalClass(ClasspathManager.java:571)
+	at org.eclipse.osgi.internal.loader.ModuleClassLoader.findLocalClass(ModuleClassLoader.java:346)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findLocalClass(BundleLoader.java:398)
+	at org.eclipse.osgi.internal.loader.sources.SingleSourcePackage.loadClass(SingleSourcePackage.java:41)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:473)
+	at org.eclipse.osgi.internal.loader.ModuleClassLoader.loadClass(ModuleClassLoader.java:171)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:351)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:151)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:203)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:137)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:107)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:401)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:255)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:657)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:594)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1447)
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2021-02-26 10:46:36.806
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2021-02-26 10:46:37.349
+!MESSAGE Log4j initialized with config file C:\Users\Edgar Andrés\Documents\GitHub\vanttec_embedded\.metadata\.log4j.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2021-02-26 10:46:53.432
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY org.eclipse.core.resources 4 368 2021-02-26 10:47:06.698
+!MESSAGE Resource '/RemoteSystemsTempFiles' does not exist.
+!STACK 0
+java.lang.Exception: Resource '/RemoteSystemsTempFiles' does not exist.
+	at org.eclipse.core.internal.resources.ResourceException.provideStackTrace(ResourceException.java:42)
+	at org.eclipse.core.internal.resources.ResourceException.<init>(ResourceException.java:38)
+	at org.eclipse.core.internal.resources.Resource.checkExists(Resource.java:330)
+	at org.eclipse.core.internal.resources.Project.open(Project.java:1020)
+	at org.eclipse.core.internal.resources.Project.open(Project.java:1112)
+	at com.st.stm32cube.ide.mcu.ide.ui.project.internal.MCUProjectImporter$ProjectOperation.execute(MCUProjectImporter.java:170)
+	at org.eclipse.ui.actions.WorkspaceModifyOperation.lambda$0(WorkspaceModifyOperation.java:110)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2292)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2317)
+	at org.eclipse.ui.actions.WorkspaceModifyOperation.run(WorkspaceModifyOperation.java:131)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:122)
+
+!ENTRY org.eclipse.core.resources 4 368 2021-02-26 10:47:13.015
+!MESSAGE Resource '/RemoteSystemsTempFiles' does not exist.
+!STACK 0
+java.lang.Exception: Resource '/RemoteSystemsTempFiles' does not exist.
+	at org.eclipse.core.internal.resources.ResourceException.provideStackTrace(ResourceException.java:42)
+	at org.eclipse.core.internal.resources.ResourceException.<init>(ResourceException.java:38)
+	at org.eclipse.core.internal.resources.Resource.checkExists(Resource.java:330)
+	at org.eclipse.core.internal.resources.Project.open(Project.java:1020)
+	at org.eclipse.core.internal.resources.Project.open(Project.java:1112)
+	at com.st.stm32cube.ide.mcu.ide.ui.project.internal.MCUProjectImporter$ProjectOperation.execute(MCUProjectImporter.java:170)
+	at org.eclipse.ui.actions.WorkspaceModifyOperation.lambda$0(WorkspaceModifyOperation.java:110)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2292)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2317)
+	at org.eclipse.ui.actions.WorkspaceModifyOperation.run(WorkspaceModifyOperation.java:131)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:122)
+
+!ENTRY org.eclipse.core.resources 4 77 2021-02-26 10:47:14.653
+!MESSAGE Invalid project description.
+!SUBENTRY 1 unknown 0 0 2021-02-26 10:47:14.654
+!MESSAGE OK
+!SUBENTRY 1 org.eclipse.core.resources 4 77 2021-02-26 10:47:14.654
+!MESSAGE C:\Users\Edgar Andrés\Documents\GitHub\vanttec_embedded\Sub_Nucleo overlaps the location of another project: 'Sub_Nucleo'
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 4 4 2021-02-26 10:47:16.549
+!MESSAGE com.st.stm32cube.ide.mcu.ide/META-INF/version/build_ref file not found, build reference will not be reported into properties
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 1 1 2021-02-26 10:48:34.155
+!MESSAGE No matching toolchain installed: com.st.stm32cube.ide.mcu.gnu.managedbuild.toolchain.base.gnu-tools-for-stm32; 9-2020-q2-update
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2021-02-26 10:48:34.196
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 1 1 2021-02-26 10:48:34.268
+!MESSAGE No matching toolchain installed: com.st.stm32cube.ide.mcu.gnu.managedbuild.toolchain.base.gnu-tools-for-stm32; 9-2020-q2-update
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2021-02-26 10:48:34.287
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 1 1 2021-02-26 10:48:34.304
+!MESSAGE No matching toolchain installed: com.st.stm32cube.ide.mcu.gnu.managedbuild.toolchain.base.gnu-tools-for-stm32; 9-2020-q2-update
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2021-02-26 10:48:34.319
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 1 1 2021-02-26 10:48:34.346
+!MESSAGE No matching toolchain installed: com.st.stm32cube.ide.mcu.gnu.managedbuild.toolchain.base.gnu-tools-for-stm32; 9-2020-q2-update
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2021-02-26 10:48:34.361
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 1 1 2021-02-26 10:48:34.377
+!MESSAGE No matching toolchain installed: com.st.stm32cube.ide.mcu.gnu.managedbuild.toolchain.base.gnu-tools-for-stm32; 9-2020-q2-update
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2021-02-26 10:48:34.393
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 1 1 2021-02-26 10:48:34.599
+!MESSAGE No matching toolchain installed: com.st.stm32cube.ide.mcu.gnu.managedbuild.toolchain.base.gnu-tools-for-stm32; 9-2020-q2-update
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2021-02-26 10:48:34.649
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 1 1 2021-02-26 10:48:34.666
+!MESSAGE No matching toolchain installed: com.st.stm32cube.ide.mcu.gnu.managedbuild.toolchain.base.gnu-tools-for-stm32; 9-2020-q2-update
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2021-02-26 10:48:34.681
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 1 1 2021-02-26 10:48:34.699
+!MESSAGE No matching toolchain installed: com.st.stm32cube.ide.mcu.gnu.managedbuild.toolchain.base.gnu-tools-for-stm32; 9-2020-q2-update
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2021-02-26 10:48:34.715
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 1 1 2021-02-26 10:48:34.732
+!MESSAGE No matching toolchain installed: com.st.stm32cube.ide.mcu.gnu.managedbuild.toolchain.base.gnu-tools-for-stm32; 9-2020-q2-update
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2021-02-26 10:48:34.747
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 1 1 2021-02-26 10:48:34.765
+!MESSAGE No matching toolchain installed: com.st.stm32cube.ide.mcu.gnu.managedbuild.toolchain.base.gnu-tools-for-stm32; 9-2020-q2-update
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2021-02-26 10:48:34.779
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 1 1 2021-02-26 10:48:34.793
+!MESSAGE No matching toolchain installed: com.st.stm32cube.ide.mcu.gnu.managedbuild.toolchain.base.gnu-tools-for-stm32; 9-2020-q2-update
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2021-02-26 10:48:34.807
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 1 1 2021-02-26 10:48:37.275
+!MESSAGE No matching toolchain installed: com.st.stm32cube.ide.mcu.gnu.managedbuild.toolchain.base.gnu-tools-for-stm32; 9-2020-q2-update
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2021-02-26 10:48:37.290
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 1 1 2021-02-26 10:48:37.308
+!MESSAGE No matching toolchain installed: com.st.stm32cube.ide.mcu.gnu.managedbuild.toolchain.base.gnu-tools-for-stm32; 9-2020-q2-update
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2021-02-26 10:48:37.326
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 1 1 2021-02-26 10:48:37.365
+!MESSAGE No matching toolchain installed: com.st.stm32cube.ide.mcu.gnu.managedbuild.toolchain.base.gnu-tools-for-stm32; 9-2020-q2-update
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2021-02-26 10:48:37.378
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 1 1 2021-02-26 10:48:37.389
+!MESSAGE No matching toolchain installed: com.st.stm32cube.ide.mcu.gnu.managedbuild.toolchain.base.gnu-tools-for-stm32; 9-2020-q2-update
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2021-02-26 10:48:37.400
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 1 1 2021-02-26 10:48:37.747
+!MESSAGE No matching toolchain installed: com.st.stm32cube.ide.mcu.gnu.managedbuild.toolchain.base.gnu-tools-for-stm32; 9-2020-q2-update
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2021-02-26 10:48:37.763
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 1 1 2021-02-26 10:48:37.777
+!MESSAGE No matching toolchain installed: com.st.stm32cube.ide.mcu.gnu.managedbuild.toolchain.base.gnu-tools-for-stm32; 9-2020-q2-update
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2021-02-26 10:48:37.791
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 1 1 2021-02-26 10:48:39.216
+!MESSAGE No matching toolchain installed: com.st.stm32cube.ide.mcu.gnu.managedbuild.toolchain.base.gnu-tools-for-stm32; 9-2020-q2-update
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2021-02-26 10:48:39.237
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 1 1 2021-02-26 10:48:39.252
+!MESSAGE No matching toolchain installed: com.st.stm32cube.ide.mcu.gnu.managedbuild.toolchain.base.gnu-tools-for-stm32; 9-2020-q2-update
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2021-02-26 10:48:39.264
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 1 1 2021-02-26 10:48:39.352
+!MESSAGE No matching toolchain installed: com.st.stm32cube.ide.mcu.gnu.managedbuild.toolchain.base.gnu-tools-for-stm32; 9-2020-q2-update
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2021-02-26 10:48:39.365
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 1 1 2021-02-26 10:48:39.378
+!MESSAGE No matching toolchain installed: com.st.stm32cube.ide.mcu.gnu.managedbuild.toolchain.base.gnu-tools-for-stm32; 9-2020-q2-update
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2021-02-26 10:48:39.390
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 1 1 2021-02-26 10:48:39.406
+!MESSAGE No matching toolchain installed: com.st.stm32cube.ide.mcu.gnu.managedbuild.toolchain.base.gnu-tools-for-stm32; 9-2020-q2-update
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2021-02-26 10:48:39.418
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 1 1 2021-02-26 10:48:39.430
+!MESSAGE No matching toolchain installed: com.st.stm32cube.ide.mcu.gnu.managedbuild.toolchain.base.gnu-tools-for-stm32; 9-2020-q2-update
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2021-02-26 10:48:39.443
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 1 1 2021-02-26 10:48:39.458
+!MESSAGE No matching toolchain installed: com.st.stm32cube.ide.mcu.gnu.managedbuild.toolchain.base.gnu-tools-for-stm32; 9-2020-q2-update
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2021-02-26 10:48:39.470
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 1 1 2021-02-26 10:48:39.482
+!MESSAGE No matching toolchain installed: com.st.stm32cube.ide.mcu.gnu.managedbuild.toolchain.base.gnu-tools-for-stm32; 9-2020-q2-update
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2021-02-26 10:48:39.494
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 1 1 2021-02-26 10:48:40.556
+!MESSAGE No matching toolchain installed: com.st.stm32cube.ide.mcu.gnu.managedbuild.toolchain.base.gnu-tools-for-stm32; 9-2020-q2-update
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2021-02-26 10:48:40.617
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 1 1 2021-02-26 10:48:40.635
+!MESSAGE No matching toolchain installed: com.st.stm32cube.ide.mcu.gnu.managedbuild.toolchain.base.gnu-tools-for-stm32; 9-2020-q2-update
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2021-02-26 10:48:40.652
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 1 1 2021-02-26 10:48:40.729
+!MESSAGE No matching toolchain installed: com.st.stm32cube.ide.mcu.gnu.managedbuild.toolchain.base.gnu-tools-for-stm32; 9-2020-q2-update
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2021-02-26 10:48:40.792
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 1 1 2021-02-26 10:48:40.880
+!MESSAGE No matching toolchain installed: com.st.stm32cube.ide.mcu.gnu.managedbuild.toolchain.base.gnu-tools-for-stm32; 9-2020-q2-update
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2021-02-26 10:48:40.892
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 1 1 2021-02-26 10:48:40.906
+!MESSAGE No matching toolchain installed: com.st.stm32cube.ide.mcu.gnu.managedbuild.toolchain.base.gnu-tools-for-stm32; 9-2020-q2-update
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2021-02-26 10:48:40.921
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 1 1 2021-02-26 10:48:40.934
+!MESSAGE No matching toolchain installed: com.st.stm32cube.ide.mcu.gnu.managedbuild.toolchain.base.gnu-tools-for-stm32; 9-2020-q2-update
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2021-02-26 10:48:40.947
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 1 1 2021-02-26 10:48:40.989
+!MESSAGE No matching toolchain installed: com.st.stm32cube.ide.mcu.gnu.managedbuild.toolchain.base.gnu-tools-for-stm32; 9-2020-q2-update
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2021-02-26 10:48:41.006
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 1 1 2021-02-26 10:48:41.025
+!MESSAGE No matching toolchain installed: com.st.stm32cube.ide.mcu.gnu.managedbuild.toolchain.base.gnu-tools-for-stm32; 9-2020-q2-update
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2021-02-26 10:48:41.039
+!MESSAGE Falling back to default toolchain
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-26 10:49:56.550
+!MESSAGE Indexed 'Boat_Nucleo' (39 sources, 737 headers) in 76 sec: 37,193 declarations; 145,135 references; 10 unresolved inclusions; 288 syntax errors; 1,466 unresolved names (0.8 %)
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 1 1 2021-02-26 10:51:30.223
+!MESSAGE No matching toolchain installed: com.st.stm32cube.ide.mcu.gnu.managedbuild.toolchain.base.gnu-tools-for-stm32; 9-2020-q2-update
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2021-02-26 10:51:30.273
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 1 1 2021-02-26 10:51:30.296
+!MESSAGE No matching toolchain installed: com.st.stm32cube.ide.mcu.gnu.managedbuild.toolchain.base.gnu-tools-for-stm32; 9-2020-q2-update
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2021-02-26 10:51:30.310
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 1 1 2021-02-26 10:51:39.234
+!MESSAGE No matching toolchain installed: com.st.stm32cube.ide.mcu.gnu.managedbuild.toolchain.base.gnu-tools-for-stm32; 9-2020-q2-update
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2021-02-26 10:51:39.248
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 1 1 2021-02-26 10:51:39.378
+!MESSAGE No matching toolchain installed: com.st.stm32cube.ide.mcu.gnu.managedbuild.toolchain.base.gnu-tools-for-stm32; 9-2020-q2-update
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2021-02-26 10:51:39.439
+!MESSAGE Falling back to default toolchain
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2021-02-26 10:51:39.453
+!MESSAGE Project 'Boat_Nucleo' is not open.
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException(/Boat_Nucleo)[372]: java.lang.Exception: Project 'Boat_Nucleo' is not open.
+	at org.eclipse.core.internal.resources.ResourceException.provideStackTrace(ResourceException.java:42)
+	at org.eclipse.core.internal.resources.ResourceException.<init>(ResourceException.java:38)
+	at org.eclipse.core.internal.resources.Project.checkAccessible(Project.java:148)
+	at org.eclipse.core.internal.resources.Project.getDescription(Project.java:391)
+	at org.eclipse.cdt.managedbuilder.internal.dataprovider.ConfigurationDataProvider.cacheNaturesIdsUsedOnCache(ConfigurationDataProvider.java:384)
+	at org.eclipse.cdt.managedbuilder.internal.dataprovider.ConfigurationDataProvider.loadConfiguration(ConfigurationDataProvider.java:581)
+	at org.eclipse.cdt.internal.core.settings.model.CConfigurationDescriptionCache.loadData(CConfigurationDescriptionCache.java:139)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescription.loadDatas(CProjectDescription.java:199)
+	at org.eclipse.cdt.internal.core.settings.model.xml.XmlProjectDescriptionStorage.loadProjectDescription(XmlProjectDescriptionStorage.java:510)
+	at org.eclipse.cdt.internal.core.settings.model.xml.XmlProjectDescriptionStorage.getProjectDescription(XmlProjectDescriptionStorage.java:240)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.getProjectDescriptionInternal(CProjectDescriptionManager.java:426)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.getProjectDescription(CProjectDescriptionManager.java:408)
+	at org.eclipse.cdt.managedbuilder.core.ManagedBuildManager.findBuildInfo(ManagedBuildManager.java:2673)
+	at org.eclipse.cdt.managedbuilder.core.ManagedBuildManager.getBuildInfo(ManagedBuildManager.java:2945)
+	at org.eclipse.cdt.managedbuilder.core.ManagedBuildManager.getBuildInfo(ManagedBuildManager.java:2898)
+	at com.st.stm32cube.ide.mcu.stackanalyzer.ui.StackAnalyzerView.getFile(StackAnalyzerView.java:1080)
+	at com.st.stm32cube.ide.mcu.stackanalyzer.ui.StackAnalyzerView.selectionChanged(StackAnalyzerView.java:1195)
+	at org.eclipse.ui.internal.e4.compatibility.SelectionService.notifyListeners(SelectionService.java:278)
+	at org.eclipse.ui.internal.e4.compatibility.SelectionService.handlePostSelectionChanged(SelectionService.java:120)
+	at org.eclipse.ui.internal.e4.compatibility.SelectionService.lambda$3(SelectionService.java:81)
+	at org.eclipse.e4.ui.internal.workbench.SelectionAggregator$4.run(SelectionAggregator.java:184)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.e4.ui.internal.workbench.SelectionAggregator.notifyTargetedPostListeners(SelectionAggregator.java:181)
+	at org.eclipse.e4.ui.internal.workbench.SelectionAggregator.notifyPostListeners(SelectionAggregator.java:172)
+	at org.eclipse.e4.ui.internal.workbench.SelectionAggregator.access$7(SelectionAggregator.java:158)
+	at org.eclipse.e4.ui.internal.workbench.SelectionAggregator$6.lambda$0(SelectionAggregator.java:250)
+	at org.eclipse.e4.core.contexts.RunAndTrack.runExternalCode(RunAndTrack.java:59)
+	at org.eclipse.e4.ui.internal.workbench.SelectionAggregator$6.changed(SelectionAggregator.java:250)
+	at org.eclipse.e4.core.internal.contexts.TrackableComputationExt.update(TrackableComputationExt.java:108)
+	at org.eclipse.e4.core.internal.contexts.EclipseContext.processScheduled(EclipseContext.java:364)
+	at org.eclipse.e4.core.internal.contexts.EclipseContext.set(EclipseContext.java:379)
+	at org.eclipse.e4.ui.internal.workbench.SelectionServiceImpl.setPostSelection(SelectionServiceImpl.java:39)
+	at org.eclipse.ui.internal.e4.compatibility.CompatibilityPart.lambda$2(CompatibilityPart.java:128)
+	at org.eclipse.jface.viewers.StructuredViewer$3.run(StructuredViewer.java:823)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jface.util.SafeRunnable.run(SafeRunnable.java:174)
+	at org.eclipse.jface.viewers.StructuredViewer.firePostSelectionChanged(StructuredViewer.java:820)
+	at org.eclipse.jface.viewers.StructuredViewer.handlePostSelect(StructuredViewer.java:1193)
+	at org.eclipse.ui.navigator.CommonViewer.handlePostSelect(CommonViewer.java:460)
+	at org.eclipse.jface.viewers.StructuredViewer.lambda$0(StructuredViewer.java:1216)
+	at org.eclipse.swt.events.SelectionListener$1.widgetSelected(SelectionListener.java:84)
+	at org.eclipse.jface.util.OpenStrategy.firePostSelectionEvent(OpenStrategy.java:263)
+	at org.eclipse.jface.util.OpenStrategy.access$5(OpenStrategy.java:258)
+	at org.eclipse.jface.util.OpenStrategy$1.lambda$1(OpenStrategy.java:428)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:40)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:185)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4005)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3633)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1158)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1047)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:155)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:658)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:557)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:154)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:150)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:203)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:137)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:107)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:401)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:255)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:657)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:594)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1447)
+!SUBENTRY 1 org.eclipse.core.resources 4 372 2021-02-26 10:51:39.454
+!MESSAGE Project 'Boat_Nucleo' is not open.
+!STACK 0
+java.lang.Exception: Project 'Boat_Nucleo' is not open.
+	at org.eclipse.core.internal.resources.ResourceException.provideStackTrace(ResourceException.java:42)
+	at org.eclipse.core.internal.resources.ResourceException.<init>(ResourceException.java:38)
+	at org.eclipse.core.internal.resources.Project.checkAccessible(Project.java:148)
+	at org.eclipse.core.internal.resources.Project.getDescription(Project.java:391)
+	at org.eclipse.cdt.managedbuilder.internal.dataprovider.ConfigurationDataProvider.cacheNaturesIdsUsedOnCache(ConfigurationDataProvider.java:384)
+	at org.eclipse.cdt.managedbuilder.internal.dataprovider.ConfigurationDataProvider.loadConfiguration(ConfigurationDataProvider.java:581)
+	at org.eclipse.cdt.internal.core.settings.model.CConfigurationDescriptionCache.loadData(CConfigurationDescriptionCache.java:139)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescription.loadDatas(CProjectDescription.java:199)
+	at org.eclipse.cdt.internal.core.settings.model.xml.XmlProjectDescriptionStorage.loadProjectDescription(XmlProjectDescriptionStorage.java:510)
+	at org.eclipse.cdt.internal.core.settings.model.xml.XmlProjectDescriptionStorage.getProjectDescription(XmlProjectDescriptionStorage.java:240)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.getProjectDescriptionInternal(CProjectDescriptionManager.java:426)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.getProjectDescription(CProjectDescriptionManager.java:408)
+	at org.eclipse.cdt.managedbuilder.core.ManagedBuildManager.findBuildInfo(ManagedBuildManager.java:2673)
+	at org.eclipse.cdt.managedbuilder.core.ManagedBuildManager.getBuildInfo(ManagedBuildManager.java:2945)
+	at org.eclipse.cdt.managedbuilder.core.ManagedBuildManager.getBuildInfo(ManagedBuildManager.java:2898)
+	at com.st.stm32cube.ide.mcu.stackanalyzer.ui.StackAnalyzerView.getFile(StackAnalyzerView.java:1080)
+	at com.st.stm32cube.ide.mcu.stackanalyzer.ui.StackAnalyzerView.selectionChanged(StackAnalyzerView.java:1195)
+	at org.eclipse.ui.internal.e4.compatibility.SelectionService.notifyListeners(SelectionService.java:278)
+	at org.eclipse.ui.internal.e4.compatibility.SelectionService.handlePostSelectionChanged(SelectionService.java:120)
+	at org.eclipse.ui.internal.e4.compatibility.SelectionService.lambda$3(SelectionService.java:81)
+	at org.eclipse.e4.ui.internal.workbench.SelectionAggregator$4.run(SelectionAggregator.java:184)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.e4.ui.internal.workbench.SelectionAggregator.notifyTargetedPostListeners(SelectionAggregator.java:181)
+	at org.eclipse.e4.ui.internal.workbench.SelectionAggregator.notifyPostListeners(SelectionAggregator.java:172)
+	at org.eclipse.e4.ui.internal.workbench.SelectionAggregator.access$7(SelectionAggregator.java:158)
+	at org.eclipse.e4.ui.internal.workbench.SelectionAggregator$6.lambda$0(SelectionAggregator.java:250)
+	at org.eclipse.e4.core.contexts.RunAndTrack.runExternalCode(RunAndTrack.java:59)
+	at org.eclipse.e4.ui.internal.workbench.SelectionAggregator$6.changed(SelectionAggregator.java:250)
+	at org.eclipse.e4.core.internal.contexts.TrackableComputationExt.update(TrackableComputationExt.java:108)
+	at org.eclipse.e4.core.internal.contexts.EclipseContext.processScheduled(EclipseContext.java:364)
+	at org.eclipse.e4.core.internal.contexts.EclipseContext.set(EclipseContext.java:379)
+	at org.eclipse.e4.ui.internal.workbench.SelectionServiceImpl.setPostSelection(SelectionServiceImpl.java:39)
+	at org.eclipse.ui.internal.e4.compatibility.CompatibilityPart.lambda$2(CompatibilityPart.java:128)
+	at org.eclipse.jface.viewers.StructuredViewer$3.run(StructuredViewer.java:823)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jface.util.SafeRunnable.run(SafeRunnable.java:174)
+	at org.eclipse.jface.viewers.StructuredViewer.firePostSelectionChanged(StructuredViewer.java:820)
+	at org.eclipse.jface.viewers.StructuredViewer.handlePostSelect(StructuredViewer.java:1193)
+	at org.eclipse.ui.navigator.CommonViewer.handlePostSelect(CommonViewer.java:460)
+	at org.eclipse.jface.viewers.StructuredViewer.lambda$0(StructuredViewer.java:1216)
+	at org.eclipse.swt.events.SelectionListener$1.widgetSelected(SelectionListener.java:84)
+	at org.eclipse.jface.util.OpenStrategy.firePostSelectionEvent(OpenStrategy.java:263)
+	at org.eclipse.jface.util.OpenStrategy.access$5(OpenStrategy.java:258)
+	at org.eclipse.jface.util.OpenStrategy$1.lambda$1(OpenStrategy.java:428)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:40)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:185)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4005)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3633)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1158)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1047)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:155)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:658)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:557)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:154)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:150)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:203)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:137)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:107)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:401)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:255)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:657)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:594)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1447)
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 1 1 2021-02-26 10:51:39.699
+!MESSAGE No matching toolchain installed: com.st.stm32cube.ide.mcu.gnu.managedbuild.toolchain.base.gnu-tools-for-stm32; 9-2020-q2-update
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2021-02-26 10:51:39.754
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 1 1 2021-02-26 10:51:39.768
+!MESSAGE No matching toolchain installed: com.st.stm32cube.ide.mcu.gnu.managedbuild.toolchain.base.gnu-tools-for-stm32; 9-2020-q2-update
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2021-02-26 10:51:39.786
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 1 1 2021-02-26 10:51:39.810
+!MESSAGE No matching toolchain installed: com.st.stm32cube.ide.mcu.gnu.managedbuild.toolchain.base.gnu-tools-for-stm32; 9-2020-q2-update
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2021-02-26 10:51:39.823
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 1 1 2021-02-26 10:51:39.852
+!MESSAGE No matching toolchain installed: com.st.stm32cube.ide.mcu.gnu.managedbuild.toolchain.base.gnu-tools-for-stm32; 9-2020-q2-update
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2021-02-26 10:51:39.865
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 1 1 2021-02-26 10:51:39.881
+!MESSAGE No matching toolchain installed: com.st.stm32cube.ide.mcu.gnu.managedbuild.toolchain.base.gnu-tools-for-stm32; 9-2020-q2-update
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2021-02-26 10:51:39.894
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 1 1 2021-02-26 10:51:39.922
+!MESSAGE No matching toolchain installed: com.st.stm32cube.ide.mcu.gnu.managedbuild.toolchain.base.gnu-tools-for-stm32; 9-2020-q2-update
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2021-02-26 10:51:39.939
+!MESSAGE Falling back to default toolchain
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2021-02-26 10:51:39.961
+!MESSAGE Project 'Boat_Nucleo' is not open.
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException(/Boat_Nucleo)[372]: java.lang.Exception: Project 'Boat_Nucleo' is not open.
+	at org.eclipse.core.internal.resources.ResourceException.provideStackTrace(ResourceException.java:42)
+	at org.eclipse.core.internal.resources.ResourceException.<init>(ResourceException.java:38)
+	at org.eclipse.core.internal.resources.Project.checkAccessible(Project.java:148)
+	at org.eclipse.core.internal.resources.Project.getDescription(Project.java:391)
+	at org.eclipse.cdt.managedbuilder.internal.dataprovider.ConfigurationDataProvider.cacheNaturesIdsUsedOnCache(ConfigurationDataProvider.java:384)
+	at org.eclipse.cdt.managedbuilder.internal.dataprovider.ConfigurationDataProvider.loadConfiguration(ConfigurationDataProvider.java:581)
+	at org.eclipse.cdt.internal.core.settings.model.CConfigurationDescriptionCache.loadData(CConfigurationDescriptionCache.java:139)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescription.loadDatas(CProjectDescription.java:199)
+	at org.eclipse.cdt.internal.core.settings.model.xml.XmlProjectDescriptionStorage.loadProjectDescription(XmlProjectDescriptionStorage.java:510)
+	at org.eclipse.cdt.internal.core.settings.model.xml.XmlProjectDescriptionStorage.getProjectDescription(XmlProjectDescriptionStorage.java:240)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.getProjectDescriptionInternal(CProjectDescriptionManager.java:426)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.getProjectDescription(CProjectDescriptionManager.java:408)
+	at org.eclipse.cdt.managedbuilder.core.ManagedBuildManager.findBuildInfo(ManagedBuildManager.java:2673)
+	at org.eclipse.cdt.managedbuilder.core.ManagedBuildManager.getBuildInfo(ManagedBuildManager.java:2945)
+	at org.eclipse.cdt.managedbuilder.core.ManagedBuildManager.getBuildInfo(ManagedBuildManager.java:2898)
+	at com.st.stm32cube.ide.mcu.stackanalyzer.ui.StackAnalyzerView.getFile(StackAnalyzerView.java:1080)
+	at com.st.stm32cube.ide.mcu.stackanalyzer.ui.StackAnalyzerView.selectionChanged(StackAnalyzerView.java:1195)
+	at org.eclipse.ui.internal.e4.compatibility.SelectionService.notifyListeners(SelectionService.java:278)
+	at org.eclipse.ui.internal.e4.compatibility.SelectionService.handlePostSelectionChanged(SelectionService.java:120)
+	at org.eclipse.ui.internal.e4.compatibility.SelectionService.lambda$3(SelectionService.java:81)
+	at org.eclipse.e4.ui.internal.workbench.SelectionAggregator$4.run(SelectionAggregator.java:184)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.e4.ui.internal.workbench.SelectionAggregator.notifyTargetedPostListeners(SelectionAggregator.java:181)
+	at org.eclipse.e4.ui.internal.workbench.SelectionAggregator.notifyPostListeners(SelectionAggregator.java:172)
+	at org.eclipse.e4.ui.internal.workbench.SelectionAggregator.access$7(SelectionAggregator.java:158)
+	at org.eclipse.e4.ui.internal.workbench.SelectionAggregator$6.lambda$0(SelectionAggregator.java:250)
+	at org.eclipse.e4.core.contexts.RunAndTrack.runExternalCode(RunAndTrack.java:59)
+	at org.eclipse.e4.ui.internal.workbench.SelectionAggregator$6.changed(SelectionAggregator.java:250)
+	at org.eclipse.e4.core.internal.contexts.TrackableComputationExt.update(TrackableComputationExt.java:108)
+	at org.eclipse.e4.core.internal.contexts.EclipseContext.processScheduled(EclipseContext.java:364)
+	at org.eclipse.e4.core.internal.contexts.EclipseContext.set(EclipseContext.java:379)
+	at org.eclipse.e4.ui.internal.workbench.SelectionServiceImpl.setPostSelection(SelectionServiceImpl.java:39)
+	at org.eclipse.ui.internal.e4.compatibility.CompatibilityPart.lambda$2(CompatibilityPart.java:128)
+	at org.eclipse.jface.viewers.StructuredViewer$3.run(StructuredViewer.java:823)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jface.util.SafeRunnable.run(SafeRunnable.java:174)
+	at org.eclipse.jface.viewers.StructuredViewer.firePostSelectionChanged(StructuredViewer.java:820)
+	at org.eclipse.jface.viewers.StructuredViewer.handlePostSelect(StructuredViewer.java:1193)
+	at org.eclipse.ui.navigator.CommonViewer.handlePostSelect(CommonViewer.java:460)
+	at org.eclipse.jface.viewers.StructuredViewer.lambda$0(StructuredViewer.java:1216)
+	at org.eclipse.swt.events.SelectionListener$1.widgetSelected(SelectionListener.java:84)
+	at org.eclipse.jface.util.OpenStrategy.firePostSelectionEvent(OpenStrategy.java:263)
+	at org.eclipse.jface.util.OpenStrategy.access$5(OpenStrategy.java:258)
+	at org.eclipse.jface.util.OpenStrategy$1.lambda$1(OpenStrategy.java:428)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:40)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:185)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4005)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3633)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1158)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1047)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:155)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:658)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:557)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:154)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:150)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:203)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:137)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:107)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:401)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:255)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:657)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:594)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1447)
+!SUBENTRY 1 org.eclipse.core.resources 4 372 2021-02-26 10:51:39.962
+!MESSAGE Project 'Boat_Nucleo' is not open.
+!STACK 0
+java.lang.Exception: Project 'Boat_Nucleo' is not open.
+	at org.eclipse.core.internal.resources.ResourceException.provideStackTrace(ResourceException.java:42)
+	at org.eclipse.core.internal.resources.ResourceException.<init>(ResourceException.java:38)
+	at org.eclipse.core.internal.resources.Project.checkAccessible(Project.java:148)
+	at org.eclipse.core.internal.resources.Project.getDescription(Project.java:391)
+	at org.eclipse.cdt.managedbuilder.internal.dataprovider.ConfigurationDataProvider.cacheNaturesIdsUsedOnCache(ConfigurationDataProvider.java:384)
+	at org.eclipse.cdt.managedbuilder.internal.dataprovider.ConfigurationDataProvider.loadConfiguration(ConfigurationDataProvider.java:581)
+	at org.eclipse.cdt.internal.core.settings.model.CConfigurationDescriptionCache.loadData(CConfigurationDescriptionCache.java:139)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescription.loadDatas(CProjectDescription.java:199)
+	at org.eclipse.cdt.internal.core.settings.model.xml.XmlProjectDescriptionStorage.loadProjectDescription(XmlProjectDescriptionStorage.java:510)
+	at org.eclipse.cdt.internal.core.settings.model.xml.XmlProjectDescriptionStorage.getProjectDescription(XmlProjectDescriptionStorage.java:240)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.getProjectDescriptionInternal(CProjectDescriptionManager.java:426)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.getProjectDescription(CProjectDescriptionManager.java:408)
+	at org.eclipse.cdt.managedbuilder.core.ManagedBuildManager.findBuildInfo(ManagedBuildManager.java:2673)
+	at org.eclipse.cdt.managedbuilder.core.ManagedBuildManager.getBuildInfo(ManagedBuildManager.java:2945)
+	at org.eclipse.cdt.managedbuilder.core.ManagedBuildManager.getBuildInfo(ManagedBuildManager.java:2898)
+	at com.st.stm32cube.ide.mcu.stackanalyzer.ui.StackAnalyzerView.getFile(StackAnalyzerView.java:1080)
+	at com.st.stm32cube.ide.mcu.stackanalyzer.ui.StackAnalyzerView.selectionChanged(StackAnalyzerView.java:1195)
+	at org.eclipse.ui.internal.e4.compatibility.SelectionService.notifyListeners(SelectionService.java:278)
+	at org.eclipse.ui.internal.e4.compatibility.SelectionService.handlePostSelectionChanged(SelectionService.java:120)
+	at org.eclipse.ui.internal.e4.compatibility.SelectionService.lambda$3(SelectionService.java:81)
+	at org.eclipse.e4.ui.internal.workbench.SelectionAggregator$4.run(SelectionAggregator.java:184)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.e4.ui.internal.workbench.SelectionAggregator.notifyTargetedPostListeners(SelectionAggregator.java:181)
+	at org.eclipse.e4.ui.internal.workbench.SelectionAggregator.notifyPostListeners(SelectionAggregator.java:172)
+	at org.eclipse.e4.ui.internal.workbench.SelectionAggregator.access$7(SelectionAggregator.java:158)
+	at org.eclipse.e4.ui.internal.workbench.SelectionAggregator$6.lambda$0(SelectionAggregator.java:250)
+	at org.eclipse.e4.core.contexts.RunAndTrack.runExternalCode(RunAndTrack.java:59)
+	at org.eclipse.e4.ui.internal.workbench.SelectionAggregator$6.changed(SelectionAggregator.java:250)
+	at org.eclipse.e4.core.internal.contexts.TrackableComputationExt.update(TrackableComputationExt.java:108)
+	at org.eclipse.e4.core.internal.contexts.EclipseContext.processScheduled(EclipseContext.java:364)
+	at org.eclipse.e4.core.internal.contexts.EclipseContext.set(EclipseContext.java:379)
+	at org.eclipse.e4.ui.internal.workbench.SelectionServiceImpl.setPostSelection(SelectionServiceImpl.java:39)
+	at org.eclipse.ui.internal.e4.compatibility.CompatibilityPart.lambda$2(CompatibilityPart.java:128)
+	at org.eclipse.jface.viewers.StructuredViewer$3.run(StructuredViewer.java:823)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jface.util.SafeRunnable.run(SafeRunnable.java:174)
+	at org.eclipse.jface.viewers.StructuredViewer.firePostSelectionChanged(StructuredViewer.java:820)
+	at org.eclipse.jface.viewers.StructuredViewer.handlePostSelect(StructuredViewer.java:1193)
+	at org.eclipse.ui.navigator.CommonViewer.handlePostSelect(CommonViewer.java:460)
+	at org.eclipse.jface.viewers.StructuredViewer.lambda$0(StructuredViewer.java:1216)
+	at org.eclipse.swt.events.SelectionListener$1.widgetSelected(SelectionListener.java:84)
+	at org.eclipse.jface.util.OpenStrategy.firePostSelectionEvent(OpenStrategy.java:263)
+	at org.eclipse.jface.util.OpenStrategy.access$5(OpenStrategy.java:258)
+	at org.eclipse.jface.util.OpenStrategy$1.lambda$1(OpenStrategy.java:428)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:40)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:185)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4005)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3633)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1158)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1047)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:155)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:658)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:557)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:154)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:150)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:203)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:137)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:107)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:401)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:255)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:657)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:594)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1447)
+
+!ENTRY org.eclipse.cdt.core 4 0 2021-02-26 10:51:40.076
+!MESSAGE Error
+!STACK 1
+org.eclipse.core.runtime.CoreException: attempt to set description for a project which does not exist or not open
+	at org.eclipse.cdt.internal.core.settings.model.xml.XmlProjectDescriptionStorage.setCurrentDescription(XmlProjectDescriptionStorage.java:383)
+	at org.eclipse.cdt.internal.core.settings.model.xml.XmlProjectDescriptionStorage.setLoaddedDescriptionOnLoad(XmlProjectDescriptionStorage.java:361)
+	at org.eclipse.cdt.internal.core.settings.model.xml.XmlProjectDescriptionStorage.getProjectDescription(XmlProjectDescriptionStorage.java:259)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.getProjectDescriptionInternal(CProjectDescriptionManager.java:426)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.getProjectDescription(CProjectDescriptionManager.java:408)
+	at org.eclipse.cdt.managedbuilder.core.ManagedBuildManager.findBuildInfo(ManagedBuildManager.java:2673)
+	at org.eclipse.cdt.managedbuilder.core.ManagedBuildManager.getBuildInfo(ManagedBuildManager.java:2945)
+	at org.eclipse.cdt.managedbuilder.core.ManagedBuildManager.getBuildInfo(ManagedBuildManager.java:2898)
+	at com.st.stm32cube.ide.mcu.stackanalyzer.ui.StackAnalyzerView.getFile(StackAnalyzerView.java:1080)
+	at com.st.stm32cube.ide.mcu.stackanalyzer.ui.StackAnalyzerView.selectionChanged(StackAnalyzerView.java:1195)
+	at org.eclipse.ui.internal.e4.compatibility.SelectionService.notifyListeners(SelectionService.java:278)
+	at org.eclipse.ui.internal.e4.compatibility.SelectionService.handlePostSelectionChanged(SelectionService.java:120)
+	at org.eclipse.ui.internal.e4.compatibility.SelectionService.lambda$3(SelectionService.java:81)
+	at org.eclipse.e4.ui.internal.workbench.SelectionAggregator$4.run(SelectionAggregator.java:184)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.e4.ui.internal.workbench.SelectionAggregator.notifyTargetedPostListeners(SelectionAggregator.java:181)
+	at org.eclipse.e4.ui.internal.workbench.SelectionAggregator.notifyPostListeners(SelectionAggregator.java:172)
+	at org.eclipse.e4.ui.internal.workbench.SelectionAggregator.access$7(SelectionAggregator.java:158)
+	at org.eclipse.e4.ui.internal.workbench.SelectionAggregator$6.lambda$0(SelectionAggregator.java:250)
+	at org.eclipse.e4.core.contexts.RunAndTrack.runExternalCode(RunAndTrack.java:59)
+	at org.eclipse.e4.ui.internal.workbench.SelectionAggregator$6.changed(SelectionAggregator.java:250)
+	at org.eclipse.e4.core.internal.contexts.TrackableComputationExt.update(TrackableComputationExt.java:108)
+	at org.eclipse.e4.core.internal.contexts.EclipseContext.processScheduled(EclipseContext.java:364)
+	at org.eclipse.e4.core.internal.contexts.EclipseContext.set(EclipseContext.java:379)
+	at org.eclipse.e4.ui.internal.workbench.SelectionServiceImpl.setPostSelection(SelectionServiceImpl.java:39)
+	at org.eclipse.ui.internal.e4.compatibility.CompatibilityPart.lambda$2(CompatibilityPart.java:128)
+	at org.eclipse.jface.viewers.StructuredViewer$3.run(StructuredViewer.java:823)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jface.util.SafeRunnable.run(SafeRunnable.java:174)
+	at org.eclipse.jface.viewers.StructuredViewer.firePostSelectionChanged(StructuredViewer.java:820)
+	at org.eclipse.jface.viewers.StructuredViewer.handlePostSelect(StructuredViewer.java:1193)
+	at org.eclipse.ui.navigator.CommonViewer.handlePostSelect(CommonViewer.java:460)
+	at org.eclipse.jface.viewers.StructuredViewer.lambda$0(StructuredViewer.java:1216)
+	at org.eclipse.swt.events.SelectionListener$1.widgetSelected(SelectionListener.java:84)
+	at org.eclipse.jface.util.OpenStrategy.firePostSelectionEvent(OpenStrategy.java:263)
+	at org.eclipse.jface.util.OpenStrategy.access$5(OpenStrategy.java:258)
+	at org.eclipse.jface.util.OpenStrategy$1.lambda$1(OpenStrategy.java:428)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:40)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:185)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4005)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3633)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1158)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1047)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:155)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:658)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:557)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:154)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:150)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:203)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:137)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:107)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:401)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:255)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:657)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:594)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1447)
+!SUBENTRY 1 org.eclipse.cdt.core 4 -1 2021-02-26 10:51:40.078
+!MESSAGE attempt to set description for a project which does not exist or not open
+
+!ENTRY org.eclipse.core.resources 4 372 2021-02-26 10:51:40.094
+!MESSAGE Project 'Boat_Nucleo' is not open.
+!STACK 0
+java.lang.Exception: Project 'Boat_Nucleo' is not open.
+	at org.eclipse.core.internal.resources.ResourceException.provideStackTrace(ResourceException.java:42)
+	at org.eclipse.core.internal.resources.ResourceException.<init>(ResourceException.java:38)
+	at org.eclipse.core.internal.resources.Project.checkAccessible(Project.java:148)
+	at org.eclipse.core.internal.resources.Resource.checkAccessibleAndLocal(Resource.java:210)
+	at org.eclipse.core.internal.resources.Resource.getPersistentProperty(Resource.java:1121)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescription$CfgIdPair.load(CProjectDescription.java:136)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescription$CfgIdPair.getId(CProjectDescription.java:81)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescription$CfgIdPair.getConfiguration(CProjectDescription.java:94)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescription.getDefaultSettingConfiguration(CProjectDescription.java:634)
+	at org.eclipse.cdt.internal.core.settings.model.AbstractCExtensionProxy.checkUpdateProvider(AbstractCExtensionProxy.java:81)
+	at org.eclipse.cdt.internal.core.settings.model.AbstractCExtensionProxy.doHandleEvent(AbstractCExtensionProxy.java:172)
+	at org.eclipse.cdt.internal.core.model.PathEntryStoreProxy.doHandleEvent(PathEntryStoreProxy.java:152)
+	at org.eclipse.cdt.internal.core.settings.model.AbstractCExtensionProxy.handleEvent(AbstractCExtensionProxy.java:159)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.notifyListeners(CProjectDescriptionManager.java:2218)
+	at org.eclipse.cdt.internal.core.settings.model.AbstractCProjectDescriptionStorage.fireLoadedEvent(AbstractCProjectDescriptionStorage.java:271)
+	at org.eclipse.cdt.internal.core.settings.model.xml.XmlProjectDescriptionStorage.getProjectDescription(XmlProjectDescriptionStorage.java:267)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.getProjectDescriptionInternal(CProjectDescriptionManager.java:426)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.getProjectDescription(CProjectDescriptionManager.java:408)
+	at org.eclipse.cdt.managedbuilder.core.ManagedBuildManager.findBuildInfo(ManagedBuildManager.java:2673)
+	at org.eclipse.cdt.managedbuilder.core.ManagedBuildManager.getBuildInfo(ManagedBuildManager.java:2945)
+	at org.eclipse.cdt.managedbuilder.core.ManagedBuildManager.getBuildInfo(ManagedBuildManager.java:2898)
+	at com.st.stm32cube.ide.mcu.stackanalyzer.ui.StackAnalyzerView.getFile(StackAnalyzerView.java:1080)
+	at com.st.stm32cube.ide.mcu.stackanalyzer.ui.StackAnalyzerView.selectionChanged(StackAnalyzerView.java:1195)
+	at org.eclipse.ui.internal.e4.compatibility.SelectionService.notifyListeners(SelectionService.java:278)
+	at org.eclipse.ui.internal.e4.compatibility.SelectionService.handlePostSelectionChanged(SelectionService.java:120)
+	at org.eclipse.ui.internal.e4.compatibility.SelectionService.lambda$3(SelectionService.java:81)
+	at org.eclipse.e4.ui.internal.workbench.SelectionAggregator$4.run(SelectionAggregator.java:184)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.e4.ui.internal.workbench.SelectionAggregator.notifyTargetedPostListeners(SelectionAggregator.java:181)
+	at org.eclipse.e4.ui.internal.workbench.SelectionAggregator.notifyPostListeners(SelectionAggregator.java:172)
+	at org.eclipse.e4.ui.internal.workbench.SelectionAggregator.access$7(SelectionAggregator.java:158)
+	at org.eclipse.e4.ui.internal.workbench.SelectionAggregator$6.lambda$0(SelectionAggregator.java:250)
+	at org.eclipse.e4.core.contexts.RunAndTrack.runExternalCode(RunAndTrack.java:59)
+	at org.eclipse.e4.ui.internal.workbench.SelectionAggregator$6.changed(SelectionAggregator.java:250)
+	at org.eclipse.e4.core.internal.contexts.TrackableComputationExt.update(TrackableComputationExt.java:108)
+	at org.eclipse.e4.core.internal.contexts.EclipseContext.processScheduled(EclipseContext.java:364)
+	at org.eclipse.e4.core.internal.contexts.EclipseContext.set(EclipseContext.java:379)
+	at org.eclipse.e4.ui.internal.workbench.SelectionServiceImpl.setPostSelection(SelectionServiceImpl.java:39)
+	at org.eclipse.ui.internal.e4.compatibility.CompatibilityPart.lambda$2(CompatibilityPart.java:128)
+	at org.eclipse.jface.viewers.StructuredViewer$3.run(StructuredViewer.java:823)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jface.util.SafeRunnable.run(SafeRunnable.java:174)
+	at org.eclipse.jface.viewers.StructuredViewer.firePostSelectionChanged(StructuredViewer.java:820)
+	at org.eclipse.jface.viewers.StructuredViewer.handlePostSelect(StructuredViewer.java:1193)
+	at org.eclipse.ui.navigator.CommonViewer.handlePostSelect(CommonViewer.java:460)
+	at org.eclipse.jface.viewers.StructuredViewer.lambda$0(StructuredViewer.java:1216)
+	at org.eclipse.swt.events.SelectionListener$1.widgetSelected(SelectionListener.java:84)
+	at org.eclipse.jface.util.OpenStrategy.firePostSelectionEvent(OpenStrategy.java:263)
+	at org.eclipse.jface.util.OpenStrategy.access$5(OpenStrategy.java:258)
+	at org.eclipse.jface.util.OpenStrategy$1.lambda$1(OpenStrategy.java:428)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:40)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:185)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4005)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3633)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1158)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1047)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:155)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:658)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:557)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:154)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:150)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:203)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:137)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:107)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:401)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:255)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:657)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:594)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1447)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-26 10:52:01.979
+!MESSAGE Indexed 'Sub_Nucleo' (45 sources, 252 headers) in 18.8 sec: 21,488 declarations; 87,012 references; 3 unresolved inclusions; 286 syntax errors; 1,066 unresolved names (0.97 %)
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.launch 2 0 2021-02-26 10:55:52.253
+!MESSAGE Won't launch debug session since we failed to locate the binary.
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 1 1 2021-02-26 13:09:33.845
+!MESSAGE No matching toolchain installed: com.st.stm32cube.ide.mcu.gnu.managedbuild.toolchain.base.gnu-tools-for-stm32; 9-2020-q2-update
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2021-02-26 13:09:33.873
+!MESSAGE Falling back to default toolchain
