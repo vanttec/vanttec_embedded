@@ -3,7 +3,7 @@
   <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;workbench>&#xD;&#xA;&lt;mruList/>&#xD;&#xA;&lt;/workbench>"/>
   <tags>activeSchemeId:org.eclipse.ui.defaultAcceleratorConfiguration</tags>
   <tags>ModelMigrationProcessor.001</tags>
-  <children xsi:type="basic:TrimmedWindow" xmi:id="_Xi-DchNHEeu5WvhNx7_XOA" elementId="IDEWindow" contributorURI="platform:/plugin/org.eclipse.ui.workbench" selectedElement="_YMIVMBNHEeu5WvhNx7_XOA" x="52" y="52" width="1024" height="768">
+  <children xsi:type="basic:TrimmedWindow" xmi:id="_Xi-DchNHEeu5WvhNx7_XOA" elementId="IDEWindow" contributorURI="platform:/plugin/org.eclipse.ui.workbench" selectedElement="_YMIVMBNHEeu5WvhNx7_XOA" x="82" y="-12" width="1024" height="768">
     <persistedState key="coolBarVisible" value="true"/>
     <persistedState key="perspectiveBarVisible" value="true"/>
     <persistedState key="isRestored" value="true"/>
@@ -72,8 +72,9 @@
           <tags>persp.viewSC:com.st.stm32cube.ide.mcu.buildanalyzer.view</tags>
           <tags>persp.viewSC:com.st.stm32cube.ide.mcu.stackanalyzer.stackanalyzer.view</tags>
           <tags>persp.viewSC:com.st.stm32cube.ide.mcu.sfrview</tags>
-          <children xsi:type="basic:PartSashContainer" xmi:id="_ZCq7oRNHEeu5WvhNx7_XOA" selectedElement="_ZCq7pxNHEeu5WvhNx7_XOA" horizontal="true">
+          <children xsi:type="basic:PartSashContainer" xmi:id="_ZCq7oRNHEeu5WvhNx7_XOA" selectedElement="_ZCq7ohNHEeu5WvhNx7_XOA" horizontal="true">
             <children xsi:type="basic:PartStack" xmi:id="_ZCq7ohNHEeu5WvhNx7_XOA" elementId="topLeft" containerData="2500" selectedElement="_ZCq7oxNHEeu5WvhNx7_XOA">
+              <tags>active</tags>
               <children xsi:type="advanced:Placeholder" xmi:id="_ZCq7oxNHEeu5WvhNx7_XOA" elementId="org.eclipse.ui.navigator.ProjectExplorer" ref="_ZCFs0BNHEeu5WvhNx7_XOA" closeable="true">
                 <tags>View</tags>
                 <tags>categoryTag:General</tags>
@@ -91,8 +92,13 @@
                 <tags>categoryTag:General</tags>
               </children>
             </children>
+<<<<<<< Updated upstream
             <children xsi:type="basic:PartSashContainer" xmi:id="_ZCq7pxNHEeu5WvhNx7_XOA" containerData="7500" selectedElement="_ZCq7rhNHEeu5WvhNx7_XOA">
               <children xsi:type="basic:PartSashContainer" xmi:id="_ZCq7qBNHEeu5WvhNx7_XOA" containerData="7500" horizontal="true">
+=======
+            <children xsi:type="basic:PartSashContainer" xmi:id="_ZCq7pxNHEeu5WvhNx7_XOA" containerData="7500" selectedElement="_ZCq7qBNHEeu5WvhNx7_XOA">
+              <children xsi:type="basic:PartSashContainer" xmi:id="_ZCq7qBNHEeu5WvhNx7_XOA" containerData="7500" selectedElement="_ZCq7qRNHEeu5WvhNx7_XOA" horizontal="true">
+>>>>>>> Stashed changes
                 <children xsi:type="advanced:Placeholder" xmi:id="_ZCq7qRNHEeu5WvhNx7_XOA" elementId="org.eclipse.ui.editorss" containerData="7500" ref="_ZByK0BNHEeu5WvhNx7_XOA"/>
                 <children xsi:type="basic:PartStack" xmi:id="_ZCq7qhNHEeu5WvhNx7_XOA" elementId="topRight" containerData="2500" selectedElement="_ZCq7qxNHEeu5WvhNx7_XOA">
                   <children xsi:type="advanced:Placeholder" xmi:id="_ZCq7qxNHEeu5WvhNx7_XOA" elementId="org.eclipse.ui.views.ContentOutline" ref="_ZCUWUBNHEeu5WvhNx7_XOA" closeable="true">
@@ -190,6 +196,27 @@
       <children xsi:type="basic:PartStack" xmi:id="_ZByK0RNHEeu5WvhNx7_XOA" elementId="org.eclipse.e4.primaryDataStack">
         <tags>org.eclipse.e4.primaryDataStack</tags>
         <tags>EditorStack</tags>
+<<<<<<< Updated upstream
+=======
+        <children xsi:type="basic:Part" xmi:id="_dM-NcHhTEeuKJY9JvhpAfw" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="main.cpp" iconURI="platform:/plugin/org.eclipse.cdt.ui/icons/obj16/c_file_obj.gif" closeable="true">
+          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.cdt.ui.editor.CEditor&quot; name=&quot;main.cpp&quot; partName=&quot;main.cpp&quot; title=&quot;main.cpp&quot; tooltip=&quot;Sub_Nucleo/Core/Src/main.cpp&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/Sub_Nucleo/Core/Src/main.cpp&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;10243&quot; selectionTopPixel=&quot;5415&quot;/>&#xD;&#xA;&lt;/editor>"/>
+          <tags>Editor</tags>
+          <tags>removeOnHide</tags>
+          <tags>org.eclipse.cdt.ui.editor.CEditor</tags>
+        </children>
+        <children xsi:type="basic:Part" xmi:id="_NEAJUHhUEeuKJY9JvhpAfw" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="MS5837.h" iconURI="platform:/plugin/org.eclipse.cdt.ui/icons/obj16/c_file_obj.gif" closeable="true">
+          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.cdt.ui.editor.CEditor&quot; name=&quot;MS5837.h&quot; partName=&quot;MS5837.h&quot; title=&quot;MS5837.h&quot; tooltip=&quot;Sub_Nucleo/Core/Inc/MS5837.h&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/Sub_Nucleo/Core/Inc/MS5837.h&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;1674&quot; selectionTopPixel=&quot;1062&quot;/>&#xD;&#xA;&lt;/editor>"/>
+          <tags>Editor</tags>
+          <tags>removeOnHide</tags>
+          <tags>org.eclipse.cdt.ui.editor.CEditor</tags>
+        </children>
+        <children xsi:type="basic:Part" xmi:id="_acWDcHhUEeuKJY9JvhpAfw" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="MS5837.cpp" iconURI="platform:/plugin/org.eclipse.cdt.ui/icons/obj16/c_file_obj.gif" closeable="true">
+          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.cdt.ui.editor.CEditor&quot; name=&quot;MS5837.cpp&quot; partName=&quot;MS5837.cpp&quot; title=&quot;MS5837.cpp&quot; tooltip=&quot;Sub_Nucleo/Core/Src/MS5837.cpp&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/Sub_Nucleo/Core/Src/MS5837.cpp&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;0&quot; selectionTopPixel=&quot;624&quot;/>&#xD;&#xA;&lt;/editor>"/>
+          <tags>Editor</tags>
+          <tags>removeOnHide</tags>
+          <tags>org.eclipse.cdt.ui.editor.CEditor</tags>
+        </children>
+>>>>>>> Stashed changes
       </children>
     </sharedElements>
     <sharedElements xsi:type="basic:Part" xmi:id="_ZCFs0BNHEeu5WvhNx7_XOA" elementId="org.eclipse.ui.navigator.ProjectExplorer" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" label="Project Explorer" iconURI="platform:/plugin/org.eclipse.ui.navigator.resources/icons/full/eview16/resource_persp.png" tooltip="" closeable="true">
@@ -198,6 +225,8 @@
       <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;view CommonNavigator.LINKING_ENABLED=&quot;0&quot; org.eclipse.cdt.ui.cview.groupincludes=&quot;false&quot; org.eclipse.cdt.ui.cview.groupmacros=&quot;false&quot; org.eclipse.cdt.ui.editor.CUChildren=&quot;true&quot; org.eclipse.ui.navigator.resources.workingSets.showTopLevelWorkingSets=&quot;0&quot;>&#xD;&#xA;&lt;lastRecentlyUsedFilters/>&#xD;&#xA;&lt;/view>"/>
       <tags>View</tags>
       <tags>categoryTag:General</tags>
+      <tags>active</tags>
+      <tags>activeOnClose</tags>
       <menus xmi:id="_ZMSKoBNHEeu5WvhNx7_XOA" elementId="org.eclipse.ui.navigator.ProjectExplorer">
         <tags>ViewMenu</tags>
         <tags>menuContribution:menu</tags>
@@ -331,7 +360,11 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_YwVOcBNHEeu5WvhNx7_XOA" elementId="org.eclipse.ui.workbench.file">
         <tags>Draggable</tags>
+<<<<<<< Updated upstream
         <children xsi:type="menu:HandledToolItem" xmi:id="_Ywg0oBNHEeu5WvhNx7_XOA" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_XkshxxNHEeu5WvhNx7_XOA"/>
+=======
+        <children xsi:type="menu:HandledToolItem" xmi:id="_PA3CYNR8EeuI3s18-VGRrw" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_XkshxxNHEeu5WvhNx7_XOA"/>
+>>>>>>> Stashed changes
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_YwVOcRNHEeu5WvhNx7_XOA" elementId="group.edit" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -362,7 +395,11 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_YwXqsBNHEeu5WvhNx7_XOA" elementId="org.eclipse.ui.workbench.navigate">
         <tags>Draggable</tags>
+<<<<<<< Updated upstream
         <children xsi:type="menu:HandledToolItem" xmi:id="_YwlGEBNHEeu5WvhNx7_XOA" elementId="org.eclipse.ui.window.pinEditor" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" enabled="false" type="Check" command="_XkZm6hNHEeu5WvhNx7_XOA"/>
+=======
+        <children xsi:type="menu:HandledToolItem" xmi:id="_PBAzYNR8EeuI3s18-VGRrw" elementId="org.eclipse.ui.window.pinEditor" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" enabled="false" type="Check" command="_XkZm6hNHEeu5WvhNx7_XOA"/>
+>>>>>>> Stashed changes
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_YwYRwBNHEeu5WvhNx7_XOA" elementId="group.editor" toBeRendered="false">
         <tags>toolbarSeparator</tags>
