@@ -24,6 +24,7 @@
 #include "ros.h"
 #include <stdint.h>
 #include "stm32g4xx_hal.h"
+#include "stm32g4xx_hal_fdcan.h"
 #include <std_msgs/UInt16.h>
 #include <std_msgs/UInt8.h>
 
@@ -99,6 +100,10 @@ TIM_HandleTypeDef htim3;
 TIM_HandleTypeDef htim4;
 TIM_HandleTypeDef htim8;
 
+FDCAN_HandleTypeDef hfdcan1;
+USART_HandleTypeDef husart2;
+I2C_HandleTypeDef hi2c1;
+
 /* Definitions for defaultTask */
 osThreadId_t defaultTaskHandle;
 /*const osThreadAttr_t defaultTask_attributes = {
@@ -118,6 +123,7 @@ static void MX_TIM4_Init(void);
 static void MX_TIM8_Init(void);
 static void MX_I2C1_Init(void);
 static void MX_USART2_Init(void);
+static void MX_FDCAN1_Init(void);
 void StartDefaultTask(void *argument);
 
 //PWM functions
@@ -233,6 +239,11 @@ int main(void){
   	MX_TIM8_Init();
     MX_I2C1_Init();
     MX_USART2_Init();
+    MX_FDCAN1_Init();
+    HAL_FDCAN_Start(&hfdcan1);
+    /* USER CODE BEGIN RTOS_CAN */
+    /* add RTOS task for CAN message exchange */
+    /* USER CODE END RTOS_CAN */
   	/* USER CODE BEGIN 2 */
   	HAL_TIM_IC_Start_IT(&htim3, TIM_CHANNEL_2);
   	/* USER CODE END 2 */
@@ -581,6 +592,31 @@ static void MX_GPIO_Init(void)
 
 }
 
+/**
+  * @brief FDCAN Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_FDCAN1_Init(void)
+{
+	hfdcan1.Instance = FDCAN1;
+	hfdcan1.Init.FrameFormat = FDCAN_FRAME_CLASSIC;
+	hfdcan1.Init.Mode = FDCAN_MODE_NORMAL;
+	hfdcan1.Init.AutoRetransmission = DISABLE;
+	hfdcan1.Init.TransmitPause = DISABLE;
+	hfdcan1.Init.NominalPrescaler = 5;
+	hfdcan1.Init.NominalSyncJumpWidth = 1;
+	hfdcan1.Init.NominalTimeSeg1 = 11;
+	hfdcan1.Init.NominalTimeSeg2 = 4;
+	hfdcan1.Init.DataPrescaler = 1;
+	hfdcan1.Init.DataSyncJumpWidth = 1;
+	hfdcan1.Init.DataTimeSeg1 = 1;
+	hfdcan1.Init.DataTimeSeg2 = 1;
+	hfdcan1.Init.StdFiltersNbr = 0;
+	hfdcan1.Init.ExtFiltersNbr = 0;
+	hfdcan1.Init.TxFifoQueueMode = FDCAN_TX_FIFO_OPERATION;
+	hfdcan1.ErrorCode = 0;
+}
 
 /* USER CODE BEGIN 4 */
 

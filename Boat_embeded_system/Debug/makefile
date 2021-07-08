@@ -1,5 +1,6 @@
 ################################################################################
 # Automatically-generated file. Do not edit!
+# Toolchain: GNU Tools for STM32 (9-2020-q2-update)
 ################################################################################
 
 -include ../makefile.init
@@ -48,6 +49,17 @@ endif
 
 -include ../makefile.defs
 
+OPTIONAL_TOOL_DEPS := \
+$(wildcard ../makefile.defs) \
+$(wildcard ../makefile.init) \
+$(wildcard ../makefile.targets) \
+
+
+BUILD_ARTIFACT_NAME := Boat_Nucleo
+BUILD_ARTIFACT_EXTENSION := elf
+BUILD_ARTIFACT_PREFIX := 
+BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME).$(BUILD_ARTIFACT_EXTENSION)
+
 # Add inputs and outputs from these tool invocations to the build variables 
 EXECUTABLES += \
 Boat_Nucleo.elf \
@@ -63,25 +75,28 @@ Boat_Nucleo.bin \
 
 
 # All Target
-all: Boat_Nucleo.elf secondary-outputs
+all: main-build
+
+# Main-build Target
+main-build: Boat_Nucleo.elf secondary-outputs
 
 # Tool invocations
-Boat_Nucleo.elf: $(OBJS) $(USER_OBJS) C:\BOAT_BETA\Boat_Nucleo\STM32G431KBTX_FLASH.ld
-	arm-none-eabi-g++ -o "Boat_Nucleo.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\BOAT_BETA\Boat_Nucleo\STM32G431KBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Boat_Nucleo.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Boat_Nucleo.elf: $(OBJS) $(USER_OBJS) C:\Users\BestManEver\Desktop\vanttec_embedded-RoboSub_Embedded\vanttec_embedded-RoboSub_Embedded\Boat_embeded_system\STM32G431KBTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-g++ -o "Boat_Nucleo.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\BestManEver\Desktop\vanttec_embedded-RoboSub_Embedded\vanttec_embedded-RoboSub_Embedded\Boat_embeded_system\STM32G431KBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Boat_Nucleo.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
-default.size.stdout: $(EXECUTABLES)
+default.size.stdout: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	arm-none-eabi-size  $(EXECUTABLES)
 	@echo 'Finished building: $@'
 	@echo ' '
 
-Boat_Nucleo.list: $(EXECUTABLES)
+Boat_Nucleo.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "Boat_Nucleo.list"
 	@echo 'Finished building: $@'
 	@echo ' '
 
-Boat_Nucleo.bin: $(EXECUTABLES)
+Boat_Nucleo.bin: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	arm-none-eabi-objcopy  -O binary $(EXECUTABLES) "Boat_Nucleo.bin"
 	@echo 'Finished building: $@'
 	@echo ' '
@@ -93,7 +108,14 @@ clean:
 
 secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST) $(OBJCOPY_BIN)
 
-.PHONY: all clean dependents
+fail-specified-linker-script-missing:
+	@echo 'Error: Cannot find the specified linker script. Check the linker settings in the build configuration.'
+	@exit 2
+
+warn-no-linker-script-specified:
+	@echo 'Warning: No linker script specified. Check the linker settings in the build configuration.'
+
+.PHONY: all clean dependents fail-specified-linker-script-missing warn-no-linker-script-specified
 .SECONDARY:
 
 -include ../makefile.targets
