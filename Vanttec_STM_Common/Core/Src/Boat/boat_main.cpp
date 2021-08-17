@@ -77,7 +77,7 @@ void mainTask(void *){
 	}
 }
 
-void createTasks(){
+void createTasks_boat(){
 	//TODO Assign TIM Capture Callback
 	//Otherwise, X8R PWM will not be read
 	memset(channels, 0, sizeof(channels));

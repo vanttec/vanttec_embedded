@@ -1,0 +1,6 @@
+[submodule "Vanttec_STM_Common/libcanard"]
+	path = Vanttec_STM_Common/libcanard
+	url = https://github.com/UAVCAN/libcanard.git
+[submodule "Vanttec_STM_Common/o1heap"]
+	path = Vanttec_STM_Common/o1heap
+	url = https://github.com/pavel-kirienko/o1heap.git

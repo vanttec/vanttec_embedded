@@ -24,12 +24,12 @@ typedef struct {
 void handleTIMCaptureCallback(TIM_HandleTypeDef *htim);
 
 //Function only runs once, all tasks should be added here
-void createTasks();
+void createTasks_boat();
 
 /**
  * Tasks
  */
-void mainTask();
+void mainTask_boat();
 
 #ifdef __cplusplus
 } // extern "C"
