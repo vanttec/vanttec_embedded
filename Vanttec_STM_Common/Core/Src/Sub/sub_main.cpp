@@ -4,6 +4,8 @@
 #include "cmsis_os.h"
 #include "stm32f4xx_hal.h"
 #include "o1heap.h"
+#define NUNAVUT_ASSERT assert
+#include "uavcan/node/Heartbeat_1_0.h"
 
 #define BXCAN_INTERFACE 1 //CAN2
 
@@ -24,6 +26,14 @@ static void canardFree(CanardInstance* const ins, void* const pointer){
 	O1HeapInstance* const heap = (O1HeapInstance*) ins->user_reference;
 	o1heapFree(heap, pointer);
 }
+
+/* Definitions for uavcan task */
+osThreadId_t uavcanTaskHandle;
+const osThreadAttr_t uavcanTask_attributes = {
+  .name = "mainTask",
+  .stack_size = 128 * 8,
+  .priority = (osPriority_t) osPriorityNormal,
+};
 
 
 void uavcan_init(uint8_t nodeId, uint32_t bitrate){
@@ -97,4 +107,5 @@ void testuavcan_task(void*){
 
 void createTasks_sub(){
 	uavcan_init(8, 10000);
+	uavcanTaskHandle = osThreadNew(testuavcan_task, NULL, &uavcanTask_attributes);
 }
