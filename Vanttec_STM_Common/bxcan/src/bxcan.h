@@ -59,7 +59,7 @@ extern "C" {
 /// This is defined by the bxCAN hardware.
 /// Devices with only one CAN interface have 14 filters (e.g. F103).
 /// Devices with two CAN interfaces (e.g. F105, F446) have 28 filters, which are shared equally.
-#define BXCAN_NUM_ACCEPTANCE_FILTERS 14U
+#define BXCAN_NUM_ACCEPTANCE_FILTERS 28U
 
 /// A CAN acceptance filter configuration. Usable only with extended CAN 2.0B data frames.
 /// It is not possible to configure acceptance of standard-ID or RTR frames.
