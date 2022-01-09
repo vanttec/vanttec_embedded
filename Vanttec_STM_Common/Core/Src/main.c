@@ -31,6 +31,7 @@
 #include "Sub/sub_main.h"
 #endif
 #include "SBUS/sbus.h"
+#include "CAN/can_bus_task.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -75,6 +76,12 @@ const osThreadAttr_t defaultTask_attributes = {
 };
 /* USER CODE BEGIN PV */
 SBUS_Data sbusData;
+osThreadId_t canTaskHandle;
+const osThreadAttr_t canTask_attributes = {
+  .name = "canTask",
+  .stack_size = 128 * 4,
+  .priority = (osPriority_t) osPriorityNormal,
+};
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -178,6 +185,7 @@ int main(void)
 #elif defined(VANTTEC_SUB)
   createTasks_sub();
 #endif
+  canTaskHandle = osThreadNew(can_tx_task, NULL, &canTask_attributes);
   /* add threads, ... */
   /* USER CODE END RTOS_THREADS */
 
@@ -310,7 +318,7 @@ static void MX_CAN2_Init(void)
   /* USER CODE END CAN2_Init 1 */
   hcan2.Instance = CAN2;
   hcan2.Init.Prescaler = 28;
-  hcan2.Init.Mode = CAN_MODE_NORMAL;
+  hcan2.Init.Mode = CAN_MODE_LOOPBACK;
   hcan2.Init.SyncJumpWidth = CAN_SJW_4TQ;
   hcan2.Init.TimeSeg1 = CAN_BS1_12TQ;
   hcan2.Init.TimeSeg2 = CAN_BS2_2TQ;
