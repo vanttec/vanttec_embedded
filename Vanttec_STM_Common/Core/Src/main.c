@@ -33,6 +33,7 @@
 #include "SBUS/sbus.h"
 #include "CAN/can_bus_task.h"
 #include "CAN/can_bus_tx_tasks.h"
+#include "pca9685.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -163,6 +164,13 @@ int main(void)
 	Error_Handler();
   }
   can_init();
+  pca9685_handle_t pcaHandle;
+  pcaHandle.i2c_handle = &hi2c2;
+  pcaHandle.device_address = 0x7f;
+  pcaHandle.inverted = false;
+  bool ret = pca9685_init(&pcaHandle);
+  if(!ret) Error_Handler();
+  for(int i = 0; i < 16; i++) pca9685_set_channel_duty_cycle(&pcaHandle, i, 0.5, false);
   /* USER CODE END 2 */
 
   /* Init scheduler */
@@ -716,6 +724,16 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOC_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
   __HAL_RCC_GPIOD_CLK_ENABLE();
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_8, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin : PC8 */
+  GPIO_InitStruct.Pin = GPIO_PIN_8;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
   /*Configure GPIO pins : PA9 PA10 */
   GPIO_InitStruct.Pin = GPIO_PIN_9|GPIO_PIN_10;
