@@ -5,36 +5,89 @@
  *      Author: abiel
  */
 
-#include "CAN/can_bus_task.h"
+#include <string.h>
 #include "CAN/can_bus.h"
 #include "stm32f4xx_hal.h"
-#include "cmsis_os.h"
 #include "CANMessage.h"
+#include "CAN/can_bus_task.h"
+#include "SBUS/sbus.h"
+#include "CAN/can.h"
 
 extern CAN_HandleTypeDef hcan2;
+extern SBUS_Data sbusData;
 
-void can_tx_update(){
-	tx_data.heartbeat = HAL_GetTick();
+osMessageQueueId_t debugMessageQueue;
+osMessageQueueId_t txMessageQueue;
+
+void can_init(){
+	CAN_FilterTypeDef filter;
+	filter.FilterBank = 20;
+	filter.FilterMode = CAN_FILTERMODE_IDMASK;
+	filter.FilterScale = CAN_FILTERSCALE_32BIT;
+	filter.FilterFIFOAssignment = CAN_RX_FIFO0;
+	filter.FilterActivation = CAN_FILTER_ENABLE;
+	filter.FilterIdHigh = 0;
+	filter.FilterIdLow = 0;
+	filter.FilterMaskIdHigh = 0;
+	filter.FilterMaskIdLow = 0;
+	filter.SlaveStartFilterBank = 14;
+
+	HAL_StatusTypeDef ret = HAL_CAN_ConfigFilter(&hcan2, &filter);
+	if(ret != HAL_OK) Error_Handler();
+	HAL_CAN_Start(&hcan2);
+
+	//Initialize queues
+	debugMessageQueue = osMessageQueueNew(64, 7, NULL);
+	if(debugMessageQueue == NULL)
+		Error_Handler();
+
+	txMessageQueue = osMessageQueueNew(64, sizeof(CAN_TX_QUEUE_OBJ), NULL);
+	if(txMessageQueue == NULL)
+		Error_Handler();
 }
 
-void can_tx_task(void * params){
+void can_tx_update(){
 	CAN_TxHeaderTypeDef txHeader;
-	uint8_t buffer[8];
 	uint32_t txMailbox;
-
 	txHeader.IDE = CAN_ID_STD;
 	txHeader.StdId = 0x111;
 	txHeader.RTR = CAN_RTR_DATA;
 
-	HAL_CAN_Start(&hcan2);
+	CAN_TX_QUEUE_OBJ txOut;
 
+	if(osMessageQueueGet(txMessageQueue, &txOut, NULL, 0) == osOK){
+		txHeader.DLC = txOut.msg_size;
+		HAL_StatusTypeDef ret = HAL_CAN_AddTxMessage(&hcan2, &txHeader, txOut.buf, &txMailbox);
+	}
+}
+
+void can_tx_task(void * params){
 	for(;;){
-		can_tx_update();
+		//queue_can_msg_long(HEARTBEAT_ID, sbusData.channels[2]);
+		while(HAL_CAN_GetTxMailboxesFreeLevel(&hcan2) != 0)
+			can_tx_update();
 
-		txHeader.DLC = can_pack_long(HEARTBEAT_ID, tx_data.heartbeat, buffer, 8);
-		HAL_StatusTypeDef ret = HAL_CAN_AddTxMessage(&hcan2, &txHeader, buffer, &txMailbox);
-			//Error_Handler();
-
+		const char testMsg[] = "Hello World\n";
+		//send_can_debug_msg(testMsg, strlen(testMsg));
+		//while(handle_debug_msg_queue() == osOK);
 		osDelay(can_tx_task_delay);
+	}
+}
+
+void can_rx_update(){
+	//TODO check both FIFO?
+	CAN_RxHeaderTypeDef rxHeader;
+	uint8_t buf[8];
+	while(HAL_CAN_GetRxFifoFillLevel(&hcan2, CAN_RX_FIFO0) != 0){
+		HAL_StatusTypeDef ret = HAL_CAN_GetRxMessage(&hcan2, CAN_RX_FIFO0, &rxHeader, buf);
+		if(ret != HAL_OK) continue;
+		//Parse can message
+	}
+}
+
+void can_rx_task(void *params){
+	for(;;){
+		can_rx_update();
+		osDelay(can_rx_task_delay);
 	}
 }

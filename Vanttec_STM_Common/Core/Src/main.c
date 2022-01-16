@@ -32,6 +32,7 @@
 #endif
 #include "SBUS/sbus.h"
 #include "CAN/can_bus_task.h"
+#include "CAN/can_bus_tx_tasks.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -79,6 +80,13 @@ SBUS_Data sbusData;
 osThreadId_t canTaskHandle;
 const osThreadAttr_t canTask_attributes = {
   .name = "canTask",
+  .stack_size = 128 * 4,
+  .priority = (osPriority_t) osPriorityNormal,
+};
+
+osThreadId_t canRxTaskHandle;
+const osThreadAttr_t canRxTask_attributes = {
+  .name = "canRxTask",
   .stack_size = 128 * 4,
   .priority = (osPriority_t) osPriorityNormal,
 };
@@ -154,6 +162,7 @@ int main(void)
   if(SBUS_Init(&sbusData, &huart5) != HAL_OK){
 	Error_Handler();
   }
+  can_init();
   /* USER CODE END 2 */
 
   /* Init scheduler */
@@ -186,6 +195,8 @@ int main(void)
   createTasks_sub();
 #endif
   canTaskHandle = osThreadNew(can_tx_task, NULL, &canTask_attributes);
+  canRxTaskHandle = osThreadNew(can_rx_task, NULL, &canRxTask_attributes);
+  start_can_tx_tasks();
   /* add threads, ... */
   /* USER CODE END RTOS_THREADS */
 
@@ -317,15 +328,15 @@ static void MX_CAN2_Init(void)
 
   /* USER CODE END CAN2_Init 1 */
   hcan2.Instance = CAN2;
-  hcan2.Init.Prescaler = 28;
-  hcan2.Init.Mode = CAN_MODE_LOOPBACK;
-  hcan2.Init.SyncJumpWidth = CAN_SJW_4TQ;
-  hcan2.Init.TimeSeg1 = CAN_BS1_12TQ;
+  hcan2.Init.Prescaler = 21;
+  hcan2.Init.Mode = CAN_MODE_NORMAL;
+  hcan2.Init.SyncJumpWidth = CAN_SJW_1TQ;
+  hcan2.Init.TimeSeg1 = CAN_BS1_13TQ;
   hcan2.Init.TimeSeg2 = CAN_BS2_2TQ;
   hcan2.Init.TimeTriggeredMode = DISABLE;
   hcan2.Init.AutoBusOff = DISABLE;
   hcan2.Init.AutoWakeUp = DISABLE;
-  hcan2.Init.AutoRetransmission = DISABLE;
+  hcan2.Init.AutoRetransmission = ENABLE;
   hcan2.Init.ReceiveFifoLocked = DISABLE;
   hcan2.Init.TransmitFifoPriority = DISABLE;
   if (HAL_CAN_Init(&hcan2) != HAL_OK)

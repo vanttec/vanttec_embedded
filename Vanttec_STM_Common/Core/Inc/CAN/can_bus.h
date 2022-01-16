@@ -11,6 +11,13 @@
 #include <stdint.h>
 
 #define HEARTBEAT_ID 0x01
+//16 SBUS channels
+#define SBUS_ID_START 0x02
+#define SBUS_ID_END 0x12
+#define DEBUG_LOG_ID 0x13
+//8 motor channels
+#define MOTOR_ID_START 0x14
+#define MOTOR_ID_END 0x1C
 
 #ifdef __cplusplus
 extern "C" {
@@ -22,10 +29,16 @@ typedef struct {
 
 typedef struct {
 	uint32_t heartbeat;
+	uint16_t sbusData[16];
 } can_tx_data;
 
 extern can_rx_data rx_data;
 extern can_tx_data tx_data;
+
+typedef struct {
+	uint8_t buf[8];
+	uint8_t msg_size;
+} CAN_TX_QUEUE_OBJ;
 
 #ifdef __cplusplus
 }

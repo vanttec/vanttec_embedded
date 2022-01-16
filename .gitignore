@@ -49,3 +49,5 @@ Temporary Items
 *.elf
 *.ld
 *.o
+*/cmake-build-debug/*
+*/.idea/*
