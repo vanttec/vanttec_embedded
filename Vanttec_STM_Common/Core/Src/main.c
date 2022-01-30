@@ -161,9 +161,6 @@ int main(void)
   MX_UART5_Init();
   MX_UART4_Init();
   /* USER CODE BEGIN 2 */
-  if(SBUS_Init(&sbusData, &huart5) != HAL_OK){
-	Error_Handler();
-  }
   can_init();
   pca9685_handle_t pcaHandle;
   pcaHandle.i2c_handle = &hi2c2;
@@ -172,6 +169,8 @@ int main(void)
   bool ret = pca9685_init(&pcaHandle);
   if(!ret) Error_Handler();
   for(int i = 0; i < 16; i++) pca9685_set_channel_duty_cycle(&pcaHandle, i, 0.5, false);
+
+  pwm_init();
   /* USER CODE END 2 */
 
   /* Init scheduler */
@@ -198,7 +197,6 @@ int main(void)
   defaultTaskHandle = osThreadNew(StartDefaultTask, NULL, &defaultTask_attributes);
 
   /* USER CODE BEGIN RTOS_THREADS */
-  pwm_init();
 #ifdef VANTTEC_BOAT
   createTasks_boat();
 #elif defined(VANTTEC_SUB)

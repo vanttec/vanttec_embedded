@@ -26,7 +26,7 @@ extern "C" {
 #endif
 
 typedef struct {
-	uint16_t motorSetpoints[8];
+	float motorSetpoints[8];
 	uint32_t jetsonHBTick;
 } can_rx;
 

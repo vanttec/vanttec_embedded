@@ -15,8 +15,8 @@ void can_parse_msg(CAN_RxHeaderTypeDef *header, uint8_t *data){
 	uint8_t id = can_parse_id(data, header->DLC);
 	if(id >= MOTOR_ID_START && id <= MOTOR_ID_END){
 		//Motor msg
-		uint16_t data = can_parse_short(data, header->DLC);
-		can_rx_data.motorSetpoints[id - MOTOR_ID_START] = data;
+		float set = can_parse_float(data, header->DLC);
+		can_rx_data.motorSetpoints[id - MOTOR_ID_START] = set;
 	} else if(id == JETSON_HEARTBEAT_ID) {
 		//Jetson heartbeat
 		can_rx_data.jetsonHBTick = HAL_GetTick();

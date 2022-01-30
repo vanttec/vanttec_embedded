@@ -19,6 +19,12 @@ static float pwm_map(float x, float in_min, float in_max, float out_min, float o
   return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 }
 
+static float pwm_clamp(float x, float min_val, float max_val){
+	if(x < min_val) return min_val;
+	if(x > max_val) return max_val;
+	return x;
+}
+
 void pwm_init(){
 	//Initialize all PWM duty cycle to 0
 	for(int i = 0; i < 8; i++)
@@ -51,6 +57,8 @@ void pwm_set_raw(uint8_t ch, uint16_t output){
 }
 
 void pwm_set(uint8_t ch, float output){
+	output = pwm_clamp(output, -1, 1);
+
 	const uint16_t maxVal = __HAL_TIM_GET_AUTORELOAD(timer_handles[0]);
 	output = pwm_map(output, -1, 1, 1100, 1900); //1ms - 2ms
 

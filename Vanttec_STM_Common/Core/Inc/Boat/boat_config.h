@@ -1,1 +1,0 @@
-#define X8R_CHANNELS 3
