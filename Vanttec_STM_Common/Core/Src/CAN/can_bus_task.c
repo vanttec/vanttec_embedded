@@ -12,6 +12,7 @@
 #include "CAN/can_bus_task.h"
 #include "SBUS/sbus.h"
 #include "CAN/can.h"
+#include "CAN/can_bus_parser.h"
 
 extern CAN_HandleTypeDef hcan2;
 extern SBUS_Data sbusData;
@@ -63,13 +64,9 @@ void can_tx_update(){
 
 void can_tx_task(void * params){
 	for(;;){
-		//queue_can_msg_long(HEARTBEAT_ID, sbusData.channels[2]);
 		while(HAL_CAN_GetTxMailboxesFreeLevel(&hcan2) != 0)
 			can_tx_update();
 
-		const char testMsg[] = "Hello World\n";
-		//send_can_debug_msg(testMsg, strlen(testMsg));
-		//while(handle_debug_msg_queue() == osOK);
 		osDelay(can_tx_task_delay);
 	}
 }
@@ -82,6 +79,7 @@ void can_rx_update(){
 		HAL_StatusTypeDef ret = HAL_CAN_GetRxMessage(&hcan2, CAN_RX_FIFO0, &rxHeader, buf);
 		if(ret != HAL_OK) continue;
 		//Parse can message
+		can_parse_msg(&rxHeader, buf);
 	}
 }
 

@@ -18,6 +18,8 @@
 //8 motor channels
 #define MOTOR_ID_START 0x14
 #define MOTOR_ID_END 0x1C
+//Jetson heartbeat
+#define JETSON_HEARTBEAT_ID 0x1D
 
 #ifdef __cplusplus
 extern "C" {
@@ -25,15 +27,16 @@ extern "C" {
 
 typedef struct {
 	uint16_t motorSetpoints[8];
-} can_rx_data;
+	uint32_t jetsonHBTick;
+} can_rx;
 
 typedef struct {
 	uint32_t heartbeat;
 	uint16_t sbusData[16];
-} can_tx_data;
+} can_tx;
 
-extern can_rx_data rx_data;
-extern can_tx_data tx_data;
+extern can_rx can_rx_data;
+extern can_tx can_tx_data;
 
 typedef struct {
 	uint8_t buf[8];

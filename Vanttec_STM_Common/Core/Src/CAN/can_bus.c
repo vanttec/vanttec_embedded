@@ -11,8 +11,8 @@
 extern "C" {
 #endif
 
-can_rx_data rx_data;
-can_tx_data tx_data;
+can_rx can_rx_data;
+can_tx can_tx_data;
 
 #ifdef __cplusplus
 }
