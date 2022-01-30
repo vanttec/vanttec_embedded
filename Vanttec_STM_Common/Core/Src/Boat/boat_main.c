@@ -11,7 +11,7 @@
 #include "CAN/can_bus.h"
 
 extern UART_HandleTypeDef huart5;
-static SBUS_Data sbus;
+extern SBUS_Data sbusData;
 
 static const osThreadAttr_t boatTask_attributes = {
   .name = "boatTask",
@@ -21,9 +21,6 @@ static const osThreadAttr_t boatTask_attributes = {
 
 
 void createTasks_boat() {
-	HAL_StatusTypeDef ret = SBUS_Init(&sbus, &huart5);
-	if(ret != HAL_OK) Error_Handler();
-
 	osThreadNew(mainTask_boat, NULL, &boatTask_attributes);
 }
 
@@ -33,10 +30,13 @@ void createTasks_boat() {
 void mainTask_boat(void * params) {
 	enum BoatState state = BoatState_Disabled;
 	for(;;){
+		uint32_t sbus_dt = HAL_GetTick() - sbusData.timestamp;
 		//Update current state
-		if(sbus.channels[4] < 900) state = BoatState_Disabled;
-		else if(sbus.channels[4] > 900 && sbus.channels[4] < 1110) state = BoatState_Teleoperated;
-		else if(sbus.channels[4] > 1100) state = BoatState_Autonomous;
+		if(sbusData.channels[4] < 900) state = BoatState_Disabled;
+		else if(sbusData.channels[4] > 900 && sbusData.channels[4] < 1110) state = BoatState_Teleoperated;
+		else if(sbusData.channels[4] > 1100) state = BoatState_Autonomous;
+
+		if(sbus_dt > 100) state = BoatState_Disabled; //Disable if sbus is not rcv
 
 		//Update based on state
 		switch(state){
@@ -68,8 +68,8 @@ void boat_autonomous_loop(){
 
 void boat_teleoperated_loop(){
 	//Take in motor control from SBUS, and write out to pwm
-	float throttle = sbus.channels[1] / 1500.0;
-	float steer = sbus.channels[3] / 1500.0;
+	float throttle = sbusData.channels[1] / 1500.0;
+	float steer = sbusData.channels[3] / 1500.0;
 
 	float leftMotor, rightMotor;
 	leftMotor = throttle + steer;

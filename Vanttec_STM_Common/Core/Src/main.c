@@ -166,10 +166,9 @@ int main(void)
   pcaHandle.i2c_handle = &hi2c2;
   pcaHandle.device_address = 0x7f;
   pcaHandle.inverted = false;
-  bool ret = pca9685_init(&pcaHandle);
-  if(!ret) Error_Handler();
-  for(int i = 0; i < 16; i++) pca9685_set_channel_duty_cycle(&pcaHandle, i, 0.5, false);
 
+  HAL_StatusTypeDef ret = SBUS_Init(&sbusData, &huart5);
+  if(ret != HAL_OK) Error_Handler();
   pwm_init();
   /* USER CODE END 2 */
 
@@ -681,7 +680,9 @@ static void MX_UART5_Init(void)
   /* USER CODE END UART5_Init 0 */
 
   /* USER CODE BEGIN UART5_Init 1 */
-
+  __HAL_UART_ENABLE_IT(&huart5, UART_IT_IDLE);
+  NVIC_SetPriority(UART5_IRQn, NVIC_EncodePriority(NVIC_GetPriorityGrouping(), 0, 0));
+  NVIC_EnableIRQ(UART5_IRQn);
   /* USER CODE END UART5_Init 1 */
   huart5.Instance = UART5;
   huart5.Init.BaudRate = 100000;
@@ -783,10 +784,6 @@ void StartDefaultTask(void *argument)
   /* Infinite loop */
   for(;;)
   {
-
-	float out = pwm_map(sbusData.channels[1], 0, 2000, -1, 1);
-	for(int i = 0; i < 8; i++)
-		pwm_set(i, out);
     osDelay(10);
     //for(int i = 0; i < 8; i++)
     		//pwm_set(i, -0.21);

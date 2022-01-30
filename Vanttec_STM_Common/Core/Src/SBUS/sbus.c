@@ -12,11 +12,21 @@ static int min(int a, int b){
 	return (a > b) ? b : a;
 }
 
+extern UART_HandleTypeDef huart5;
+extern SBUS_Data sbusData;
+void UART5_IRQHandler(void){
+	static i = 0;
+	if(__HAL_UART_GET_FLAG(&huart5, UART_FLAG_IDLE)){
+		HAL_UART_DMAStop(&huart5);
+		HAL_UART_Receive_DMA(&huart5, sbusData.msgBuffer, SBUS_MSG_LEN);
+		i++;
+	}
+}
+
 HAL_StatusTypeDef SBUS_Init(SBUS_Data *data, UART_HandleTypeDef *huart){
 	if(data == NULL || huart == NULL) return HAL_ERROR;
 
 	//set buffers to 0 (mostly for ease of debugging)
-	memset(data->rxBuffer, 0, sizeof(data->rxBuffer));
 	memset(data->channels, 0, sizeof(data->channels));
 	memset(data->msgBuffer, 0, sizeof(data->msgBuffer));
 	data->timestamp = 0;
@@ -24,46 +34,19 @@ HAL_StatusTypeDef SBUS_Init(SBUS_Data *data, UART_HandleTypeDef *huart){
 
 	data->huart = huart;
 
-	return HAL_UART_Receive_DMA(huart, data->rxBuffer, SBUS_MSG_LEN);
+
+
+	return HAL_UART_Receive_DMA(huart, data->msgBuffer, SBUS_MSG_LEN);
 }
 
 
 void SBUS_RxCallback(SBUS_Data *data, UART_HandleTypeDef *huart){
-	if(data == NULL || data->huart != huart) return;
-
-	//Check if header is needed to be searched
-	int i = 0;
-	if(data->msgLen == 0){
-		//Find header in rx
-		for(; i < SBUS_MSG_LEN; i++){
-			if(data->rxBuffer[i] == SBUS_HEADER){
-				//Begin message
-				data->msgBuffer[0] = SBUS_HEADER;
-				data->msgLen = 1;
-				break;
-			}
-		}
-	}
-
-	//Copy remaining data
-	int copyLen = min(SBUS_MSG_LEN - data->msgLen, SBUS_MSG_LEN - i);
-	memcpy(data->msgBuffer + 1, data->rxBuffer + i + 1, copyLen);
-	data->msgLen += copyLen;
-
-	//Check if message was able to be completed
-	if(data->msgLen == SBUS_MSG_LEN){
-		//Message is complete! parse
-		SBUS_Parse(data);
-		data->msgLen = 0; //Reset message
-	}
-
-	HAL_UART_Receive_DMA(huart, data->rxBuffer, SBUS_MSG_LEN);
+	SBUS_Parse(data);
+	HAL_UART_Receive_DMA(huart, data->msgBuffer, SBUS_MSG_LEN);
 }
 
-static int16_t ch1;
-
 void SBUS_Parse(SBUS_Data *data){
-	if(data->msgBuffer[0] != SBUS_HEADER && data->msgBuffer[SBUS_MSG_LEN - 1] != SBUS_FOOTER){
+	if(data->msgBuffer[0] != SBUS_HEADER || data->msgBuffer[SBUS_MSG_LEN - 1] != SBUS_FOOTER){
 		//Data invalid!
 		return;
 	}
@@ -71,6 +54,7 @@ void SBUS_Parse(SBUS_Data *data){
 	uint16_t *ch_ = data->channels;
 	uint8_t *buf_ = data->msgBuffer;
 
+	osKernelLock();
 	//Parse message
 	ch_[0]  = buf_[1]       | buf_[2]  << 8 & 0x07FF;
 	ch_[1]  = buf_[2]  >> 3 | buf_[3]  << 5 & 0x07FF;
@@ -93,5 +77,9 @@ void SBUS_Parse(SBUS_Data *data){
 	ch_[14] = buf_[20] >> 2 | buf_[21] << 6 & 0x07FF;
 	ch_[15] = buf_[21] >> 5 | buf_[22] << 3 & 0x07FF;
 
-	data->timestamp = xTaskGetTickCountFromISR();
+	bool failsafe = buf_[SBUS_FLAGS_BYTE] & (1 << SBUS_FAILSAFE_BIT);
+
+	if(!failsafe)
+		data->timestamp = xTaskGetTickCountFromISR();
+	osKernelUnlock();
 }
