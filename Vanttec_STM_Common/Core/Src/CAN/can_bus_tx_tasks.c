@@ -43,6 +43,8 @@ static void can_sbus_tx_task(void * param){
 			queue_can_msg_short(SBUS_ID_START + i, sbusData.channels[i]);
 		}
 
+		queue_can_msg_byte(SBUS_FAILSAFE, sbusData.failsafe);
+
 		osDelay(SBUS_DELAY);
 	}
 }

@@ -14,12 +14,13 @@
 //16 SBUS channels
 #define SBUS_ID_START 0x02
 #define SBUS_ID_END 0x12
-#define DEBUG_LOG_ID 0x13
+#define SBUS_FAILSAFE 0x13
+#define DEBUG_LOG_ID 0x14
 //8 motor channels
-#define MOTOR_ID_START 0x14
-#define MOTOR_ID_END 0x1C
+#define MOTOR_ID_START 0x15
+#define MOTOR_ID_END 0x1D
 //Jetson heartbeat
-#define JETSON_HEARTBEAT_ID 0x1D
+#define JETSON_HEARTBEAT_ID 0x1E
 
 #ifdef __cplusplus
 extern "C" {
@@ -33,6 +34,7 @@ typedef struct {
 typedef struct {
 	uint32_t heartbeat;
 	uint16_t sbusData[16];
+	uint8_t sbusIsFailsafe;
 } can_tx;
 
 extern can_rx can_rx_data;

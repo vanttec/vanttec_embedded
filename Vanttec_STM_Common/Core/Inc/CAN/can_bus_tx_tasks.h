@@ -11,7 +11,7 @@
 //Delay between data updates
 #define HEARTBEAT_DELAY 500
 #define DEBUG_MSG_DELAY 10
-#define SBUS_DELAY 200
+#define SBUS_DELAY 1000
 
 void start_can_tx_tasks();
 

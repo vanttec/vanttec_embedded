@@ -19,6 +19,8 @@ osStatus_t handle_debug_msg_queue();
 
 void send_can_debug_msg(const char *str, int strlen);
 
+void queue_can_msg_byte(uint8_t id, uint8_t data);
+
 void queue_can_msg_long(uint8_t id, uint32_t data);
 
 void queue_can_msg_short(uint8_t id, uint16_t data);

@@ -15,6 +15,8 @@ void createTasks_boat();
  */
 void mainTask_boat(void *params);
 
+void boat_arming_sequence();
+
 void boat_autonomous_loop();
 void boat_teleoperated_loop();
 void boat_disabled_loop();

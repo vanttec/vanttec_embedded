@@ -775,12 +775,7 @@ void StartDefaultTask(void *argument)
   /* init code for USB_DEVICE */
   MX_USB_DEVICE_Init();
   /* USER CODE BEGIN 5 */
-  for(int i = 0; i < 8; i++)
-    		pwm_set_raw(i, 0);
-    osDelay(1000);
-  for(int i = 0; i < 8; i++)
-  		pwm_set_raw(i, 1500);
-  osDelay(1000);
+
   /* Infinite loop */
   for(;;)
   {

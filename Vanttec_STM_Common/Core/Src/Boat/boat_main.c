@@ -9,9 +9,12 @@
 #include "SBUS/sbus.h"
 #include "PWM/pwm_out.h"
 #include "CAN/can_bus.h"
+#include <stdbool.h>
 
 extern UART_HandleTypeDef huart5;
 extern SBUS_Data sbusData;
+
+static bool boatArmed = false;
 
 static const osThreadAttr_t boatTask_attributes = {
   .name = "boatTask",
@@ -37,6 +40,11 @@ void mainTask_boat(void * params) {
 		else if(sbusData.channels[4] > 1100) state = BoatState_Autonomous;
 
 		if(sbus_dt > 100) state = BoatState_Disabled; //Disable if sbus is not rcv
+
+		//Arm if necessary
+		if(!boatArmed && state != BoatState_Disabled){
+			boat_arming_sequence();
+		}
 
 		//Update based on state
 		switch(state){
@@ -82,4 +90,14 @@ void boat_teleoperated_loop(){
 void boat_disabled_loop(){
 	//Do nothing
 	return;
+}
+
+void boat_arming_sequence(){
+	for(int i = 0; i < 8; i++)
+			pwm_set_raw(i, 0);
+	osDelay(1100);
+	for(int i = 0; i < 8; i++)
+		pwm_set_raw(i, 1500);
+	osDelay(1100);
+	boatArmed = true;
 }
