@@ -33,18 +33,19 @@ osStatus_t handle_debug_msg_queue(){
 	return ret;
 }
 
-void send_can_debug_msg(const char *str, int strlen){
-	if(str == NULL || strlen == 0) return;
+void send_can_debug_msg(const char *str){
+	int len = strlen(str);
+	if(str == NULL || len == 0) return;
 
 	int i;
-	for(i = 0; i < strlen % 7; i += 7){
-		osMessageQueuePut(debugMessageQueue, str + i, 1, 0);
+	for(i = 0; i < len - len % 7; i += 7){
+		osMessageQueuePut(debugMessageQueue, str + i, 1, 10);
 	}
 
 	//Put remaining bytes into queue
 	uint8_t buf[7];
-	memcpy(buf, str + i, strlen % 7);
-	osMessageQueuePut(debugMessageQueue, buf, 1, 0);
+	memcpy(buf, str + i, len % 7);
+	osMessageQueuePut(debugMessageQueue, buf, 1, 10);
 }
 
 void queue_can_msg_byte(uint8_t id, uint8_t data){

@@ -36,6 +36,8 @@ void can_init(){
 	HAL_StatusTypeDef ret = HAL_CAN_ConfigFilter(&hcan2, &filter);
 	if(ret != HAL_OK) Error_Handler();
 	HAL_CAN_Start(&hcan2);
+	HAL_CAN_ActivateNotification(&hcan2, CAN_IT_RX_FIFO0_MSG_PENDING);
+	HAL_CAN_ActivateNotification(&hcan2, CAN_IT_RX_FIFO1_MSG_PENDING);
 
 	//Initialize queues
 	debugMessageQueue = osMessageQueueNew(64, 7, NULL);
@@ -75,12 +77,18 @@ void can_rx_update(){
 	//TODO check both FIFO?
 	CAN_RxHeaderTypeDef rxHeader;
 	uint8_t buf[8];
-	while(HAL_CAN_GetRxFifoFillLevel(&hcan2, CAN_RX_FIFO0) != 0){
-		HAL_StatusTypeDef ret = HAL_CAN_GetRxMessage(&hcan2, CAN_RX_FIFO0, &rxHeader, buf);
-		if(ret != HAL_OK) continue;
-		//Parse can message
-		can_parse_msg(&rxHeader, buf);
-	}
+//	while(HAL_CAN_GetRxFifoFillLevel(&hcan2, CAN_RX_FIFO0) != 0){
+//		HAL_StatusTypeDef ret = HAL_CAN_GetRxMessage(&hcan2, CAN_RX_FIFO0, &rxHeader, buf);
+//		if(ret != HAL_OK) continue;
+//		//Parse can message
+//		can_parse_msg(&rxHeader, buf);
+//	}
+//	while(HAL_CAN_GetRxFifoFillLevel(&hcan2, CAN_RX_FIFO1) != 0){
+//			HAL_StatusTypeDef ret = HAL_CAN_GetRxMessage(&hcan2, CAN_RX_FIFO1, &rxHeader, buf);
+//			if(ret != HAL_OK) continue;
+//			//Parse can message
+//			can_parse_msg(&rxHeader, buf);
+//		}
 }
 
 void can_rx_task(void *params){
