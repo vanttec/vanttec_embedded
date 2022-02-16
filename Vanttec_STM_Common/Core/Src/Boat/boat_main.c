@@ -39,7 +39,7 @@ void mainTask_boat(void * params) {
 		else if(sbusData.channels[4] > 900 && sbusData.channels[4] < 1110) state = BoatState_Teleoperated;
 		else if(sbusData.channels[4] > 1100) state = BoatState_Autonomous;
 
-		if(sbus_dt > 100) state = BoatState_Disabled; //Disable if sbus is not rcv
+		if(sbus_dt > 1000) state = BoatState_Disabled; //Disable if sbus is not rcv
 
 		//Arm if necessary
 		if(!boatArmed && state != BoatState_Disabled){
@@ -67,7 +67,10 @@ void mainTask_boat(void * params) {
 void boat_autonomous_loop(){
 	//Take in motor setpoints from can, and write them out to pwm
 	uint32_t dt = HAL_GetTick() - can_rx_data.jetsonHBTick;
-	if(dt > 500) boat_disabled_loop(); //Disable if jetson has not sent any recent msgs
+	if(dt > 500) {
+		boat_disabled_loop(); //Disable if jetson has not sent any recent msgs
+		return;
+	}
 
 	for(int i = 0; i < 8; i++){
 		pwm_set(i, can_rx_data.motorSetpoints[i]);
@@ -88,7 +91,8 @@ void boat_teleoperated_loop(){
 }
 
 void boat_disabled_loop(){
-	//Do nothing
+	for(int i = 0; i < 8; i++)
+		pwm_set(i, 0);
 	return;
 }
 

@@ -11,8 +11,8 @@
 extern "C" {
 #endif
 
-can_rx can_rx_data;
-can_tx can_tx_data;
+volatile can_rx can_rx_data;
+volatile can_tx can_tx_data;
 
 #ifdef __cplusplus
 }

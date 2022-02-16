@@ -37,8 +37,8 @@ typedef struct {
 	uint8_t sbusIsFailsafe;
 } can_tx;
 
-extern can_rx can_rx_data;
-extern can_tx can_tx_data;
+extern volatile can_rx can_rx_data;
+extern volatile can_tx can_tx_data;
 
 typedef struct {
 	uint8_t buf[8];
