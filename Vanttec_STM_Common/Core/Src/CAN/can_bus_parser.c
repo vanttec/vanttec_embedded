@@ -9,6 +9,8 @@
 #include "CAN/can_bus_parser.h"
 #include "CANMessage.h"
 
+extern volatile uint8_t g_sendPing;
+
 void can_parse_msg(CAN_RxHeaderTypeDef *header, uint8_t *data){
 	if(data == NULL) return;
 
@@ -20,5 +22,7 @@ void can_parse_msg(CAN_RxHeaderTypeDef *header, uint8_t *data){
 	} else if(id == JETSON_HEARTBEAT_ID) {
 		//Jetson heartbeat
 		can_rx_data.jetsonHBTick = HAL_GetTick();
+	} else if(id == PING_ID){
+		g_sendPing = 1;
 	}
 }

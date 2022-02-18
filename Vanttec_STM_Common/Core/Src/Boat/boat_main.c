@@ -60,7 +60,7 @@ void mainTask_boat(void * params) {
 		}
 
 		//TODO handle status lights
-		osDelay(10);
+		osDelay(5);
 	}
 }
 

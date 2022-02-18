@@ -21,6 +21,8 @@
 #define MOTOR_ID_END 0x1D
 //Jetson heartbeat
 #define JETSON_HEARTBEAT_ID 0x1E
+#define PING_ID 0x1F
+#define BATTERY_VOLTAGE_ID 0x20
 
 #ifdef __cplusplus
 extern "C" {
