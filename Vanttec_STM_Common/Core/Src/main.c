@@ -39,6 +39,7 @@
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
+typedef StaticSemaphore_t osStaticMutexDef_t;
 /* USER CODE BEGIN PTD */
 
 /* USER CODE END PTD */
@@ -79,6 +80,14 @@ const osThreadAttr_t defaultTask_attributes = {
   .stack_size = 128 * 4,
   .priority = (osPriority_t) osPriorityNormal,
 };
+/* Definitions for i2cMutex */
+osMutexId_t i2cMutexHandle;
+osStaticMutexDef_t i2cMutexControlBlock;
+const osMutexAttr_t i2cMutex_attributes = {
+  .name = "i2cMutex",
+  .cb_mem = &i2cMutexControlBlock,
+  .cb_size = sizeof(i2cMutexControlBlock),
+};
 /* USER CODE BEGIN PV */
 SBUS_Data sbusData;
 osThreadId_t canTaskHandle;
@@ -94,7 +103,6 @@ const osThreadAttr_t canRxTask_attributes = {
   .stack_size = 128 * 4,
   .priority = (osPriority_t) osPriorityNormal,
 };
-
 
 #ifdef __GNUC__
 #define PUTCHAR_PROTOTYPE int __io_putchar(int ch)
@@ -179,6 +187,7 @@ int main(void)
   MX_ADC2_Init();
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
+
   can_init();
   pca9685_handle_t pcaHandle;
   pcaHandle.i2c_handle = &hi2c2;
@@ -192,6 +201,9 @@ int main(void)
 
   /* Init scheduler */
   osKernelInitialize();
+  /* Create the mutex(es) */
+  /* creation of i2cMutex */
+  i2cMutexHandle = osMutexNew(&i2cMutex_attributes);
 
   /* USER CODE BEGIN RTOS_MUTEX */
   /* add mutexes, ... */

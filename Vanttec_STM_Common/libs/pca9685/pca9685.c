@@ -3,10 +3,14 @@
 #include <math.h>
 #include <assert.h>
 #include <string.h>
+#include <cmsis_os.h>
 
 #define PCA9685_SET_BIT_MASK(BYTE, MASK)      ((BYTE) |= (uint8_t)(MASK))
 #define PCA9685_CLEAR_BIT_MASK(BYTE, MASK)    ((BYTE) &= (uint8_t)(~(uint8_t)(MASK)))
 #define PCA9685_READ_BIT_MASK(BYTE, MASK)     ((BYTE) & (uint8_t)(MASK))
+
+extern osMutexId_t i2cMutexHandle;
+
 
 /**
  * Registers addresses.
@@ -54,7 +58,11 @@ static const uint16_t CIEL_8_12[] = {
 static bool pca9685_write_u8(pca9685_handle_t *handle, uint8_t address, uint8_t value)
 {
 	uint8_t data[] = {address, value};
-	return HAL_I2C_Master_Transmit(handle->i2c_handle, handle->device_address, data, 2, PCA9685_I2C_TIMEOUT) == HAL_OK;
+	osMutexWait(i2cMutexHandle, osWaitForever);
+	bool ret = HAL_I2C_Master_Transmit(handle->i2c_handle, handle->device_address, data, 2, PCA9685_I2C_TIMEOUT) == HAL_OK;
+	osMutexRelease(i2cMutexHandle);
+
+	return ret;
 }
 
 static bool pca9685_write_data(pca9685_handle_t *handle, uint8_t address, uint8_t *data, size_t length)
@@ -68,16 +76,24 @@ static bool pca9685_write_data(pca9685_handle_t *handle, uint8_t address, uint8_
 
     memcpy(&transfer[1], data, length);
 
-    return HAL_I2C_Master_Transmit(handle->i2c_handle, handle->device_address, transfer, length + 1, PCA9685_I2C_TIMEOUT) == HAL_OK;
+	osMutexWait(i2cMutexHandle, osWaitForever);
+    bool ret = HAL_I2C_Master_Transmit(handle->i2c_handle, handle->device_address, transfer, length + 1, PCA9685_I2C_TIMEOUT) == HAL_OK;
+	osMutexRelease(i2cMutexHandle);
+
+	return ret;
 }
 
 static bool pca9685_read_u8(pca9685_handle_t *handle, uint8_t address, uint8_t *dest)
 {
+	osMutexWait(i2cMutexHandle, osWaitForever);
 	if (HAL_I2C_Master_Transmit(handle->i2c_handle, handle->device_address, &address, 1, PCA9685_I2C_TIMEOUT) != HAL_OK) {
+		osMutexRelease(i2cMutexHandle);
 		return false;
 	}
 
-	return HAL_I2C_Master_Receive(handle->i2c_handle, handle->device_address, dest, 1, PCA9685_I2C_TIMEOUT) == HAL_OK;
+	bool ret = HAL_I2C_Master_Receive(handle->i2c_handle, handle->device_address, dest, 1, PCA9685_I2C_TIMEOUT) == HAL_OK;
+	osMutexRelease(i2cMutexHandle);
+	return ret;
 }
 
 bool pca9685_init(pca9685_handle_t *handle)
