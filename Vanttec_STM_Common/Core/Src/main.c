@@ -35,6 +35,7 @@
 #include "CAN/can_bus_tx_tasks.h"
 #include "pca9685.h"
 #include "PWM/pwm_out.h"
+#include "Bar30/MS5837.h"
 #include <stdio.h>
 /* USER CODE END Includes */
 
@@ -101,6 +102,13 @@ osThreadId_t canRxTaskHandle;
 const osThreadAttr_t canRxTask_attributes = {
   .name = "canRxTask",
   .stack_size = 128 * 4,
+  .priority = (osPriority_t) osPriorityNormal,
+};
+
+osThreadId_t barReadTask;
+const osThreadAttr_t barReadTask_attributes = {
+  .name = "barReadTask",
+  .stack_size = 128 * 40,
   .priority = (osPriority_t) osPriorityNormal,
 };
 
@@ -231,9 +239,10 @@ int main(void)
 #elif defined(VANTTEC_SUB)
   createTasks_sub();
 #endif
-  canTaskHandle = osThreadNew(can_tx_task, NULL, &canTask_attributes);
-  canRxTaskHandle = osThreadNew(can_rx_task, NULL, &canRxTask_attributes);
-  start_can_tx_tasks();
+  //canTaskHandle = osThreadNew(can_tx_task, NULL, &canTask_attributes);
+  //canRxTaskHandle = osThreadNew(can_rx_task, NULL, &canRxTask_attributes);
+  //start_can_tx_tasks();
+  barReadTask = osThreadNew(read_bar30, NULL, &barReadTask_attributes);
   /* add threads, ... */
   /* USER CODE END RTOS_THREADS */
 
