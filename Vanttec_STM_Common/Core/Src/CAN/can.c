@@ -51,7 +51,7 @@ void send_can_debug_msg(const char *str){
 void queue_can_msg_byte(uint8_t id, uint8_t data){
 	CAN_TX_QUEUE_OBJ out;
 	out.msg_size = can_pack_byte(id, data, out.buf, sizeof(out.buf));
-	osMessageQueuePut(txMessageQueue, &out, 0, 10);
+	osStatus_t ret = osMessageQueuePut(txMessageQueue, &out, 0, 10);
 }
 
 void queue_can_msg_long(uint8_t id, uint32_t data){

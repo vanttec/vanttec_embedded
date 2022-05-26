@@ -61,6 +61,9 @@ void can_tx_update(){
 	if(osMessageQueueGet(txMessageQueue, &txOut, NULL, 0) == osOK){
 		txHeader.DLC = txOut.msg_size;
 		HAL_StatusTypeDef ret = HAL_CAN_AddTxMessage(&hcan2, &txHeader, txOut.buf, &txMailbox);
+		if(ret != HAL_OK){
+			txHeader.DLC++;
+		}
 	}
 }
 
