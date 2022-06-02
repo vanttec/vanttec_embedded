@@ -5,10 +5,16 @@
 extern CAN_HandleTypeDef hcan2;
 
 /* Definitions for uavcan task */
-osThreadId_t canTaskHandle;
+osThreadId_t canTaskHandleUpd;
 const osThreadAttr_t canTask_attributes = {
   .name = "mainTask",
   .stack_size = 128 * 8,
+  .priority = (osPriority_t) osPriorityNormal,
+};
+
+const osThreadAttr_t Bar30Task_attributes = {
+  .name = "bar30Task",
+  .stack_size = 128 * 4,
   .priority = (osPriority_t) osPriorityNormal,
 };
 
@@ -57,5 +63,16 @@ void can_task(void*){
 }
 
 void createTasks_sub(){
-	canTaskHandle = osThreadNew(can_task, NULL, &canTask_attributes);
+	canTaskHandleUpd = osThreadNew(can_task, NULL, &canTask_attributes);
+	osThreadNew(can_bar30_task, NULL, &Bar30Task_attributes);
 }
+
+static void can_bar30_task(void * param){
+	bar30_init();
+	for(;;){
+		float Depth = depth();
+		queue_can_msg_float(BAR30_ID, Depth);
+		osDelay(1000);
+	}
+}
+

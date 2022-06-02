@@ -10,6 +10,7 @@
 #include "SBUS/sbus.h"
 #include "CAN/can.h"
 #include "Sensors/battery_monitor.h"
+#include "BAR30/MS5837.h"
 
 volatile uint8_t g_sendPing;
 

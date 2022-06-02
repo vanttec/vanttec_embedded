@@ -29,4 +29,5 @@ void can_rx_update();
 
 void can_rx_task(void *);
 
+
 #endif /* INC_CAN_CAN_BUS_TASK_H_ */

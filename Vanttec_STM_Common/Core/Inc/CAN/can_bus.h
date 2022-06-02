@@ -23,6 +23,7 @@
 #define JETSON_HEARTBEAT_ID 0x1E
 #define PING_ID 0x1F
 #define BATTERY_VOLTAGE_ID 0x20
+#define BAR30_ID 0x21
 
 #ifdef __cplusplus
 extern "C" {
