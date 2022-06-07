@@ -60,6 +60,16 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define DEBUG_5_Pin GPIO_PIN_15
+#define DEBUG_5_GPIO_Port GPIOC
+#define DEBUG_2_Pin GPIO_PIN_2
+#define DEBUG_2_GPIO_Port GPIOB
+#define DEBUG_6_Pin GPIO_PIN_15
+#define DEBUG_6_GPIO_Port GPIOB
+#define DEBUG_3_Pin GPIO_PIN_9
+#define DEBUG_3_GPIO_Port GPIOC
+#define DEBUG_1_Pin GPIO_PIN_15
+#define DEBUG_1_GPIO_Port GPIOA
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */

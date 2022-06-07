@@ -36,6 +36,7 @@
 #include "pca9685.h"
 #include "PWM/pwm_out.h"
 #include <stdio.h>
+#include "heartbeat_led_task.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -117,6 +118,13 @@ PUTCHAR_PROTOTYPE
   return ch;
 }
 
+
+osThreadId_t heartbeatTaskHandle;
+const osThreadAttr_t heartbeatTask_attributes = {
+	.name = "heartbeatTask",
+	.stack_size = 128 * 4,
+	.priority = (osPriority_t) osPriorityLow,
+};
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -234,6 +242,7 @@ int main(void)
 #endif
   canTaskHandle = osThreadNew(can_tx_task, NULL, &canTask_attributes);
   canRxTaskHandle = osThreadNew(can_rx_task, NULL, &canRxTask_attributes);
+  heartbeatTaskHandle = osThreadNew(heartbeat_task, NULL, heartbeatTask_attributes);
   start_can_tx_tasks();
   /* add threads, ... */
   /* USER CODE END RTOS_THREADS */
@@ -796,21 +805,41 @@ static void MX_GPIO_Init(void)
   GPIO_InitTypeDef GPIO_InitStruct = {0};
 
   /* GPIO Ports Clock Enable */
+  __HAL_RCC_GPIOC_CLK_ENABLE();
   __HAL_RCC_GPIOH_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
-  __HAL_RCC_GPIOC_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
   __HAL_RCC_GPIOD_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_8, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOC, DEBUG_5_Pin|GPIO_PIN_8|DEBUG_3_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pin : PC8 */
-  GPIO_InitStruct.Pin = GPIO_PIN_8;
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOB, DEBUG_2_Pin|DEBUG_6_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(DEBUG_1_GPIO_Port, DEBUG_1_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pins : DEBUG_5_Pin PC8 DEBUG_3_Pin */
+  GPIO_InitStruct.Pin = DEBUG_5_Pin|GPIO_PIN_8|DEBUG_3_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : DEBUG_2_Pin DEBUG_6_Pin */
+  GPIO_InitStruct.Pin = DEBUG_2_Pin|DEBUG_6_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : DEBUG_1_Pin */
+  GPIO_InitStruct.Pin = DEBUG_1_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(DEBUG_1_GPIO_Port, &GPIO_InitStruct);
 
 }
 
@@ -839,6 +868,7 @@ void StartDefaultTask(void *argument)
   /* Infinite loop */
   for(;;)
   {
+	HAL_GPIO_TogglePin(GPIOA, DEBUG_1_GPIO_Port)
     osDelay(10);
     //for(int i = 0; i < 8; i++)
     		//pwm_set(i, -0.21);
