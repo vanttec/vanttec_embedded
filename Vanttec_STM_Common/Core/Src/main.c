@@ -112,7 +112,8 @@ const osThreadAttr_t canRxTask_attributes = {
 
 PUTCHAR_PROTOTYPE
 {
-  HAL_UART_Transmit(&huart1, (uint8_t *)&ch, 1, HAL_MAX_DELAY);
+  send_can_debug_char(ch);
+  //HAL_UART_Transmit(&huart1, (uint8_t *)&ch, 1, HAL_MAX_DELAY);
   return ch;
 }
 
@@ -369,10 +370,10 @@ static void MX_CAN2_Init(void)
 
   /* USER CODE END CAN2_Init 1 */
   hcan2.Instance = CAN2;
-  hcan2.Init.Prescaler = 56;
-  hcan2.Init.Mode = CAN_MODE_LOOPBACK;
-  hcan2.Init.SyncJumpWidth = CAN_SJW_1TQ;
-  hcan2.Init.TimeSeg1 = CAN_BS1_12TQ;
+  hcan2.Init.Prescaler = 21;
+  hcan2.Init.Mode = CAN_MODE_NORMAL;
+  hcan2.Init.SyncJumpWidth = CAN_SJW_4TQ;
+  hcan2.Init.TimeSeg1 = CAN_BS1_13TQ;
   hcan2.Init.TimeSeg2 = CAN_BS2_2TQ;
   hcan2.Init.TimeTriggeredMode = DISABLE;
   hcan2.Init.AutoBusOff = DISABLE;
