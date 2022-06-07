@@ -10,7 +10,7 @@
 #include "cmsis_os.h"
 
 void heartbeat_task(void){
-	HAL_GPIO_TogglePin(DEBUG_1_GPIO_Port, DEBUG_1_Pin);
+	//HAL_GPIO_TogglePin(DEBUG_1_GPIO_Port, DEBUG_1_Pin);
 	osDelay(HEARTBEAT_DELAY);
 }
 

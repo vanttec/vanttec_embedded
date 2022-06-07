@@ -242,7 +242,7 @@ int main(void)
 #endif
   canTaskHandle = osThreadNew(can_tx_task, NULL, &canTask_attributes);
   canRxTaskHandle = osThreadNew(can_rx_task, NULL, &canRxTask_attributes);
-  heartbeatTaskHandle = osThreadNew(heartbeat_task, NULL, heartbeatTask_attributes);
+  //heartbeatTaskHandle = osThreadNew(heartbeat_task, NULL, heartbeatTask_attributes);
   start_can_tx_tasks();
   /* add threads, ... */
   /* USER CODE END RTOS_THREADS */
@@ -868,8 +868,6 @@ void StartDefaultTask(void *argument)
   /* Infinite loop */
   for(;;)
   {
-	HAL_GPIO_TogglePin(GPIOA, DEBUG_1_GPIO_Port)
-    osDelay(10);
     //for(int i = 0; i < 8; i++)
     		//pwm_set(i, -0.21);
   }
