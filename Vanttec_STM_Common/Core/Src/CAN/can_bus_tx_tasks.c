@@ -10,6 +10,7 @@
 #include "SBUS/sbus.h"
 #include "CAN/can.h"
 #include "Sensors/battery_monitor.h"
+#include <stdio.h>
 
 volatile uint8_t g_sendPing;
 
@@ -41,6 +42,12 @@ static const osThreadAttr_t batteryTask_attributes = {
   .name = "batteryMonitorTx",
   .stack_size = 128 * 4,
   .priority = (osPriority_t) osPriorityNormal,
+};
+
+static const osThreadAttr_t debugVarsTask_attributes = {
+	.name = "debugVars",
+	.stack_size = 128 * 4,
+	.priority = (osPriority_t) osPriorityNormal,
 };
 
 
@@ -83,6 +90,20 @@ static void can_send_ping_task(void * param){
 	}
 }
 
+#include "ver_data.h"
+char debug_buffer[128];
+static void debug_vars_task(void *param){
+	for(;;){
+		int len = snprintf(debug_buffer, sizeof(debug_buffer), "[DEBUG] Version: %s", GIT_VERSION);
+		send_can_debug_msg(debug_buffer, len);
+		len = snprintf(debug_buffer, sizeof(debug_buffer), "[DEBUG] Date: %s", COMPILE_DATE);
+		send_can_debug_msg(debug_buffer, len);
+		len = snprintf(debug_buffer, sizeof(debug_buffer), "[DEBUG] User: %s", COMPILE_USER);
+		send_can_debug_msg(debug_buffer, len);
+		osDelay(60*1000); //send every minute
+	}
+}
+
 static void can_battery_monitor_task(void * param){
 	battery_monitor_init();
 	for(;;){
@@ -98,4 +119,5 @@ void start_can_tx_tasks(){
 	osThreadNew(can_debug_msg_tx_task, NULL, &debugMsgTask_attributes);
 	osThreadNew(can_send_ping_task, NULL, &pingTask_attributes);
 	osThreadNew(can_battery_monitor_task, NULL, &batteryTask_attributes);
+	osThreadNew(debug_vars_task, NULL, &debugVarsTask_attributes);
 }
