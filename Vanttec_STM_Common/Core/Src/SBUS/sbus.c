@@ -14,14 +14,7 @@ static int min(int a, int b){
 
 extern UART_HandleTypeDef huart5;
 extern SBUS_Data sbusData;
-void UART5_IRQHandler(void){
-	static i = 0;
-	if(__HAL_UART_GET_FLAG(&huart5, UART_FLAG_IDLE)){
-		HAL_UART_DMAStop(&huart5);
-		HAL_UART_Receive_DMA(&huart5, sbusData.msgBuffer, SBUS_MSG_LEN);
-		i++;
-	}
-}
+
 
 HAL_StatusTypeDef SBUS_Init(SBUS_Data *data, UART_HandleTypeDef *huart){
 	if(data == NULL || huart == NULL) return HAL_ERROR;
@@ -33,19 +26,30 @@ HAL_StatusTypeDef SBUS_Init(SBUS_Data *data, UART_HandleTypeDef *huart){
 	data->msgLen = 0;
 
 	data->huart = huart;
-
-
-
-	return HAL_UART_Receive_DMA(huart, data->msgBuffer, SBUS_MSG_LEN);
+	return HAL_OK;
 }
 
+static uint8_t prevByte = 0xff;
 
-void SBUS_RxCallback(SBUS_Data *data, UART_HandleTypeDef *huart){
-	SBUS_Parse(data);
-	HAL_UART_Receive_DMA(huart, data->msgBuffer, SBUS_MSG_LEN);
+void SBUS_Update(){
+	uint8_t headerByte;
+	HAL_UART_Receive(&huart5, &headerByte, 1, 0);
+
+	if(headerByte == SBUS_HEADER && prevByte == SBUS_FOOTER){
+		//Start recv rest of data
+		memset(sbusData.msgBuffer, 0xFF, sizeof(sbusData.msgBuffer));
+		sbusData.msgBuffer[0] = headerByte;
+		if(HAL_UART_Receive(&huart5, sbusData.msgBuffer, SBUS_MSG_LEN, 10) == HAL_OK){
+			SBUS_Parse(&sbusData);
+		}
+	} else {
+		prevByte = headerByte;
+	}
 }
+
 
 void SBUS_Parse(SBUS_Data *data){
+
 	if(data->msgBuffer[0] != SBUS_HEADER || data->msgBuffer[SBUS_MSG_LEN - 1] != SBUS_FOOTER){
 		//Data invalid!
 		return;
@@ -54,7 +58,6 @@ void SBUS_Parse(SBUS_Data *data){
 	uint16_t *ch_ = data->channels;
 	uint8_t *buf_ = data->msgBuffer;
 
-	osKernelLock();
 	//Parse message
 	ch_[0]  = buf_[1]       | buf_[2]  << 8 & 0x07FF;
 	ch_[1]  = buf_[2]  >> 3 | buf_[3]  << 5 & 0x07FF;
@@ -80,6 +83,5 @@ void SBUS_Parse(SBUS_Data *data){
 	bool failsafe = buf_[SBUS_FLAGS_BYTE] & (1 << SBUS_FAILSAFE_BIT);
 
 	if(!failsafe)
-		data->timestamp = xTaskGetTickCountFromISR();
-	osKernelUnlock();
+		data->timestamp = xTaskGetTickCount();
 }

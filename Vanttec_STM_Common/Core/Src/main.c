@@ -37,6 +37,8 @@
 #include "PWM/pwm_out.h"
 #include <stdio.h>
 #include "heartbeat_led_task.h"
+#include "SEGGER_RTT.h"
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -59,8 +61,6 @@ ADC_HandleTypeDef hadc2;
 
 CAN_HandleTypeDef hcan2;
 
-CRC_HandleTypeDef hcrc;
-
 I2C_HandleTypeDef hi2c2;
 
 SPI_HandleTypeDef hspi1;
@@ -68,6 +68,7 @@ SPI_HandleTypeDef hspi3;
 
 TIM_HandleTypeDef htim3;
 TIM_HandleTypeDef htim4;
+TIM_HandleTypeDef htim13;
 
 UART_HandleTypeDef huart4;
 UART_HandleTypeDef huart5;
@@ -134,7 +135,6 @@ static void MX_CAN2_Init(void);
 static void MX_I2C2_Init(void);
 static void MX_SPI1_Init(void);
 static void MX_SPI3_Init(void);
-static void MX_CRC_Init(void);
 static void MX_TIM3_Init(void);
 static void MX_TIM4_Init(void);
 static void MX_DMA_Init(void);
@@ -142,6 +142,7 @@ static void MX_UART5_Init(void);
 static void MX_UART4_Init(void);
 static void MX_ADC2_Init(void);
 static void MX_USART1_UART_Init(void);
+static void MX_TIM13_Init(void);
 void StartDefaultTask(void *argument);
 
 /* USER CODE BEGIN PFP */
@@ -187,7 +188,6 @@ int main(void)
   MX_I2C2_Init();
   MX_SPI1_Init();
   MX_SPI3_Init();
-  MX_CRC_Init();
   MX_TIM3_Init();
   MX_TIM4_Init();
   MX_DMA_Init();
@@ -195,6 +195,7 @@ int main(void)
   MX_UART4_Init();
   MX_ADC2_Init();
   MX_USART1_UART_Init();
+  MX_TIM13_Init();
   /* USER CODE BEGIN 2 */
 
   can_init();
@@ -244,6 +245,10 @@ int main(void)
   canRxTaskHandle = osThreadNew(can_rx_task, NULL, &canRxTask_attributes);
   //heartbeatTaskHandle = osThreadNew(heartbeat_task, NULL, heartbeatTask_attributes);
   start_can_tx_tasks();
+  SEGGER_RTT_Init();
+  SEGGER_SYSVIEW_Conf();
+  SEGGER_RTT_WriteString(0, "Hello World from SEGGER!\r\n");
+
   /* add threads, ... */
   /* USER CODE END RTOS_THREADS */
 
@@ -397,32 +402,6 @@ static void MX_CAN2_Init(void)
   /* USER CODE BEGIN CAN2_Init 2 */
 
   /* USER CODE END CAN2_Init 2 */
-
-}
-
-/**
-  * @brief CRC Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_CRC_Init(void)
-{
-
-  /* USER CODE BEGIN CRC_Init 0 */
-
-  /* USER CODE END CRC_Init 0 */
-
-  /* USER CODE BEGIN CRC_Init 1 */
-
-  /* USER CODE END CRC_Init 1 */
-  hcrc.Instance = CRC;
-  if (HAL_CRC_Init(&hcrc) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN CRC_Init 2 */
-
-  /* USER CODE END CRC_Init 2 */
 
 }
 
@@ -679,6 +658,37 @@ static void MX_TIM4_Init(void)
 }
 
 /**
+  * @brief TIM13 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_TIM13_Init(void)
+{
+
+  /* USER CODE BEGIN TIM13_Init 0 */
+
+  /* USER CODE END TIM13_Init 0 */
+
+  /* USER CODE BEGIN TIM13_Init 1 */
+
+  /* USER CODE END TIM13_Init 1 */
+  htim13.Instance = TIM13;
+  htim13.Init.Prescaler = 0;
+  htim13.Init.CounterMode = TIM_COUNTERMODE_UP;
+  htim13.Init.Period = 859;
+  htim13.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+  htim13.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+  if (HAL_TIM_Base_Init(&htim13) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN TIM13_Init 2 */
+
+  /* USER CODE END TIM13_Init 2 */
+
+}
+
+/**
   * @brief UART4 Initialization Function
   * @param None
   * @retval None
@@ -730,7 +740,7 @@ static void MX_UART5_Init(void)
   /* USER CODE END UART5_Init 1 */
   huart5.Instance = UART5;
   huart5.Init.BaudRate = 100000;
-  huart5.Init.WordLength = UART_WORDLENGTH_8B;
+  huart5.Init.WordLength = UART_WORDLENGTH_9B;
   huart5.Init.StopBits = UART_STOPBITS_2;
   huart5.Init.Parity = UART_PARITY_EVEN;
   huart5.Init.Mode = UART_MODE_RX;
@@ -870,6 +880,7 @@ void StartDefaultTask(void *argument)
   {
     //for(int i = 0; i < 8; i++)
     		//pwm_set(i, -0.21);
+	  osDelay(100000);
   }
   /* USER CODE END 5 */
 }

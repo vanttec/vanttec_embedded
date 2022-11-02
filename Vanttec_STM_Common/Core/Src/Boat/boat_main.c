@@ -9,6 +9,8 @@
 #include "SBUS/sbus.h"
 #include "PWM/pwm_out.h"
 #include "CAN/can_bus.h"
+#include "SEGGER_RTT.h"
+
 #include <stdbool.h>
 
 extern UART_HandleTypeDef huart5;
@@ -31,8 +33,11 @@ void createTasks_boat() {
  * Handle mode switching based on sbus data
  */
 void mainTask_boat(void * params) {
+	pwm_init();
+	SBUS_Init(&sbusData, &huart5);
 	enum BoatState state = BoatState_Disabled;
 	for(;;){
+		SBUS_Update();
 		uint32_t sbus_dt = HAL_GetTick() - sbusData.timestamp;
 		//Update current state
 		if(sbusData.channels[4] < 900) state = BoatState_Disabled;
@@ -45,6 +50,10 @@ void mainTask_boat(void * params) {
 		if(!boatArmed && state != BoatState_Disabled){
 			boat_arming_sequence();
 		}
+		uint8_t buffer[20];
+		snprintf(buffer, 20, "%d, %d\r\n", sbusData.channels[0], sbusData.channels[4]);
+
+		SEGGER_RTT_WriteString(0, buffer);
 
 		//Update based on state
 		switch(state){
@@ -60,7 +69,7 @@ void mainTask_boat(void * params) {
 		}
 
 		//TODO handle status lights
-		osDelay(5);
+		osDelay(10);
 	}
 }
 
@@ -79,12 +88,14 @@ void boat_autonomous_loop(){
 
 void boat_teleoperated_loop(){
 	//Take in motor control from SBUS, and write out to pwm
-	float throttle = sbusData.channels[1] / 1500.0;
-	float steer = sbusData.channels[3] / 1500.0;
+	float throttle = (sbusData.channels[1] - 1000) / 1500.0;
+	float steer = (sbusData.channels[3] - 1000) / 1500.0;
 
 	float leftMotor, rightMotor;
 	leftMotor = throttle + steer;
 	rightMotor = throttle - steer;
+
+	//printf('leftMotor: %f\n', leftMotor);
 
 	pwm_set(0, leftMotor);
 	pwm_set(1, rightMotor);

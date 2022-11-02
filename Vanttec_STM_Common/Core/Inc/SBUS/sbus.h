@@ -40,6 +40,8 @@ HAL_StatusTypeDef SBUS_Init(SBUS_Data *data, UART_HandleTypeDef *huart);
  */
 void SBUS_RxCallback(SBUS_Data *data, UART_HandleTypeDef *huart);
 
+void SBUS_Update();
+
 void SBUS_Parse(SBUS_Data *data);
 
 void UART5_IRQHandler(void);

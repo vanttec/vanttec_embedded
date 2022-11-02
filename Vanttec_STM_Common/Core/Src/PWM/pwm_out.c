@@ -10,6 +10,7 @@
 
 extern TIM_HandleTypeDef htim3;
 extern TIM_HandleTypeDef htim4;
+static uint8_t init = 0;
 
 #define PWM_TIMER_LEN 2
 static TIM_HandleTypeDef* timer_handles[] = {&htim3, &htim4};
@@ -27,6 +28,8 @@ static float pwm_clamp(float x, float min_val, float max_val){
 
 void pwm_init(){
 	//Initialize all PWM duty cycle to 0
+	if(init != 0) return;
+
 	for(int i = 0; i < 8; i++)
 		pwm_set(i, 0);
 
@@ -35,7 +38,6 @@ void pwm_init(){
 	for(int i = 0; i < PWM_TIMER_LEN; i++){
 		for(int j = 0; j < 4; j++){
 			ret = HAL_TIM_PWM_Start(timer_handles[i], timer_channels[j]);
-			if(ret != HAL_OK) Error_Handler();
 		}
 	}
 }

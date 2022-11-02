@@ -59,7 +59,7 @@ void can_tx_update(){
 
 	CAN_TX_QUEUE_OBJ txOut;
 
-	if(osMessageQueueGet(txMessageQueue, &txOut, NULL, 0) == osOK){
+	while(osMessageQueueGet(txMessageQueue, &txOut, NULL, 0) == osOK){
 		txHeader.DLC = txOut.msg_size;
 		HAL_StatusTypeDef ret = HAL_CAN_AddTxMessage(&hcan2, &txHeader, txOut.buf, &txMailbox);
 		if(ret != HAL_OK){
@@ -70,8 +70,7 @@ void can_tx_update(){
 
 void can_tx_task(void * params){
 	for(;;){
-		while(HAL_CAN_GetTxMailboxesFreeLevel(&hcan2) != 0)
-			can_tx_update();
+		can_tx_update();
 
 		osDelay(can_tx_task_delay);
 	}

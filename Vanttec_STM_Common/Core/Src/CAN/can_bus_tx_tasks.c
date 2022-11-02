@@ -86,21 +86,22 @@ static void can_send_ping_task(void * param){
 			g_sendPing = 0;
 		}
 
-		osDelay(1);
+		osDelay(1000);
 	}
 }
 
 #include "ver_data.h"
 char debug_buffer[128];
+char runtime_stats_buffer[1024];
 static void debug_vars_task(void *param){
 	for(;;){
-		int len = snprintf(debug_buffer, sizeof(debug_buffer), "[DEBUG] Version: %s", GIT_VERSION);
+		int len = snprintf(debug_buffer, sizeof(debug_buffer), "[DEBUG] Version: %s\n", GIT_VERSION);
 		send_can_debug_msg(debug_buffer, len);
-		len = snprintf(debug_buffer, sizeof(debug_buffer), "[DEBUG] Date: %s", COMPILE_DATE);
+		len = snprintf(debug_buffer, sizeof(debug_buffer), "[DEBUG] Date: %s\n", COMPILE_DATE);
 		send_can_debug_msg(debug_buffer, len);
-		len = snprintf(debug_buffer, sizeof(debug_buffer), "[DEBUG] User: %s", COMPILE_USER);
+		len = snprintf(debug_buffer, sizeof(debug_buffer), "[DEBUG] User: %s\n", COMPILE_USER);
 		send_can_debug_msg(debug_buffer, len);
-		osDelay(60*1000); //send every minute
+		osDelay(1000 * 60); //send every minute
 	}
 }
 
