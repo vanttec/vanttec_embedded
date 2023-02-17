@@ -36,6 +36,7 @@ void SBUS_Update(){
 	HAL_StatusTypeDef ret = HAL_UART_Receive(&huart5, &headerByte, 1, 0);
 	if(ret != HAL_OK){
 		HAL_UART_AbortReceive(&huart5);
+		return;
 	}
 
 	if(headerByte == SBUS_HEADER && prevByte == SBUS_FOOTER){
