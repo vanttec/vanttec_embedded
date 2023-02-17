@@ -33,7 +33,10 @@ static uint8_t prevByte = 0xff;
 
 void SBUS_Update(){
 	uint8_t headerByte;
-	HAL_UART_Receive(&huart5, &headerByte, 1, 0);
+	HAL_StatusTypeDef ret = HAL_UART_Receive(&huart5, &headerByte, 1, 0);
+	if(ret != HAL_OK){
+		HAL_UART_AbortReceive(&huart5);
+	}
 
 	if(headerByte == SBUS_HEADER && prevByte == SBUS_FOOTER){
 		//Start recv rest of data

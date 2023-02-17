@@ -92,12 +92,12 @@ void boat_teleoperated_loop(){
 	float steer = (sbusData.channels[3] - 1000) / 1500.0;
 
 	float leftMotor, rightMotor;
-	leftMotor = throttle + steer;
-	rightMotor = throttle - steer;
+	leftMotor = -throttle + steer;
+	rightMotor = -throttle - steer;
 
 	//printf('leftMotor: %f\n', leftMotor);
 
-	pwm_set(0, leftMotor);
+	pwm_set(0, -leftMotor);
 	pwm_set(1, rightMotor);
 }
 
