@@ -70,6 +70,7 @@ void Error_Handler(void);
 #define DEBUG_3_GPIO_Port GPIOC
 #define DEBUG_1_Pin GPIO_PIN_15
 #define DEBUG_1_GPIO_Port GPIOA
+
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */

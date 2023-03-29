@@ -33,22 +33,28 @@ static uint8_t prevByte = 0xff;
 
 void SBUS_Update(){
 	uint8_t headerByte;
-	HAL_StatusTypeDef ret = HAL_UART_Receive(&huart5, &headerByte, 1, 0);
-	if(ret != HAL_OK){
-		HAL_UART_AbortReceive(&huart5);
-		return;
-	}
+	HAL_StatusTypeDef ret;
+	int32_t lock = osKernelLock();
+	do {
+		ret = HAL_UART_Receive(&huart5, &headerByte, 1, 0);
+		//if(ret != HAL_OK){
+		//	HAL_UART_AbortReceive(&huart5);
+		//	return;
+		//}
 
-	if(headerByte == SBUS_HEADER && prevByte == SBUS_FOOTER){
-		//Start recv rest of data
-		memset(sbusData.msgBuffer, 0xFF, sizeof(sbusData.msgBuffer));
-		sbusData.msgBuffer[0] = headerByte;
-		if(HAL_UART_Receive(&huart5, sbusData.msgBuffer, SBUS_MSG_LEN, 10) == HAL_OK){
-			SBUS_Parse(&sbusData);
+		if(headerByte == SBUS_HEADER && prevByte == SBUS_FOOTER){
+			//Start recv rest of data
+			memset(sbusData.msgBuffer, 0xFF, sizeof(sbusData.msgBuffer));
+			sbusData.msgBuffer[0] = headerByte;
+			if(HAL_UART_Receive(&huart5, sbusData.msgBuffer, SBUS_MSG_LEN, 50) == HAL_OK){
+				SBUS_Parse(&sbusData);
+			}
+		} else {
+			prevByte = headerByte;
 		}
-	} else {
-		prevByte = headerByte;
-	}
+	} while(ret == HAL_OK);
+
+	osKernelRestoreLock(lock);
 }
 
 

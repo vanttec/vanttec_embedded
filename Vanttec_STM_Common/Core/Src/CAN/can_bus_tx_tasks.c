@@ -13,6 +13,7 @@
 #include <stdio.h>
 
 volatile uint8_t g_sendPing;
+extern CAN_HandleTypeDef hcan2;
 
 static const osThreadAttr_t sbusTask_attributes = {
   .name = "sbusTxCan",
@@ -50,6 +51,31 @@ static const osThreadAttr_t debugVarsTask_attributes = {
 	.priority = (osPriority_t) osPriorityNormal,
 };
 
+static const osThreadAttr_t canReset_attributes = {
+	.name = "canReset",
+	.stack_size = 128 * 4,
+	.priority = (osPriority_t) osPriorityNormal,
+};
+
+static void can_reset_bus_off(void *param){
+	bool initializingBus = false;
+	for(;;){
+		// Check for bus off bit
+		if(READ_BIT(hcan2.Instance->ESR, CAN_ESR_BOFF)){
+			// Bus is off!!!! Reset bus
+			SET_BIT(hcan2.Instance->MCR, CAN_MCR_INRQ);
+			initializingBus = true;
+		}
+
+		if(initializingBus && READ_BIT(hcan2.Instance->MSR, CAN_MSR_INAK)){
+			// Bus is initialized, reset init bit
+			CLEAR_BIT(hcan2.Instance->MCR, CAN_MCR_INRQ);
+			initializingBus = false;
+		}
+
+		osDelay(100);
+	}
+}
 
 static void can_hb_tx_task(void *param){
 	for(;;){
@@ -121,4 +147,5 @@ void start_can_tx_tasks(){
 	osThreadNew(can_send_ping_task, NULL, &pingTask_attributes);
 	osThreadNew(can_battery_monitor_task, NULL, &batteryTask_attributes);
 	osThreadNew(debug_vars_task, NULL, &debugVarsTask_attributes);
+	osThreadNew(can_reset_bus_off, NULL, &canReset_attributes);
 }
