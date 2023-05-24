@@ -29,6 +29,8 @@ void createTasks_boat() {
 	osThreadNew(mainTask_boat, NULL, &boatTask_attributes);
 }
 
+uint8_t op_mode_i = 0;
+
 /*
  * Handle mode switching based on sbus data
  */
@@ -54,6 +56,13 @@ void mainTask_boat(void * params) {
 		snprintf(buffer, 20, "%d, %d\r\n", sbusData.channels[0], sbusData.channels[4]);
 
 		SEGGER_RTT_WriteString(0, buffer);
+
+		if(op_mode_i > 10){
+			queue_can_msg_short(OP_MODE_ID, state);
+			op_mode_i = 0;
+		}
+
+		op_mode_i++;
 
 		//Update based on state
 		switch(state){

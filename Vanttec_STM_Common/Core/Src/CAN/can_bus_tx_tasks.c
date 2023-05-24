@@ -60,18 +60,19 @@ static const osThreadAttr_t canReset_attributes = {
 static void can_reset_bus_off(void *param){
 	bool initializingBus = false;
 	for(;;){
+		SET_BIT(hcan2.Instance->MCR, CAN_MCR_ABOM);
 		// Check for bus off bit
-		if(READ_BIT(hcan2.Instance->ESR, CAN_ESR_BOFF)){
-			// Bus is off!!!! Reset bus
-			SET_BIT(hcan2.Instance->MCR, CAN_MCR_INRQ);
-			initializingBus = true;
-		}
-
-		if(initializingBus && READ_BIT(hcan2.Instance->MSR, CAN_MSR_INAK)){
-			// Bus is initialized, reset init bit
-			CLEAR_BIT(hcan2.Instance->MCR, CAN_MCR_INRQ);
-			initializingBus = false;
-		}
+//		if(READ_BIT(hcan2.Instance->ESR, CAN_ESR_BOFF)){
+//			// Bus is off!!!! Reset bus
+//			SET_BIT(hcan2.Instance->MCR, CAN_MCR_INRQ);
+//			initializingBus = true;
+//		}
+//
+//		if(initializingBus && READ_BIT(hcan2.Instance->MSR, CAN_MSR_INAK)){
+//			// Bus is initialized, reset init bit
+//			CLEAR_BIT(hcan2.Instance->MCR, CAN_MCR_INRQ);
+//			initializingBus = false;
+//		}
 
 		osDelay(100);
 	}
