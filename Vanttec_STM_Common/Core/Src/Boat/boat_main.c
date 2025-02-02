@@ -65,6 +65,9 @@ void mainTask_boat(void * params) {
 		op_mode_i++;
 
 		//Update based on state
+    // TODO: Remove this... just used because we dont have taranis for now.
+    state = BoatState_Autonomous;
+
 		switch(state){
 		case BoatState_Autonomous:
 			boat_autonomous_loop();
@@ -106,8 +109,10 @@ void boat_teleoperated_loop(){
 
 	//printf('leftMotor: %f\n', leftMotor);
 
-	pwm_set(0, -leftMotor);
-	pwm_set(1, rightMotor);
+	pwm_set(0, leftMotor);
+	pwm_set(1, leftMotor);
+	pwm_set(6, -rightMotor);
+	pwm_set(7, -rightMotor);
 }
 
 void boat_disabled_loop(){
