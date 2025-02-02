@@ -65,9 +65,6 @@ void mainTask_boat(void * params) {
 		op_mode_i++;
 
 		//Update based on state
-    // TODO: Remove this... just used because we dont have taranis for now.
-    state = BoatState_Autonomous;
-
 		switch(state){
 		case BoatState_Autonomous:
 			boat_autonomous_loop();
