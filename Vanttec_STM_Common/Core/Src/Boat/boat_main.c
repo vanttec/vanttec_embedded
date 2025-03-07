@@ -10,7 +10,7 @@
 #include "PWM/pwm_out.h"
 #include "CAN/can_bus.h"
 #include "SEGGER_RTT.h"
-
+#include "main.h"
 #include <stdbool.h>
 
 extern UART_HandleTypeDef huart5;
@@ -68,8 +68,12 @@ void mainTask_boat(void * params) {
 		switch(state){
 		case BoatState_Autonomous:
 			boat_autonomous_loop();
+			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_2, GPIO_PIN_SET);
+
 			break;
 		case BoatState_Teleoperated:
+			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_2, GPIO_PIN_SET);
+
 			boat_teleoperated_loop();
 			break;
 		case BoatState_Disabled:
@@ -77,12 +81,20 @@ void mainTask_boat(void * params) {
 			break;
 		}
 
+		if(state == BoatState_Disabled){
+			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_2, GPIO_PIN_RESET);
+		} else {
+			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_2, GPIO_PIN_SET);
+		}
+
+
 		//TODO handle status lights
 		osDelay(10);
 	}
 }
 
 void boat_autonomous_loop(){
+
 	//Take in motor setpoints from can, and write them out to pwm
 	uint32_t dt = HAL_GetTick() - can_rx_data.jetsonHBTick;
 	if(dt > 500) {
@@ -96,6 +108,8 @@ void boat_autonomous_loop(){
 }
 
 void boat_teleoperated_loop(){
+	  HAL_GPIO_WritePin(DEBUG_1_GPIO_Port, DEBUG_1_Pin, GPIO_PIN_SET);
+
 	//Take in motor control from SBUS, and write out to pwm
 	float throttle = (sbusData.channels[1] - 1000) / 1500.0;
 	float steer = (sbusData.channels[3] - 1000) / 1500.0;
@@ -113,6 +127,8 @@ void boat_teleoperated_loop(){
 }
 
 void boat_disabled_loop(){
+	  HAL_GPIO_WritePin(DEBUG_1_GPIO_Port, DEBUG_1_Pin, GPIO_PIN_RESET);
+
 	for(int i = 0; i < 8; i++)
 		pwm_set(i, 0);
 	return;

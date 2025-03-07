@@ -42,7 +42,6 @@
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
-typedef StaticSemaphore_t osStaticMutexDef_t;
 /* USER CODE BEGIN PTD */
 
 /* USER CODE END PTD */
@@ -84,11 +83,8 @@ const osThreadAttr_t defaultTask_attributes = {
 };
 /* Definitions for i2cMutex */
 osMutexId_t i2cMutexHandle;
-osStaticMutexDef_t i2cMutexControlBlock;
 const osMutexAttr_t i2cMutex_attributes = {
-  .name = "i2cMutex",
-  .cb_mem = &i2cMutexControlBlock,
-  .cb_size = sizeof(i2cMutexControlBlock),
+  .name = "i2cMutex"
 };
 /* USER CODE BEGIN PV */
 SBUS_Data sbusData;
@@ -826,10 +822,10 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_WritePin(GPIOC, DEBUG_5_Pin|GPIO_PIN_8|DEBUG_3_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOB, DEBUG_2_Pin|DEBUG_6_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_2|DEBUG_1_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(DEBUG_1_GPIO_Port, DEBUG_1_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOB, DEBUG_2_Pin|DEBUG_6_Pin|GPIO_PIN_4, GPIO_PIN_RESET);
 
   /*Configure GPIO pins : DEBUG_5_Pin PC8 DEBUG_3_Pin */
   GPIO_InitStruct.Pin = DEBUG_5_Pin|GPIO_PIN_8|DEBUG_3_Pin;
@@ -838,19 +834,19 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : DEBUG_2_Pin DEBUG_6_Pin */
-  GPIO_InitStruct.Pin = DEBUG_2_Pin|DEBUG_6_Pin;
+  /*Configure GPIO pins : PA2 DEBUG_1_Pin */
+  GPIO_InitStruct.Pin = GPIO_PIN_2|DEBUG_1_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : DEBUG_2_Pin DEBUG_6_Pin PB4 */
+  GPIO_InitStruct.Pin = DEBUG_2_Pin|DEBUG_6_Pin|GPIO_PIN_4;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
-
-  /*Configure GPIO pin : DEBUG_1_Pin */
-  GPIO_InitStruct.Pin = DEBUG_1_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(DEBUG_1_GPIO_Port, &GPIO_InitStruct);
 
 /* USER CODE BEGIN MX_GPIO_Init_2 */
 /* USER CODE END MX_GPIO_Init_2 */
