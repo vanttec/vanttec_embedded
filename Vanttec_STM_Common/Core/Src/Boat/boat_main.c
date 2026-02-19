@@ -38,6 +38,7 @@ void mainTask_boat(void * params) {
 	pwm_init();
 	SBUS_Init(&sbusData, &huart5);
 	enum BoatState state = BoatState_Disabled;
+	enum BoatState aux = 0;
 	for(;;){
 		SBUS_Update();
 		uint32_t sbus_dt = HAL_GetTick() - sbusData.timestamp;
@@ -45,6 +46,11 @@ void mainTask_boat(void * params) {
 		if(sbusData.channels[4] < 900) state = BoatState_Disabled;
 		else if(sbusData.channels[4] > 900 && sbusData.channels[4] < 1110) state = BoatState_Teleoperated;
 		else if(sbusData.channels[4] > 1100) state = BoatState_Autonomous;
+
+		// update aux
+		if(sbusData.channels[5] < 900) aux = 0;
+		else if(sbusData.channels[5] > 900 && sbusData.channels[4] < 1110) aux = 1;
+		else if(sbusData.channels[5] > 1100) aux = 2;
 
 		if(sbus_dt > 1000) state = BoatState_Disabled; //Disable if sbus is not rcv
 
@@ -62,18 +68,19 @@ void mainTask_boat(void * params) {
 			op_mode_i = 0;
 		}
 
+		if(op_mode_i > 10){
+			queue_can_msg_short(AUX_ID, aux);
+			op_mode_i = 0;
+		}
+
 		op_mode_i++;
 
 		//Update based on state
 		switch(state){
 		case BoatState_Autonomous:
 			boat_autonomous_loop();
-			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_2, GPIO_PIN_SET);
-
 			break;
 		case BoatState_Teleoperated:
-			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_2, GPIO_PIN_SET);
-
 			boat_teleoperated_loop();
 			break;
 		case BoatState_Disabled:

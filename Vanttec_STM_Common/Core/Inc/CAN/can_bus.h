@@ -24,6 +24,7 @@
 #define PING_ID 0x1F
 #define BATTERY_VOLTAGE_ID 0x20
 #define OP_MODE_ID 0x21
+#define AUX_ID 0x22
 #ifdef __cplusplus
 extern "C" {
 #endif
