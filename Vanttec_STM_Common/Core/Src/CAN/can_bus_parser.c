@@ -7,7 +7,7 @@
 
 #include "CAN/can_bus.h"
 #include "CAN/can_bus_parser.h"
-#include "CANMessage.h"
+#include "../../../libs/vanttec_CANLib/src/Vanttec_CANLib/CANMessage.h"
 
 extern volatile uint8_t g_sendPing;
 

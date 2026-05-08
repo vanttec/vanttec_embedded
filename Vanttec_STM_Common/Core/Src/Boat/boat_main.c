@@ -9,9 +9,11 @@
 #include "SBUS/sbus.h"
 #include "PWM/pwm_out.h"
 #include "CAN/can_bus.h"
+#include "CAN/can.h"
 #include "SEGGER_RTT.h"
 #include "main.h"
 #include <stdbool.h>
+#include <stdio.h>
 
 extern UART_HandleTypeDef huart5;
 extern SBUS_Data sbusData;

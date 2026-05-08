@@ -8,6 +8,7 @@
 #include "CAN/can.h"
 #include "stm32f4xx_hal.h"
 #include <string.h>
+#include "../../../libs/vanttec_CANLib/src/Vanttec_CANLib/CANMessage.h"
 
 extern CAN_HandleTypeDef hcan2;
 

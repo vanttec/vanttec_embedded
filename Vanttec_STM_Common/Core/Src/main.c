@@ -33,11 +33,13 @@
 #include "SBUS/sbus.h"
 #include "CAN/can_bus_task.h"
 #include "CAN/can_bus_tx_tasks.h"
+#include "CAN/can.h"
 #include "pca9685.h"
 #include "PWM/pwm_out.h"
 #include <stdio.h>
 #include "heartbeat_led_task.h"
 #include "SEGGER_RTT.h"
+#include "SEGGER_SYSVIEW.h"
 
 /* USER CODE END Includes */
 
@@ -91,13 +93,6 @@ SBUS_Data sbusData;
 osThreadId_t canTaskHandle;
 const osThreadAttr_t canTask_attributes = {
   .name = "canTask",
-  .stack_size = 128 * 4,
-  .priority = (osPriority_t) osPriorityNormal,
-};
-
-osThreadId_t canRxTaskHandle;
-const osThreadAttr_t canRxTask_attributes = {
-  .name = "canRxTask",
   .stack_size = 128 * 4,
   .priority = (osPriority_t) osPriorityNormal,
 };
@@ -238,7 +233,6 @@ int main(void)
   createTasks_sub();
 #endif
   canTaskHandle = osThreadNew(can_tx_task, NULL, &canTask_attributes);
-  canRxTaskHandle = osThreadNew(can_rx_task, NULL, &canRxTask_attributes);
   //heartbeatTaskHandle = osThreadNew(heartbeat_task, NULL, heartbeatTask_attributes);
   start_can_tx_tasks();
   SEGGER_RTT_Init();

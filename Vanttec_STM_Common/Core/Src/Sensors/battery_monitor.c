@@ -7,6 +7,7 @@
 
 #include "Sensors/battery_monitor.h"
 #include "stm32f4xx_hal.h"
+#include "main.h"
 
 extern ADC_HandleTypeDef hadc2;
 
