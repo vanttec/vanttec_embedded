@@ -27,4 +27,6 @@ void queue_can_msg_short(uint8_t id, uint16_t data);
 
 void queue_can_msg_float(uint8_t id, float data);
 
+void send_can_debug_char(char c);
+
 #endif /* INC_CAN_CAN_H_ */

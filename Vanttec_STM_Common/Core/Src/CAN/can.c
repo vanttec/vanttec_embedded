@@ -7,6 +7,7 @@
 
 #include "CAN/can.h"
 #include "stm32f4xx_hal.h"
+#include "CANMessage.h"
 #include <string.h>
 
 extern CAN_HandleTypeDef hcan2;

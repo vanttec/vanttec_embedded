@@ -11,7 +11,9 @@
 #include "CAN/can_bus.h"
 #include "SEGGER_RTT.h"
 #include "main.h"
+#include "CAN/can.h"
 #include <stdbool.h>
+#include <stdio.h>
 
 extern UART_HandleTypeDef huart5;
 extern SBUS_Data sbusData;

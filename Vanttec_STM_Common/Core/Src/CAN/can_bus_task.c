@@ -13,6 +13,7 @@
 #include "SBUS/sbus.h"
 #include "CAN/can.h"
 #include "CAN/can_bus_parser.h"
+#include "main.h"
 
 extern CAN_HandleTypeDef hcan2;
 extern SBUS_Data sbusData;

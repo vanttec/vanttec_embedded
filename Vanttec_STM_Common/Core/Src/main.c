@@ -31,6 +31,7 @@
 #include "Sub/sub_main.h"
 #endif
 #include "SBUS/sbus.h"
+#include "CAN/can.h"
 #include "CAN/can_bus_task.h"
 #include "CAN/can_bus_tx_tasks.h"
 #include "pca9685.h"
@@ -38,6 +39,7 @@
 #include <stdio.h>
 #include "heartbeat_led_task.h"
 #include "SEGGER_RTT.h"
+#include "SEGGER_SYSVIEW.h"
 
 /* USER CODE END Includes */
 
