@@ -16,6 +16,8 @@ void pwm_init();
 //0-7 channels, -1 to 1 range output
 void pwm_set(uint8_t ch, float output);
 
-void pwm_set_raw(uint8_t ch, uint16_t out);
+void pwm_set_raw(uint8_t ch, uint16_t output);
+
+uint16_t pwm_get_raw(uint8_t ch);
 
 #endif /* INC_PWM_PWM_OUT_H_ */

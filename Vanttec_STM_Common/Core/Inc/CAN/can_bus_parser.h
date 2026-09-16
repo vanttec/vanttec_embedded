@@ -1,15 +1,17 @@
-/*
- * can_bus_parser.h
- *
- *  Created on: Jan 29, 2022
- *      Author: abiel
- */
+#ifndef SRC_CAN_CAN_BUS_PARSER_H_
+#define SRC_CAN_CAN_BUS_PARSER_H_
 
-#ifndef INC_CAN_CAN_BUS_PARSER_H_
-#define INC_CAN_CAN_BUS_PARSER_H_
-
+#include <stdint.h>
 #include "stm32f4xx_hal.h"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 void can_parse_msg(CAN_RxHeaderTypeDef *header, uint8_t *data);
 
-#endif /* INC_CAN_CAN_BUS_PARSER_H_ */
+#ifdef __cplusplus
+}
+#endif
+
+#endif /* SRC_CAN_CAN_BUS_PARSER_H_ */

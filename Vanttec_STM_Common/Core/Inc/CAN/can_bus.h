@@ -1,30 +1,34 @@
 /*
  * can_bus.h
- *
- *  Created on: Jan 7, 2022
- *      Author: abiel
  */
 
 #ifndef SRC_CAN_CAN_BUS_H_
 #define SRC_CAN_CAN_BUS_H_
 
 #include <stdint.h>
+#include "stm32f4xx_hal.h"
 
-#define HEARTBEAT_ID 0x01
-//16 SBUS channels
-#define SBUS_ID_START 0x02
-#define SBUS_ID_END 0x12
-#define SBUS_FAILSAFE 0x13
-#define DEBUG_LOG_ID 0x14
-//8 motor channels
-#define MOTOR_ID_START 0x15
-#define MOTOR_ID_END 0x1D
-//Jetson heartbeat
-#define JETSON_HEARTBEAT_ID 0x1E
-#define PING_ID 0x1F
-#define BATTERY_VOLTAGE_ID 0x20
-#define OP_MODE_ID 0x21
-#define AUX_ID 0x22
+// --- NEW STANDARD CAN IDs ---
+// Transmitted by Main PCB (Acting as Telemetry Gateway)
+#define CAN_ID_GATEWAY_HB       0x010 // Replaces old MAIN_STATUS
+#define CAN_ID_MAIN_PWM_0_3     0x101
+#define CAN_ID_MAIN_PWM_4_7     0x102
+#define CAN_ID_MAIN_DEBUG       0x111
+#define CAN_ID_PING             0x112
+
+// Received from Jetson & Other PCBs
+#define CAN_ID_JETSON_MOTORS_01 0x120
+#define CAN_ID_JETSON_MOTORS_23 0x121
+#define CAN_ID_JETSON_MOTORS_45 0x122
+#define CAN_ID_JETSON_MOTORS_67 0x123
+#define CAN_ID_JETSON_HB        0x01E
+
+// Telemetry Data Received by Main PCB
+#define CAN_ID_ACTUATOR         0x150
+#define CAN_ID_BATTERY          0x200
+#define CAN_ID_GPS_LATLON       0x300
+#define CAN_ID_GPS_HEADING      0x301
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -34,18 +38,11 @@ typedef struct {
 	uint32_t jetsonHBTick;
 } can_rx;
 
-typedef struct {
-	uint32_t heartbeat;
-	uint16_t sbusData[16];
-	uint8_t sbusIsFailsafe;
-} can_tx;
-
 extern volatile can_rx can_rx_data;
-extern volatile can_tx can_tx_data;
 
 typedef struct {
-	uint8_t buf[8];
-	uint8_t msg_size;
+    CAN_TxHeaderTypeDef header;
+	uint8_t payload[8];
 } CAN_TX_QUEUE_OBJ;
 
 #ifdef __cplusplus

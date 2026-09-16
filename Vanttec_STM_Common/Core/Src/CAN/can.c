@@ -1,19 +1,14 @@
 /*
  * can.c
- *
- *  Created on: Jan 15, 2022
- *      Author: abiel
  */
 
 #include "CAN/can.h"
 #include "stm32f4xx_hal.h"
 #include <string.h>
-#include "../../../libs/vanttec_CANLib/src/Vanttec_CANLib/CANMessage.h"
 
 extern CAN_HandleTypeDef hcan2;
 
 osStatus_t handle_debug_msg_queue(){
-	uint8_t buf[8];
 	uint8_t msg_buf[8];
 	uint32_t txMailbox;
 
@@ -22,24 +17,20 @@ osStatus_t handle_debug_msg_queue(){
 
 	CAN_TxHeaderTypeDef txHeader;
 	txHeader.IDE = CAN_ID_STD;
-	txHeader.StdId = 0x111;
+	txHeader.StdId = CAN_ID_MAIN_DEBUG;
 	txHeader.RTR = CAN_RTR_DATA;
+	txHeader.DLC = msg_buf[0];
 
-	txHeader.DLC = msg_buf[0] + 1;
-	memcpy(buf + 1, msg_buf + 1, txHeader.DLC);
-	buf[0] = DEBUG_LOG_ID;
-
-	HAL_CAN_AddTxMessage(&hcan2, &txHeader, buf, &txMailbox);
+	HAL_CAN_AddTxMessage(&hcan2, &txHeader, msg_buf + 1, &txMailbox);
 	return ret;
 }
 
-static char debug_buf[8];
+static char debug_buf[7];
 static uint8_t debug_buf_len = 0;
 void send_can_debug_char(char c){
 	debug_buf[debug_buf_len] = c;
 	debug_buf_len++;
 	if(debug_buf_len >= sizeof(debug_buf) || c == '\n'){
-		//Queue buffer
 		send_can_debug_msg(debug_buf, debug_buf_len);
 		debug_buf_len = 0;
 	}
@@ -55,32 +46,23 @@ void send_can_debug_msg(const char *str, uint32_t len){
 		osMessageQueuePut(debugMessageQueue, buf, 1, 10);
 	}
 
-	//Put remaining bytes into queue
 	memcpy(buf + 1, str + i, len % 7);
 	buf[0] = len % 7;
 	osMessageQueuePut(debugMessageQueue, buf, 1, 10);
 }
 
-void queue_can_msg_byte(uint8_t id, uint8_t data){
+void queue_can_msg(uint32_t stdId, uint8_t dlc, const uint8_t* payload){
 	CAN_TX_QUEUE_OBJ out;
-	out.msg_size = can_pack_byte(id, data, out.buf, sizeof(out.buf));
-	osStatus_t ret = osMessageQueuePut(txMessageQueue, &out, 0, 10);
-}
-
-void queue_can_msg_long(uint8_t id, uint32_t data){
-	CAN_TX_QUEUE_OBJ out;
-	out.msg_size = can_pack_long(id, data, out.buf, sizeof(out.buf));
-	osMessageQueuePut(txMessageQueue, &out, 0, 10);
-}
-
-void queue_can_msg_short(uint8_t id, uint16_t data){
-	CAN_TX_QUEUE_OBJ out;
-	out.msg_size = can_pack_short(id, data, out.buf, sizeof(out.buf));
-	osMessageQueuePut(txMessageQueue, &out, 0, 10);
-}
-
-void queue_can_msg_float(uint8_t id, float data){
-	CAN_TX_QUEUE_OBJ out;
-	out.msg_size = can_pack_float(id, data, out.buf, sizeof(out.buf));
+    memset(&out, 0, sizeof(out));
+	out.header.StdId = stdId;
+	out.header.IDE = CAN_ID_STD;
+	out.header.RTR = CAN_RTR_DATA;
+	out.header.DLC = dlc;
+	out.header.TransmitGlobalTime = DISABLE;
+	
+	if(payload != NULL && dlc > 0) {
+		memcpy(out.payload, payload, dlc);
+	}
+	
 	osMessageQueuePut(txMessageQueue, &out, 0, 10);
 }

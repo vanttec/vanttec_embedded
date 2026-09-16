@@ -1,8 +1,5 @@
 /*
  * can.h
- *
- *  Created on: Jan 15, 2022
- *      Author: abiel
  */
 
 #ifndef INC_CAN_CAN_H_
@@ -21,12 +18,7 @@ void send_can_debug_char(char c);
 
 void send_can_debug_msg(const char *str, uint32_t len);
 
-void queue_can_msg_byte(uint8_t id, uint8_t data);
-
-void queue_can_msg_long(uint8_t id, uint32_t data);
-
-void queue_can_msg_short(uint8_t id, uint16_t data);
-
-void queue_can_msg_float(uint8_t id, float data);
+// Standard CAN message queue function
+void queue_can_msg(uint32_t stdId, uint8_t dlc, const uint8_t* payload);
 
 #endif /* INC_CAN_CAN_H_ */

@@ -14,8 +14,10 @@
 #include "main.h"
 #include <stdbool.h>
 #include <stdio.h>
+#include "telemetry.h"
 
 extern UART_HandleTypeDef huart5;
+extern UART_HandleTypeDef huart4;
 extern SBUS_Data sbusData;
 
 static bool boatArmed = false;
@@ -60,22 +62,10 @@ void mainTask_boat(void * params) {
 		if(!boatArmed && state != BoatState_Disabled){
 			boat_arming_sequence();
 		}
-		uint8_t buffer[20];
+		char buffer[20];
 		snprintf(buffer, 20, "%d, %d\r\n", sbusData.channels[0], sbusData.channels[4]);
 
 		SEGGER_RTT_WriteString(0, buffer);
-
-		if(op_mode_i > 10){
-			queue_can_msg_short(OP_MODE_ID, state);
-			op_mode_i = 0;
-		}
-
-		if(op_mode_i > 10){
-			queue_can_msg_short(AUX_ID, aux);
-			op_mode_i = 0;
-		}
-
-		op_mode_i++;
 
 		//Update based on state
 		switch(state){
@@ -96,6 +86,42 @@ void mainTask_boat(void * params) {
 			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_2, GPIO_PIN_SET);
 		}
 
+		// Broadcast telemetry over CAN at 10Hz (every 100ms since loop is 10ms)
+		if(op_mode_i > 10){
+			// Gateway Heartbeat on CAN_ID_GATEWAY_HB (0x010)
+			uint32_t tick = HAL_GetTick();
+			uint8_t hb_payload[8] = {0};
+			hb_payload[0] = (uint8_t)(tick & 0xFF);
+			hb_payload[1] = (uint8_t)((tick >> 8) & 0xFF);
+			hb_payload[2] = (uint8_t)((tick >> 16) & 0xFF);
+			hb_payload[3] = (uint8_t)((tick >> 24) & 0xFF);
+			hb_payload[4] = (uint8_t)state;
+			hb_payload[5] = (uint8_t)aux;
+			hb_payload[6] = boatArmed ? 1 : 0;
+			queue_can_msg(CAN_ID_GATEWAY_HB, 8, hb_payload);
+
+			uint16_t pwm_0_3[4] = {pwm_get_raw(0), pwm_get_raw(1), pwm_get_raw(2), pwm_get_raw(3)};
+			queue_can_msg(CAN_ID_MAIN_PWM_0_3, 8, (uint8_t*)pwm_0_3);
+            
+			uint16_t pwm_4_7[4] = {pwm_get_raw(4), pwm_get_raw(5), pwm_get_raw(6), pwm_get_raw(7)};
+			queue_can_msg(CAN_ID_MAIN_PWM_4_7, 8, (uint8_t*)pwm_4_7);
+            
+			op_mode_i = 0;
+		}
+		op_mode_i++;
+
+		// Send CSV Telemetry string over UART4 at 5Hz (every 200ms)
+		static uint32_t last_telemetry_tick = 0;
+		if (HAL_GetTick() - last_telemetry_tick >= 200) {
+			last_telemetry_tick = HAL_GetTick();
+			status.gateway_uptime = last_telemetry_tick;
+			
+			char tx_buf[128];
+			int len = generate_telemetry_string(tx_buf, sizeof(tx_buf));
+			if (len > 0) {
+				HAL_UART_Transmit(&huart4, (uint8_t*)tx_buf, len, 100);
+			}
+		}
 
 		//TODO handle status lights
 		osDelay(10);

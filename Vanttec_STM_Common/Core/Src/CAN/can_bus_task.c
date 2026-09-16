@@ -1,15 +1,11 @@
 /*
  * can_bus_task.c
- *
- *  Created on: Jan 9, 2022
- *      Author: abiel
  */
 
 #include <string.h>
 #include "CAN/can_bus.h"
 #include "stm32f4xx_hal.h"
 #include "main.h"
-#include "../../../libs/vanttec_CANLib/src/Vanttec_CANLib/CANMessage.h"
 #include "CAN/can_bus_task.h"
 #include "SBUS/sbus.h"
 #include "CAN/can.h"
@@ -51,17 +47,11 @@ void can_init(){
 }
 
 void can_tx_update(){
-	CAN_TxHeaderTypeDef txHeader;
 	uint32_t txMailbox;
-	txHeader.IDE = CAN_ID_STD;
-	txHeader.StdId = 0x111;
-	txHeader.RTR = CAN_RTR_DATA;
-
 	CAN_TX_QUEUE_OBJ txOut;
 
 	while(osMessageQueueGet(txMessageQueue, &txOut, NULL, 0) == osOK){
-		txHeader.DLC = txOut.msg_size;
-		HAL_StatusTypeDef ret = HAL_CAN_AddTxMessage(&hcan2, &txHeader, txOut.buf, &txMailbox);
+		HAL_StatusTypeDef ret = HAL_CAN_AddTxMessage(&hcan2, &txOut.header, txOut.payload, &txMailbox);
 		if(ret != HAL_OK){
 			// Mailbox full, requeue message and stop trying for now
 			osMessageQueuePut(txMessageQueue, &txOut, 0, 0);
@@ -77,5 +67,3 @@ void can_tx_task(void * params){
 		osDelay(can_tx_task_delay);
 	}
 }
-
-

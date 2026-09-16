@@ -69,3 +69,17 @@ void pwm_set(uint8_t ch, float output){
 
 	pwm_set_raw(ch, (uint16_t) roundf(output));
 }
+
+uint16_t pwm_get_raw(uint8_t ch){
+	if(ch >= 8) return 0;
+	TIM_HandleTypeDef *timer;
+	uint32_t timer_channel;
+	if(ch < 4){
+		timer = timer_handles[0];
+		timer_channel = timer_channels[ch];
+	} else {
+		timer = timer_handles[1];
+		timer_channel = timer_channels[ch - 4];
+	}
+	return __HAL_TIM_GET_COMPARE(timer, timer_channel);
+}
