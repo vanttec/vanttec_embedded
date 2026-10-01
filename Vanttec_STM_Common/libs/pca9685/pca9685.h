@@ -5,7 +5,7 @@
 #include <stdbool.h>
 
 #ifndef PCA9685_I2C_TIMEOUT
-#define PCA9685_I2C_TIMEOUT 1
+#define PCA9685_I2C_TIMEOUT 100
 #endif
 
 #define PCA9865_I2C_DEFAULT_DEVICE_ADDRESS 0x80

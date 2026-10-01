@@ -1,11 +1,5 @@
-/*
- * pwm_out.c
- *
- *  Created on: Jan 25, 2022
- *      Author: abiel
- */
-
 #include "PWM/pwm_out.h"
+#include "main.h"
 #include <math.h>
 
 extern TIM_HandleTypeDef htim3;
@@ -43,7 +37,7 @@ void pwm_init(){
 }
 
 void pwm_set_raw(uint8_t ch, uint16_t output){
-	if(ch > 8) return;
+	if(ch >= 8) return;
 
 	TIM_HandleTypeDef *timer;
 	uint32_t timer_channel;
@@ -82,4 +76,47 @@ uint16_t pwm_get_raw(uint8_t ch){
 		timer_channel = timer_channels[ch - 4];
 	}
 	return __HAL_TIM_GET_COMPARE(timer, timer_channel);
+}
+
+extern I2C_HandleTypeDef hi2c2;
+
+pca9685_handle_t g_pcaHandle = {
+	.i2c_handle = &hi2c2,
+	.device_address = 0x43, // 7-bit address: 0x40 base + A0(1) + A1(2) pulled HIGH
+	.inverted = false
+};
+
+void pwm_set_ibt2_motor(float speed){
+	speed = pwm_clamp(speed, -1.0f, 1.0f);
+	uint32_t arr = __HAL_TIM_GET_AUTORELOAD(&htim4); // PWM3 and PWM5 use the same 50 Hz period.
+
+	if (speed > 0.0f) {
+		uint16_t rpwm = (uint16_t)roundf(speed * arr);
+		pwm_set_raw(3, rpwm); // Logical PWM3 -> RPWM
+		pwm_set_raw(5, 0);    // Logical PWM5 -> LPWM
+	} else if (speed < 0.0f) {
+		uint16_t lpwm = (uint16_t)roundf(-speed * arr);
+		pwm_set_raw(3, 0);    // Logical PWM3 -> RPWM
+		pwm_set_raw(5, lpwm); // Logical PWM5 -> LPWM
+	} else {
+		pwm_set_raw(3, 0);
+		pwm_set_raw(5, 0);
+	}
+}
+
+void pwm_set_ball_enable(uint8_t enable){
+	HAL_GPIO_WritePin(BALL_MOTOR_EN_GPIO_Port, BALL_MOTOR_EN_Pin, enable ? GPIO_PIN_SET : GPIO_PIN_RESET);
+}
+
+void pwm_set_pump_enable(uint8_t enable){
+	HAL_GPIO_WritePin(PUMP_EN_GPIO_Port, PUMP_EN_Pin, enable ? GPIO_PIN_SET : GPIO_PIN_RESET);
+}
+
+void pwm_set_pca_servo(uint8_t ch, float setpoint){
+	if (ch >= 16) return;
+	setpoint = pwm_clamp(setpoint, -1.0f, 1.0f);
+	// 50 Hz frame = 20ms = 4096 counts on PCA9685
+	// 1.0ms pulse = 205 counts, 1.5ms pulse = 307 counts, 2.0ms pulse = 410 counts
+	uint16_t off_time = (uint16_t)roundf(pwm_map(setpoint, -1.0f, 1.0f, 205.0f, 410.0f));
+	pca9685_set_channel_pwm_times(&g_pcaHandle, ch, 0, off_time);
 }

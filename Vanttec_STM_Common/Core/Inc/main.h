@@ -72,7 +72,12 @@ void Error_Handler(void);
 #define DEBUG_1_GPIO_Port GPIOA
 
 /* USER CODE BEGIN Private defines */
-
+#define BALL_MOTOR_EN_Pin GPIO_PIN_8
+#define BALL_MOTOR_EN_GPIO_Port GPIOC
+#define PUMP_EN_Pin GPIO_PIN_4
+#define PUMP_EN_GPIO_Port GPIOB
+#define PWM_OE_Pin GPIO_PIN_8
+#define PWM_OE_GPIO_Port GPIOC
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus

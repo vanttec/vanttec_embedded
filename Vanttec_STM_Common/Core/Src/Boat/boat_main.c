@@ -35,12 +35,39 @@ void createTasks_boat() {
 
 uint8_t op_mode_i = 0;
 
+// PCA channels 0-2 are LED outputs; servo headers start at channel 3.
+#define PCA_TURRET_X_CHANNEL 3
+#define PCA_TURRET_Y_CHANNEL 4
+#define PCA_UNSTICK_CHANNEL  5
+
+static void boat_actuator_failsafe(void){
+	pwm_set_ibt2_motor(0.0f);
+	pwm_set_pca_servo(PCA_TURRET_X_CHANNEL, 0.0f);
+	pwm_set_pca_servo(PCA_TURRET_Y_CHANNEL, 0.0f);
+	pwm_set_pca_servo(PCA_UNSTICK_CHANNEL, 0.0f);
+}
+
+static bool boat_actuator_command_fresh(void){
+	return can_rx_data.actuatorCommandValid &&
+		(HAL_GetTick() - can_rx_data.actuatorCmdTick <= 500);
+}
+
+static void boat_apply_can_servos(void){
+	pwm_set_pca_servo(PCA_TURRET_X_CHANNEL, can_rx_data.turret_x_angle);
+	pwm_set_pca_servo(PCA_TURRET_Y_CHANNEL, can_rx_data.turret_y_angle);
+	pwm_set_pca_servo(PCA_UNSTICK_CHANNEL, can_rx_data.unstick_servo_pos);
+}
+
 /*
  * Handle mode switching based on sbus data
  */
 void mainTask_boat(void * params) {
 	pwm_init();
 	SBUS_Init(&sbusData, &huart5);
+
+	// Initialize PCA9685PW Servo Driver now that RTOS mutex is ready
+	pca9685_init(&g_pcaHandle);
+
 	enum BoatState state = BoatState_Disabled;
 	enum BoatState aux = 0;
 	for(;;){
@@ -130,30 +157,57 @@ void mainTask_boat(void * params) {
 
 void boat_autonomous_loop(){
 
-	//Take in motor setpoints from can, and write them out to pwm
+	// Take in motor setpoints from CAN and write them out to PWM
 	uint32_t dt = HAL_GetTick() - can_rx_data.jetsonHBTick;
-	if(dt > 500) {
-		boat_disabled_loop(); //Disable if jetson has not sent any recent msgs
+	if(!can_rx_data.jetsonHeartbeatValid || dt > 500) {
+		boat_actuator_failsafe();
+		for(int i = 0; i < 8; i++)
+			pwm_set(i, 0);
 		return;
 	}
 
-	for(int i = 0; i < 8; i++){
-		pwm_set(i, can_rx_data.motorSetpoints[i]);
+	// Main Propulsion Thrusters (Channels 0, 1, 6, 7)
+	pwm_set(0, can_rx_data.motorSetpoints[0]);
+	pwm_set(1, can_rx_data.motorSetpoints[1]);
+	pwm_set(6, can_rx_data.motorSetpoints[6]);
+	pwm_set(7, can_rx_data.motorSetpoints[7]);
+
+	// Actuators Control (CAN_ID_ACTUATOR 0x150)
+	if (boat_actuator_command_fresh()) {
+		// Servo Commands on PCA9685 Servo Driver headers:
+		// Servo 1 (ch 3) -> Turret X gear
+		// Servo 2 (ch 4) -> Turret Y gear
+		// Servo 3 (ch 5) -> Ball Unstick Servo
+		boat_apply_can_servos();
+
+		// H-bridge PWM command is accepted for bench testing; enable control is deferred.
+		pwm_set_ibt2_motor(can_rx_data.ball_motor_speed);
+	} else {
+		boat_actuator_failsafe();
 	}
 }
 
 void boat_teleoperated_loop(){
-	  HAL_GPIO_WritePin(DEBUG_1_GPIO_Port, DEBUG_1_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(DEBUG_1_GPIO_Port, DEBUG_1_Pin, GPIO_PIN_SET);
 
-	//Take in motor control from SBUS, and write out to pwm
+	// Temporary bench-test path: keep the ball shooter stopped, but allow
+	// fresh CAN commands to exercise the three PCA servos in manual mode.
+	pwm_set_ibt2_motor(0.0f);
+	if (boat_actuator_command_fresh()) {
+		boat_apply_can_servos();
+	} else {
+		pwm_set_pca_servo(PCA_TURRET_X_CHANNEL, 0.0f);
+		pwm_set_pca_servo(PCA_TURRET_Y_CHANNEL, 0.0f);
+		pwm_set_pca_servo(PCA_UNSTICK_CHANNEL, 0.0f);
+	}
+
+	// Take in motor control from SBUS, and write out to PWM
 	float throttle = (sbusData.channels[1] - 1000) / 1500.0;
 	float steer = (sbusData.channels[3] - 1000) / 1500.0;
 
 	float leftMotor, rightMotor;
 	leftMotor = -throttle + steer;
 	rightMotor = -throttle - steer;
-
-	//printf('leftMotor: %f\n', leftMotor);
 
 	pwm_set(0, leftMotor);
 	pwm_set(1, leftMotor);
@@ -162,8 +216,11 @@ void boat_teleoperated_loop(){
 }
 
 void boat_disabled_loop(){
-	  HAL_GPIO_WritePin(DEBUG_1_GPIO_Port, DEBUG_1_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(DEBUG_1_GPIO_Port, DEBUG_1_Pin, GPIO_PIN_RESET);
 
+	boat_actuator_failsafe();
+
+	// Stop propulsion outputs and zero out PWM channels.
 	for(int i = 0; i < 8; i++)
 		pwm_set(i, 0);
 	return;

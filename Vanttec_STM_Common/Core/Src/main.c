@@ -190,10 +190,6 @@ int main(void)
   /* USER CODE BEGIN 2 */
 
   can_init();
-  pca9685_handle_t pcaHandle;
-  pcaHandle.i2c_handle = &hi2c2;
-  pcaHandle.device_address = 0x7f;
-  pcaHandle.inverted = false;
 
   HAL_StatusTypeDef ret = SBUS_Init(&sbusData, &huart5);
   if(ret != HAL_OK) Error_Handler();
@@ -597,7 +593,7 @@ static void MX_TIM4_Init(void)
   htim4.Instance = TIM4;
   htim4.Init.Prescaler = 83;
   htim4.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim4.Init.Period = 20000;
+  htim4.Init.Period = 20000; // 50 Hz PWM (20ms period) for Thruster ESCs and Servos
   htim4.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim4.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_ENABLE;
   if (HAL_TIM_Base_Init(&htim4) != HAL_OK)
@@ -813,7 +809,9 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOD_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOC, DEBUG_5_Pin|GPIO_PIN_8|DEBUG_3_Pin, GPIO_PIN_RESET);
+  // PWM_OE is active-high on the PCA9685PW carrier board.
+  HAL_GPIO_WritePin(GPIOC, DEBUG_5_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(PWM_OE_GPIO_Port, PWM_OE_Pin, GPIO_PIN_SET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOA, GPIO_PIN_2|DEBUG_1_Pin, GPIO_PIN_RESET);
@@ -821,8 +819,8 @@ static void MX_GPIO_Init(void)
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOB, DEBUG_2_Pin|DEBUG_6_Pin|GPIO_PIN_4, GPIO_PIN_RESET);
 
-  /*Configure GPIO pins : DEBUG_5_Pin PC8 DEBUG_3_Pin */
-  GPIO_InitStruct.Pin = DEBUG_5_Pin|GPIO_PIN_8|DEBUG_3_Pin;
+  /*Configure GPIO pins : DEBUG_5_Pin PWM_OE_Pin */
+  GPIO_InitStruct.Pin = DEBUG_5_Pin|PWM_OE_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;

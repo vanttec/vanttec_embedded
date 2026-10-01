@@ -36,6 +36,16 @@ extern "C" {
 typedef struct {
 	float motorSetpoints[8];
 	uint32_t jetsonHBTick;
+	uint8_t jetsonHeartbeatValid;
+
+	// Actuator setpoints: H-bridge ball shooter plus PCA9685 servos.
+	uint8_t ball_motor_enable;
+	float ball_motor_speed;   // -1.0 to 1.0, two H-bridge PWM legs
+	float turret_x_angle;     // PCA9685 channel 0, setpoint -1.0 to 1.0
+	float turret_y_angle;     // PCA9685 channel 1, setpoint -1.0 to 1.0
+	float unstick_servo_pos;  // PCA9685 LED driver 3, setpoint -1.0 to 1.0
+	uint32_t actuatorCmdTick;
+	uint8_t actuatorCommandValid;
 } can_rx;
 
 extern volatile can_rx can_rx_data;
